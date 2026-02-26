@@ -1,0 +1,29 @@
+{
+  "inputs": [
+    {
+      "id": "playwright-browser",
+      "type": "pickString",
+      "description": "Browser to use for Playwright MCP",
+      "default": "chromium",
+      "options": ["chromium", "firefox", "webkit", "chrome", "msedge"]
+    },
+    {
+      "id": "playwright-headless",
+      "type": "pickString",
+      "description": "Run browser in headless mode?",
+      "default": "true",
+      "options": ["true", "false"]
+    }
+  ],
+  "servers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest",
+        "--browser=${input:playwright-browser}",
+        "--headless=${input:playwright-headless}",
+        "--caps=testing,vision,pdf"
+      ]
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "name": "qa-automation-playwright-mcp",
+  "version": "1.0.0",
+  "description": "Sistema jerárquico de agentes QA con Playwright MCP + CLI para automatización Web & API",
+  "private": true,
+  "scripts": {
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test --project=ui",
+    "test:api": "npx playwright test --project=api",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "codegen": "npx playwright codegen",
+    "report": "npx allure generate allure-results --clean -o allure-report && npx allure open allure-report",
+    "report:generate": "npx allure generate allure-results --clean -o allure-report",
+    "report:open": "npx allure open allure-report",
+    "mcp:start": "npx @playwright/mcp@latest",
+    "mcp:start:headed": "npx @playwright/mcp@latest --headless=false",
+    "mcp:start:server": "npx @playwright/mcp@latest --port 8931",
+    "cli:open": "playwright-cli open",
+    "cli:show": "playwright-cli show",
+    "cli:snapshot": "playwright-cli snapshot",
+    "format": "npx prettier --write \"**/*.{js,ts,json,md}\"",
+    "format:check": "npx prettier --check \"**/*.{js,ts,json,md}\"",
+    "pw:install": "npx playwright install --with-deps"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@playwright/mcp": "^0.0.68",
+    "@playwright/cli": "^0.1.1",
+    "dotenv": "^16.4.7",
+    "@faker-js/faker": "^9.4.0",
+    "allure-playwright": "^3.2.0",
+    "allure-commandline": "^2.32.0",
+    "prettier": "^3.5.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
