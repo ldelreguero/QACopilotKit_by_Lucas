@@ -1,4 +1,4 @@
-# SKILL: QA Executor
+# SKILL: QA Ejecutor
 
 > Funciones y comandos para implementación de tests, ejecución, debugging con MCP y self-healing de selectores.
 

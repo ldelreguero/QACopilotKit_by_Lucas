@@ -181,22 +181,22 @@ Aquí van las instrucciones en Markdown...
 
 ### Paso 2 — Los 4 archivos `.agent.md`
 
-**Archivo 3: `.github/agents/qa-master-orchestrator.agent.md`**
-- **YAML**: `name`, `description`, `tools: [playwright/*, editFiles, search, fetch, terminalLastCommand, runInTerminal, codebase]`, `model: "Claude Opus 4 (copilot)"`, `agents: ["qa-architect", "qa-executor", "qa-analyst"]`, `user-invokable: true`
+**Archivo 3: `.github/agents/qa-maestro-orquestador.agent.md`**
+- **YAML**: `name`, `description`, `tools: [playwright/*, editFiles, search, fetch, terminalLastCommand, runInTerminal, codebase]`, `model: "Claude Opus 4 (copilot)"`, `agents: ["qa-arquitecto", "qa-ejecutor", "qa-analista"]`, `user-invokable: true`
 - **Handoffs**: 4 transiciones → cada subagente con labels descriptivos (Setup, Execute, Analyze, Full Pipeline)
 - **Cuerpo**: Instrucciones de orquestación, lógica de decisión sobre cuándo usar MCP vs CLI, flujo de puntos 1-8, reglas de bilingüismo, Chain of Thought para decidir el agente correcto
 
-**Archivo 4: `.github/agents/qa-architect.agent.md`**
+**Archivo 4: `.github/agents/qa-arquitecto.agent.md`**
 - **YAML**: `tools: [playwright/*, editFiles, search, runInTerminal, fetch]`, `model: "Claude Sonnet 4 (copilot)"`, `agents: []`, `user-invokable: true`
 - **Alcance**: Puntos 1, 2, 5, 6 — setup de proyecto, estructura de carpetas, `playwright.config.js`, configuración MCP, diseño de estrategia de tests API/UI
 - **Cuerpo**: Instrucciones para crear `playwright.config.js`, `jsconfig.json`, estructura `tests/ui/`, `tests/api/`, `fixtures/`, `utils/`, manejo de `.env`, configuración de Allure
 
-**Archivo 5: `.github/agents/qa-executor.agent.md`**
+**Archivo 5: `.github/agents/qa-ejecutor.agent.md`**
 - **YAML**: `tools: [playwright/*, editFiles, search, runInTerminal, terminalLastCommand, codebase]`, `model: "Claude Sonnet 4 (copilot)"`, `agents: []`, `user-invokable: true`
 - **Alcance**: Puntos 3, 7 — implementación de tests, debugging con MCP, codegen con CLI
 - **Cuerpo**: Instrucciones para usar `browser_snapshot` + `browser_generate_locator` para self-healing selectors, `playwright codegen` para grabar flujos, `playwright-cli snapshot` para inspección, ejecución headless vía `npx playwright test`, debugging con `browser_console_messages` y `browser_network_requests`
 
-**Archivo 6: `.github/agents/qa-analyst.agent.md`**
+**Archivo 6: `.github/agents/qa-analista.agent.md`**
 - **YAML**: `tools: [playwright/*, editFiles, search, runInTerminal, fetch, codebase]`, `model: "Claude Sonnet 4 (copilot)"`, `agents: []`, `user-invokable: true`
 - **Alcance**: Puntos 4, 8 — análisis de datos, JSON diffing, snapshots, reportes Allure
 - **Cuerpo**: Instrucciones para comparar JSON responses, deep diffing, regresión histórica, generación de reportes con `allure generate`, análisis de `browser_network_requests`, validación de integridad de datos
@@ -205,19 +205,19 @@ Aquí van las instrucciones en Markdown...
 
 ### Paso 3 — Los 4 archivos `SKILL.md`
 
-**Archivo 7: `.github/skills/qa-master-orchestrator/SKILL.md`**
+**Archivo 7: `.github/skills/qa-maestro-orquestador/SKILL.md`**
 - Funciones: `startMCPServer()`, `runFullPipeline()`, `delegateToAgent()`, `checkProjectHealth()`
 - Comandos: `npx @playwright/mcp@latest --port 8931`, `playwright-cli list`
 
-**Archivo 8: `.github/skills/qa-architect/SKILL.md`**
+**Archivo 8: `.github/skills/qa-arquitecto/SKILL.md`**
 - Funciones: `scaffoldProject()`, `configurePlaywright()`, `setupMCP()`, `createAPITestStructure()`, `createUITestStructure()`, `installDependencies()`
 - Comandos: `npm init -y`, `npm install`, `npx playwright install`, `playwright-cli install --skills`
 
-**Archivo 9: `.github/skills/qa-executor/SKILL.md`**
+**Archivo 9: `.github/skills/qa-ejecutor/SKILL.md`**
 - Funciones: `generateTest()`, `findStableSelectors()`, `runTests()`, `debugWithMCP()`, `codegenFlow()`, `healBrokenSelector()`
 - Comandos: `npx playwright codegen <url>`, `npx playwright test`, `playwright-cli open <url>`, `playwright-cli snapshot`, `playwright-cli click <ref>`
 
-**Archivo 10: `.github/skills/qa-analyst/SKILL.md`**
+**Archivo 10: `.github/skills/qa-analista/SKILL.md`**
 - Funciones: `compareJSON()`, `deepDiff()`, `generateAllureReport()`, `analyzeNetworkLogs()`, `regressionCheck()`, `snapshotCompare()`
 - Comandos: `npx allure generate`, `npx allure open`, `npx playwright test --reporter=allure-playwright`
 
@@ -225,19 +225,19 @@ Aquí van las instrucciones en Markdown...
 
 ### Paso 4 — Los 4 archivos `.prompt.md`
 
-**Archivo 11: `.github/prompts/qa-master-orchestrator.prompt.md`**
+**Archivo 11: `.github/prompts/qa-maestro-orquestador.prompt.md`**
 - System prompt con Chain of Thought: evaluar solicitud → determinar bloque (A o B) → seleccionar punto(s) → delegar al agente correcto → verificar resultado
 - Reglas: bilingüismo, preguntar antes de instalar, nunca ejecutar sin plan
 
-**Archivo 12: `.github/prompts/qa-architect.prompt.md`**
+**Archivo 12: `.github/prompts/qa-arquitecto.prompt.md`**
 - System prompt con CoT: analizar requisitos → verificar existencia de config → crear/actualizar estructura → validar con dry-run
 - Incluye templates de `playwright.config.js` y estructura de carpetas
 
-**Archivo 13: `.github/prompts/qa-executor.prompt.md`**
+**Archivo 13: `.github/prompts/qa-ejecutor.prompt.md`**
 - System prompt con CoT: recibir spec → usar MCP snapshot para entender página → generar locators estables → implementar test → ejecutar → debugging si falla
 - Flujo de self-healing: snapshot → locate → validate → fallback
 
-**Archivo 14: `.github/prompts/qa-analyst.prompt.md`**
+**Archivo 14: `.github/prompts/qa-analista.prompt.md`**
 - System prompt con CoT: recopilar datos → comparar → identificar anomalías → generar reporte → recomendar acciones
 - Plantillas de output para JSON diff y reportes de regresión
 
@@ -248,24 +248,24 @@ Aquí van las instrucciones en Markdown...
 ```
 .github/
 ├── agents/
-│   ├── qa-master-orchestrator.agent.md    # Archivo 3
-│   ├── qa-architect.agent.md              # Archivo 4
-│   ├── qa-executor.agent.md               # Archivo 5
-│   └── qa-analyst.agent.md                # Archivo 6
+│   ├── qa-maestro-orquestador.agent.md    # Archivo 3
+│   ├── qa-arquitecto.agent.md              # Archivo 4
+│   ├── qa-ejecutor.agent.md               # Archivo 5
+│   └── qa-analista.agent.md                # Archivo 6
 ├── skills/
-│   ├── qa-master-orchestrator/
+│   ├── qa-maestro-orquestador/
 │   │   └── SKILL.md                       # Archivo 7
-│   ├── qa-architect/
+│   ├── qa-arquitecto/
 │   │   └── SKILL.md                       # Archivo 8
-│   ├── qa-executor/
+│   ├── qa-ejecutor/
 │   │   └── SKILL.md                       # Archivo 9
-│   └── qa-analyst/
+│   └── qa-analista/
 │       └── SKILL.md                       # Archivo 10
 └── prompts/
-    ├── qa-master-orchestrator.prompt.md   # Archivo 11
-    ├── qa-architect.prompt.md             # Archivo 12
-    ├── qa-executor.prompt.md              # Archivo 13
-    └── qa-analyst.prompt.md               # Archivo 14
+    ├── qa-maestro-orquestador.prompt.md   # Archivo 11
+    ├── qa-arquitecto.prompt.md             # Archivo 12
+    ├── qa-ejecutor.prompt.md              # Archivo 13
+    └── qa-analista.prompt.md               # Archivo 14
 .vscode/
 └── mcp.json                               # Archivo 2
 package.json                               # Archivo 1
@@ -279,14 +279,14 @@ package.json                               # Archivo 1
 
 | Punto | Bloque | Descripción | Agente Responsable |
 |-------|--------|-------------|-------------------|
-| 1 | A - Web & API | Inicio Web: Setup Playwright + MCP Server | `@qa-architect` |
-| 2 | A - Web & API | Planificación API Híbrida: Tests API de soporte para UI | `@qa-architect` |
-| 3 | A - Web & API | Ejecución y Debugging Híbrida: CLI + MCP en vivo | `@qa-executor` |
-| 4 | A - Web & API | Análisis de Datos Híbrida: Responses + históricos | `@qa-analyst` |
-| 5 | B - API Pura | Inicio API Solo: Setup sin browsers | `@qa-architect` |
-| 6 | B - API Pura | Planificación API Pura: Contratos + performance | `@qa-architect` |
-| 7 | B - API Pura | Ejecución y Debugging Pura: Headless + payloads | `@qa-executor` |
-| 8 | B - API Pura | Análisis Avanzado Pura: Deep diffing + regresión | `@qa-analyst` |
+| 1 | A - Web & API | Inicio Web: Setup Playwright + MCP Server | `@qa-arquitecto` |
+| 2 | A - Web & API | Planificación API Híbrida: Tests API de soporte para UI | `@qa-arquitecto` |
+| 3 | A - Web & API | Ejecución y Debugging Híbrida: CLI + MCP en vivo | `@qa-ejecutor` |
+| 4 | A - Web & API | Análisis de Datos Híbrida: Responses + históricos | `@qa-analista` |
+| 5 | B - API Pura | Inicio API Solo: Setup sin browsers | `@qa-arquitecto` |
+| 6 | B - API Pura | Planificación API Pura: Contratos + performance | `@qa-arquitecto` |
+| 7 | B - API Pura | Ejecución y Debugging Pura: Headless + payloads | `@qa-ejecutor` |
+| 8 | B - API Pura | Análisis Avanzado Pura: Deep diffing + regresión | `@qa-analista` |
 
 ---
 

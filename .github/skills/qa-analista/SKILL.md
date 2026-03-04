@@ -1,4 +1,4 @@
-# SKILL: QA Analyst
+# SKILL: QA Analista
 
 > Funciones y comandos para análisis de datos, JSON Diffing, reportes de regresión y validación de integridad.
 

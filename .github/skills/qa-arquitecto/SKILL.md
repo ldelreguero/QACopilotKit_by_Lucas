@@ -1,4 +1,4 @@
-# SKILL: QA Architect
+# SKILL: QA Arquitecto
 
 > Funciones y comandos para configuración de proyectos, estructura de tests y planificación de estrategias QA.
 

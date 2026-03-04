@@ -1,4 +1,4 @@
-# SKILL: QA Master Orchestrator
+# SKILL: QA Maestro Orquestador
 
 > Funciones y comandos disponibles para el agente orquestador principal.
 
@@ -80,15 +80,15 @@ Lógica de delegación a subagentes. El orchestrator usa esta lógica mental par
 
 | Señal en la solicitud | Agente destino | Contexto a proporcionar |
 |---|---|---|
-| "configurar", "setup", "inicializar", "crear proyecto" | `@qa-architect` | Tipo de proyecto (Web/API/Híbrido) |
-| "planificar", "estrategia", "diseñar tests" | `@qa-architect` | Requisitos del sistema bajo test |
-| "implementar test", "codear", "escribir test" | `@qa-executor` | Spec del test + URL/endpoint |
-| "ejecutar", "correr tests", "run" | `@qa-executor` | Filtros (proyecto, archivo, tag) |
-| "debuggear", "arreglar test", "falla" | `@qa-executor` | Error message + test file |
-| "generar selectores", "codegen" | `@qa-executor` | URL de la página |
-| "analizar", "comparar", "reportar" | `@qa-analyst` | Datos a comparar + baseline |
-| "regresión", "diff", "cambios" | `@qa-analyst` | Versiones a comparar |
-| "reporte allure", "resultados" | `@qa-analyst` | Path de allure-results |
+| "configurar", "setup", "inicializar", "crear proyecto" | `@qa-arquitecto` | Tipo de proyecto (Web/API/Híbrido) |
+| "planificar", "estrategia", "diseñar tests" | `@qa-arquitecto` | Requisitos del sistema bajo test |
+| "implementar test", "codear", "escribir test" | `@qa-ejecutor` | Spec del test + URL/endpoint |
+| "ejecutar", "correr tests", "run" | `@qa-ejecutor` | Filtros (proyecto, archivo, tag) |
+| "debuggear", "arreglar test", "falla" | `@qa-ejecutor` | Error message + test file |
+| "generar selectores", "codegen" | `@qa-ejecutor` | URL de la página |
+| "analizar", "comparar", "reportar" | `@qa-analista` | Datos a comparar + baseline |
+| "regresión", "diff", "cambios" | `@qa-analista` | Versiones a comparar |
+| "reporte allure", "resultados" | `@qa-analista` | Path de allure-results |
 | "pipeline completo", "todo" | Secuencial | Todos → architect → executor → analyst |
 
 ---
@@ -98,17 +98,17 @@ Ejecuta el pipeline completo de QA delegando a cada agente en secuencia.
 
 **Flujo:**
 ```
-Fase 1: SETUP (@qa-architect)
+Fase 1: SETUP (@qa-arquitecto)
 ├── Verificar project health
 ├── Crear/actualizar configuración si es necesario
 └── Instalar dependencias faltantes
 
-Fase 2: EXECUTE (@qa-executor)
+Fase 2: EXECUTE (@qa-ejecutor)
 ├── Ejecutar suite de tests completa
 ├── Capturar resultados en allure-results/
 └── Debugging automático de fallos
 
-Fase 3: ANALYZE (@qa-analyst)
+Fase 3: ANALYZE (@qa-analista)
 ├── Generar reporte Allure
 ├── Comparar con baseline anterior (si existe)
 ├── Identificar regresiones
@@ -153,4 +153,4 @@ El orchestrator puede usar todas las herramientas MCP declaradas con `playwright
 | `browser_tabs` | Gestionar pestañas abiertas |
 | `browser_close` | Cerrar navegador después de inspección |
 
-> **Nota**: El orchestrator usa MCP **solo para inspección rápida**. La ejecución de tests se delega siempre a `@qa-executor`.
+> **Nota**: El orchestrator usa MCP **solo para inspección rápida**. La ejecución de tests se delega siempre a `@qa-ejecutor`.
