@@ -3,7 +3,7 @@ name: "qa-architect"
 description: "Arquitecto QA especializado en setup de proyectos, configuración de Playwright + MCP, estructura de carpetas y planificación de estrategias de testing Web & API."
 # ──────────────────────────────────────────────
 # 🔧 MODELO — Modifica esta línea para cambiar el LLM
-model: "Claude Sonnet 4 (copilot)"
+model: "GPT-5.3-Codex"
 # ──────────────────────────────────────────────
 tools:
   - playwright/*

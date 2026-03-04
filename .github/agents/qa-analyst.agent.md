@@ -3,7 +3,7 @@ name: "qa-analyst"
 description: "Analista QA especializado en comparación de datos, JSON Diffing, reportes de regresión con Allure, análisis de tráfico de red y validación de integridad de datos."
 # ──────────────────────────────────────────────
 # 🔧 MODELO — Modifica esta línea para cambiar el LLM
-model: "Claude Sonnet 4 (copilot)"
+model: "GPT-5.3-Codex"
 # ──────────────────────────────────────────────
 tools:
   - playwright/*

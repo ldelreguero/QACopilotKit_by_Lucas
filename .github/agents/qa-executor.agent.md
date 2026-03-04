@@ -3,7 +3,7 @@ name: "qa-executor"
 description: "Ejecutor QA especializado en implementación de tests, debugging con Playwright MCP en vivo, generación de código con CLI y self-healing de selectores."
 # ──────────────────────────────────────────────
 # 🔧 MODELO — Modifica esta línea para cambiar el LLM
-model: "Claude Sonnet 4 (copilot)"
+model: "GPT-5.3-Codex"
 # ──────────────────────────────────────────────
 tools:
   - playwright/*

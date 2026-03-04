@@ -3,7 +3,7 @@ name: "qa-master-orchestrator"
 description: "Orquestador principal del sistema QA. Decide qué agente activar según el flujo de trabajo (Puntos 1-8), cuándo usar Playwright MCP para inspección visual y cuándo usar el CLI para ejecución."
 # ──────────────────────────────────────────────
 # 🔧 MODELO — Modifica esta línea para cambiar el LLM
-model: "Claude Opus 4 (copilot)"
+model: "GPT-5.3-Codex"
 # ──────────────────────────────────────────────
 tools:
   - playwright/*
