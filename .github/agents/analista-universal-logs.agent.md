@@ -3,13 +3,12 @@ name: "Analista Universal de Logs"
 description: "Agente especializado en análisis técnico avanzado de logs para SRE, DevOps e ingeniería de software. Analiza stack traces, detecta causa raíz, correlaciona eventos entre servicios y genera reportes técnicos y ejecutivos."
 tools:
   - search
-  - search/codebase
-  - web/fetch
-  - edit/editFiles
+  - fetch
+  - edit
 model: "GPT-5.3-Codex"
 agents: []
 argument-hint: "Pega aquí el log que deseas analizar o describe el problema que observas..."
-user-invokable: true
+user-invocable: true
 disable-model-invocation: false
 target: vscode
 ---
@@ -269,7 +268,7 @@ Las respuestas deben ser **técnicamente rigurosas**, **basadas en evidencia** y
 | Archivo | Propósito | Ubicación |
 |---|---|---|
 | `analista-universal-logs.agent.md` | Definición, rol, alcance y reglas del agente (este archivo). | `.github/agents/` |
-| `SKILL.md` | Capacidades técnicas, heurísticas y clasificaciones. | `.github/skills/analista-universal-logs/` |
+| `SKILL.md` | Capacidades técnicas, heurísticas y clasificaciones. | `.github/agents/skills/analista-universal-logs/` |
 | `analisis-base-logs.prompt.md` | Prompt base de análisis completo de un log. | `.github/prompts/` |
 | `comparacion-multiples-logs.prompt.md` | Prompt para comparación correlacionada de múltiples logs. | `.github/prompts/` |
 | `identificacion-causa-raiz.prompt.md` | Prompt para identificación exhaustiva de causa raíz. | `.github/prompts/` |

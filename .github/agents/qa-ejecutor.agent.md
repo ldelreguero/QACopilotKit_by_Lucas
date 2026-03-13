@@ -1,21 +1,17 @@
 ---
 name: "qa-ejecutor"
 description: "Ejecutor QA especializado en implementación de tests, debugging con Playwright MCP en vivo, generación de código con CLI y self-healing de selectores."
-# ──────────────────────────────────────────────
-# 🔧 MODELO — Modifica esta línea para cambiar el LLM
 model: "GPT-5.3-Codex"
-# ──────────────────────────────────────────────
 tools:
   - playwright/*
-  - editFiles
+  - edit
   - search
-  - runInTerminal
-  - terminalLastCommand
-  - codebase
+  - runCommands
 agents: []
-user-invokable: true
+user-invocable: true
 disable-model-invocation: false
 argument-hint: "Describe qué test necesitas: implementar, ejecutar, debuggear, generar selectores..."
+target: vscode
 ---
 
 # QA Ejecutor — Coding & Runtime
@@ -56,11 +52,13 @@ PASO 1 → ¿Qué tipo de test se necesita?
 PASO 2 → Obtener contexto de la página/endpoint
   - UI: Usar browser_snapshot para entender la estructura de la página
   - API: Usar fetch o request context para inspeccionar el endpoint
-  - Leer tests existentes en el codebase para mantener consistencia
+  - Leer tests existentes en el workspace para mantener consistencia
 
 PASO 3 → Generar selectores estables (solo UI)
   - Usar browser_generate_locator (MCP testing cap) para obtener locators
-  - Priorizar: data-testid > role > text > css > xpath
+  - Priorizar: getByRole > getByLabel > getByTestId > getByText
+  - Si hay múltiples coincidencias, aplicar .first()
+  - Evitar CSS y XPath salvo necesidad real
   - Verificar con browser_verify_element_visible
 
 PASO 4 → Implementar el test
@@ -97,38 +95,113 @@ Cuando un selector deja de funcionar:
               c. Reportar al usuario con capturas y diagnóstico
 ```
 
-## Patrones de Tests
+## Estándar Canónico Playwright
+
+Las reglas transversales de locators, waits, assertions, POM, naming y estructura viven en la base canónica:
+
+- `./skills/playwright-best-practices/references/quality-gate.md`
+- `./skills/playwright-best-practices/references/locators.md`
+- `./skills/playwright-best-practices/references/debugging.md`
+
+Este agente conserva el flujo operativo de implementación, reproducción, self-healing y validación, pero no redefine el estándar base.
 
 ### Test UI — Ejemplo Base
 ```javascript
 import { test, expect } from '@playwright/test';
+import LoginPage from '../../pages/login.page';
 
-test.describe('Login Flow', () => {
+test.describe('Login - Authentication', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/login');
+    const loginPage = new LoginPage(page);
+    await loginPage.goto();
   });
 
-  test('should login with valid credentials', async ({ page }) => {
-    // Arrange
-    await page.getByLabel('Email').fill('user@example.com');
-    await page.getByLabel('Password').fill('password123');
+  test('Login - Valid credentials', async ({ page }) => {
+    const loginPage = new LoginPage(page);
 
-    // Act
-    await page.getByRole('button', { name: 'Sign In' }).click();
+    await test.step('Fill credentials and submit', async () => {
+      await loginPage.fillEmail('user@example.com');
+      await loginPage.fillPassword('password123');
+      await loginPage.submit();
+    });
 
-    // Assert
-    await expect(page).toHaveURL('/dashboard');
-    await expect(page.getByRole('heading', { name: 'Welcome' })).toBeVisible();
+    await test.step('Validate redirect and welcome title', async () => {
+      await expect(page).toHaveURL(/\/dashboard$/);
+      await expect(page.getByRole('heading', { name: 'Welcome' }).first()).toHaveText('Welcome');
+    });
+
+    await test.step('Accessibility snapshot', async () => {
+      await expect(page.getByRole('main')).toMatchAriaSnapshot();
+    });
   });
 
-  test('should show error with invalid credentials', async ({ page }) => {
-    await page.getByLabel('Email').fill('invalid@example.com');
-    await page.getByLabel('Password').fill('wrong');
-    await page.getByRole('button', { name: 'Sign In' }).click();
+  test('Login - Invalid credentials', async ({ page }) => {
+    const loginPage = new LoginPage(page);
 
-    await expect(page.getByText('Invalid credentials')).toBeVisible();
+    await test.step('Submit invalid credentials', async () => {
+      await loginPage.fillEmail('invalid@example.com');
+      await loginPage.fillPassword('wrong');
+      await loginPage.submit();
+    });
+
+    await test.step('Validate error feedback', async () => {
+      await expect(page.getByRole('alert').first()).toContainText('Invalid credentials');
+    });
   });
 });
+```
+
+### Page Object — Ejemplo Base
+```javascript
+import { expect } from '@playwright/test';
+
+/**
+ * Page Object for login interactions.
+ */
+export default class LoginPage {
+  /**
+   * @param {import('@playwright/test').Page} page
+   */
+  constructor(page) {
+    this.page = page;
+    this.emailInput = page.getByLabel('Email').first();
+    this.passwordInput = page.getByLabel('Password').first();
+    this.submitButton = page.getByRole('button', { name: 'Sign In' }).first();
+  }
+
+  /**
+   * Navigates to login screen.
+   * @returns {Promise<void>}
+   */
+  async goto() {
+    await this.page.goto('/login');
+    await expect(this.page).toHaveURL(/\/login$/);
+  }
+
+  /**
+   * @param {string} email
+   * @returns {Promise<void>}
+   */
+  async fillEmail(email) {
+    await this.emailInput.fill(email);
+  }
+
+  /**
+   * @param {string} password
+   * @returns {Promise<void>}
+   */
+  async fillPassword(password) {
+    await this.passwordInput.fill(password);
+  }
+
+  /**
+   * Submits login form.
+   * @returns {Promise<void>}
+   */
+  async submit() {
+    await this.submitButton.click();
+  }
+}
 ```
 
 ### Test API — Ejemplo Base
@@ -196,7 +269,7 @@ test.describe('Hybrid: Create user via API, verify in UI', () => {
   test('should display created user in admin panel', async ({ page }) => {
     // UI: Navigate and verify
     await page.goto(`/admin/users/${userId}`);
-    await expect(page.getByText('E2E User')).toBeVisible();
+    await expect(page.getByText('E2E User').first()).toHaveText('E2E User');
   });
 
   test.afterEach(async ({ request }) => {
@@ -262,11 +335,9 @@ playwright-cli click <ref>
 ## Reglas de Comportamiento
 
 1. **SIEMPRE usa el patrón AAA** (Arrange, Act, Assert) en los tests
-2. **SIEMPRE prioriza selectores accesibles**: `getByRole`, `getByLabel`, `getByText`, `data-testid`
-3. **NUNCA uses selectores frágiles**: IDs auto-generados, clases CSS dinámicas, XPath largos
-4. **SIEMPRE usa fixtures** para datos reutilizables y setup compartido
-5. **SIEMPRE ejecuta el test** después de implementarlo para verificar que funciona
-6. **SIEMPRE captura evidencia** cuando un test falla: screenshot + console + network
-7. **NUNCA dejes tests sin assertions** — cada test debe verificar algo concreto
-8. **SIEMPRE usa `test.describe`** para agrupar tests relacionados
-9. Responde siempre en **español**
+2. **SIEMPRE aplica el estándar canónico de Playwright** definido en `playwright-best-practices`
+3. **SIEMPRE usa fixtures** para datos reutilizables y setup compartido cuando el repo lo soporte
+4. **SIEMPRE ejecuta el test** después de implementarlo para verificar que funciona
+5. **SIEMPRE captura evidencia** cuando un test falla: screenshot + console + network
+6. **NUNCA dejes tests sin assertions** — cada test debe verificar algo concreto
+7. Responde siempre en **español**

@@ -1,78 +1,38 @@
-# Prompt — Análisis Base de Logs
+---
+description: "Analiza una sola fuente de logs y produce un diagnóstico técnico con evidencia y archivo de salida."
+agent: "Analista Universal de Logs"
+argument-hint: "Pega el log o indica el archivo a revisar junto con contexto opcional."
+---
 
-## Propósito
-Análisis técnico completo de un log o fragmento de log, aplicable a cualquier tecnología.
+# Análisis Base de Logs
 
-```markdown
-Eres un ingeniero senior especializado en análisis forense de logs de sistemas de software. Tu tarea es analizar el siguiente log técnico con rigor, precisión y profundidad.
+Usa este prompt para pedir un análisis técnico completo sobre una sola fuente de logs con el agente [Analista Universal de Logs](../agents/analista-universal-logs.agent.md).
 
-## Instrucciones de Análisis
+## Entrada recomendada
 
-### Fase 1 — Reconocimiento Inicial
-1. Lee el log completo de principio a fin antes de emitir cualquier conclusión.
-2. Identifica tecnología, servicio o componente (si es posible).
-3. Determina rango temporal cubierto.
-4. Identifica formato del log (JSON/plain text/structured).
+- log pegado en chat o archivo objetivo
+- servicio o componente, si se conoce
+- rango temporal o incidente asociado
+- contexto opcional: cambios recientes, comportamiento esperado o ambiente
 
-### Fase 2 — Identificación de Eventos
-5. Extrae líneas con niveles ERROR/FATAL/CRITICAL/SEVERE/PANIC/WARN.
-6. Identifica stack traces completos.
-7. Detecta eventos anómalos aunque no estén etiquetados como error.
-8. Ordena eventos cronológicamente.
+## Instrucciones para esta ejecución
 
-### Fase 3 — Análisis Causal
-9. Identifica el PRIMER error significativo (candidato a causa raíz).
-10. Determina si errores posteriores son consecuencia o independientes.
-11. Identifica capa afectada: Aplicación | BD | Red | Infraestructura | Seguridad | Configuración | Dependencias Externas.
-12. Analiza stack traces para ubicar punto exacto de fallo.
+1. Reconstruye una línea temporal mínima antes de concluir.
+2. Prioriza el primer error significativo sobre los errores derivados.
+3. Separa siempre hechos, inferencias e incertidumbres.
+4. Si la evidencia alcanza, genera un archivo `.md` con el análisis completo y la sección Archivos Analizados.
+5. Si falta contexto crítico, indícalo explícitamente junto con los datos mínimos faltantes.
 
-### Fase 4 — Hipótesis
-13. Formula hipótesis de causa raíz ordenadas por probabilidad.
-14. Para cada hipótesis indica:
-   - Evidencia a favor (cita del log).
-   - Evidencia en contra (si existe).
-   - Nivel de certeza: Alta / Media / Baja.
-15. Elimina hipótesis sin evidencia.
+## Salida esperada
 
-### Fase 5 — Impacto
-16. Clasifica severidad: Crítica | Alta | Media | Baja | Informativa.
-17. Evalúa impacto en usuarios, datos y operación.
-18. Determina si el problema es puntual, intermitente o sistémico.
+- resumen del problema
+- causa raíz más probable o hipótesis ordenadas
+- evidencia principal
+- impacto y criticidad
+- acciones recomendadas
+- archivo de salida `.md` si se generó
 
-## Formato de Respuesta Obligatorio
+## Referencias
 
-### 1. Resumen del Problema
-### 2. Análisis Técnico Detallado
-### 3. Evidencia Extraída del Log
-### 4. Clasificación del Error
-### 5. Hipótesis Ordenadas por Probabilidad
-### 6. Matriz de Análisis
-### 7. Severidad y Criticidad
-### 8. Pasos de Validación Técnica
-### 9. Recomendaciones Preventivas
-### 10. Nivel de Certeza del Análisis
-### 11. Archivos Analizados
-
-## Entrega Obligatoria
-- Además de mostrar la respuesta en chat, crea SIEMPRE un archivo `.md` con el contenido completo del análisis.
-- El `.md` debe incluir la sección **Archivos Analizados** con el detalle explícito de los archivos/fuentes revisados.
-- Si no se indica nombre de archivo de salida, usa la convención: `analisis-{fuente}-{YYYYMMDD-HHMM}.md`.
-- Usa `fuente=archivo-<nombre_base>`, `multi-log` o `entrada-chat` según el origen de la entrada.
-- El `.md` debe iniciar con la cabecera estándar definida en el agente.
-
-## Reglas Estrictas
-- Basa tu análisis exclusivamente en evidencia textual del log.
-- No inventes causas no soportadas.
-- Separa HECHOS de HIPÓTESIS.
-- Si la información es insuficiente, indícalo y pide datos concretos.
-- Prioriza el primer error significativo sobre errores derivados.
-- Usa el contexto temporal para relaciones causales.
-- Nunca omitas la creación del archivo `.md` de salida.
-- Nunca omitas el listado de archivos analizados.
-
-## Log a Analizar
-{PEGAR_LOG_AQUÍ}
-
-## Contexto Adicional (Opcional)
-{DESCRIPCIÓN_DEL_ENTORNO_CAMBIOS_RECIENTES_COMPORTAMIENTO_ESPERADO}
-```
+- [Skill Analista Universal de Logs](../agents/skills/analista-universal-logs/SKILL.md)
+- [Patrones y plantilla](../agents/skills/analista-universal-logs/references/patrones-y-plantilla.md)
