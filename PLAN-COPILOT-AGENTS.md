@@ -224,6 +224,7 @@ Este marco de customización fue armado y adaptado en este repositorio para orga
 ### Procedencia de las piezas
 
 - La arquitectura del workspace, la doctrina del repo, la selección del catálogo visible, la separación entre especialistas y workers, y la integración entre prompts, skills e instrucciones fueron definidas en este repositorio por su autor.
+- Varias de las skills del workspace fueron basadas o inspiradas en recursos publicados en `https://qaskills.sh/`, y luego adaptadas a la arquitectura, nomenclatura y reglas de este repositorio.
 - La base canónica de buenas prácticas de Playwright proviene del repositorio `https://github.com/testdino-hq/playwright-skill` y su instalación recomendada es `npx skills add testdino-hq/playwright-skill`.
 - Los agentes `playwright-test-planner`, `playwright-test-generator` y `playwright-test-healer` deben considerarse como agentes instalados siguiendo la documentación oficial de Playwright Test Agents: `https://playwright.dev/docs/test-agents`.
 - En este repo, dichos agentes se integran como workers internos dentro de la arquitectura QA, pero su procedencia debe mantenerse explícita.
