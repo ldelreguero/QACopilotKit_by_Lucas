@@ -1,4 +1,4 @@
-# templateAgentes
+# QACopilotKit_by_Lucas
 
 Este workspace está pensado para que un QA use agentes especializados de GitHub Copilot dentro de VS Code sin tener que decidir toda la arquitectura manualmente.
 
