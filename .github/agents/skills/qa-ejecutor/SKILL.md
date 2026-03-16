@@ -1,11 +1,9 @@
 ---
 name: qa-ejecutor
 description: Implementa, ejecuta y depura tests Playwright, encuentra selectores estables y corrige fallos de automatización con apoyo de CLI o MCP. Usar cuando el usuario pida crear tests, correr suites, reparar selectors o debuggear ejecuciones fallidas.
-license: Proprietary
+
 compatibility: Diseñada para GitHub Copilot en VS Code con Playwright instalado; puede usar Playwright MCP y CLI si están disponibles.
-metadata:
-  author: Lucas del Reguero Martinez
-  version: "1.0"
+
 ---
 
 # QA ejecutor

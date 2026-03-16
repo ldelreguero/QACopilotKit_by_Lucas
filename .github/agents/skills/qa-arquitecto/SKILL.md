@@ -1,11 +1,9 @@
 ---
 name: qa-arquitecto
 description: Diseña la arquitectura de automatización QA, configura proyectos Playwright Web/API, define estructura de carpetas, fixtures, convenciones y estrategia de pruebas. Usar cuando el usuario necesite setup, scaffolding, planificación o configuración técnica del framework de testing.
-license: Proprietary
+
 compatibility: Diseñada para GitHub Copilot en VS Code con proyectos Node.js y Playwright; opcionalmente integra Playwright MCP.
-metadata:
-  author: Lucas del Reguero Martinez
-  version: "1.0"
+
 ---
 
 # QA arquitecto

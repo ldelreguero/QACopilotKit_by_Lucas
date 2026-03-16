@@ -1,11 +1,9 @@
 ---
 name: api-suite-generation
 description: Diseña suites API a partir de endpoints REST u OpenAPI, cubriendo CRUD, negativos, autenticacion y datos. Usar cuando el usuario necesite planificar o scaffoldear cobertura API automatizada.
-license: Proprietary
+
 compatibility: Diseñada para GitHub Copilot en VS Code con proyectos Node.js y runners de testing ya definidos o por definir.
-metadata:
-  author: Lucas del Reguero Martinez
-  version: "1.0"
+
 ---
 
 # API suite generation

@@ -1,11 +1,9 @@
 ---
 name: qa-performance
 description: Orquesta y ejecuta análisis QA de performance y carga, priorizando baseline reproducible, thresholds claros y perfiles de tráfico realistas antes de escalar campañas pesadas. Usar cuando el usuario pida diseñar, revisar o preparar pruebas de carga y performance para web o API.
-license: Proprietary
+
 compatibility: Diseñada para GitHub Copilot en VS Code con acceso a endpoints, suites de carga, documentación del sistema o señales básicas de observabilidad.
-metadata:
-  author: Lucas del Reguero Martinez
-  version: "1.0"
+
 ---
 
 # QA performance

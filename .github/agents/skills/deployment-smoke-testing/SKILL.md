@@ -1,11 +1,9 @@
 ---
 name: deployment-smoke-testing
 description: Diseña suites smoke rápidas y seguras para post-deploy o validación continua, con foco en caminos críticos y rollback signal. Usar cuando el usuario pida smoke suites operativas para staging o producción.
-license: Proprietary
+
 compatibility: Diseñada para GitHub Copilot en VS Code con Playwright u otro runner de API/UI y con entornos donde existan cuentas o datos seguros para smoke.
-metadata:
-  author: Lucas del Reguero Martinez
-  version: "1.0"
+
 ---
 
 # Deployment smoke testing

@@ -377,7 +377,7 @@ Notas de diseño para agents:
 ---
 name: mi-nueva-skill
 description: Explica qué hace la skill y cuándo debe activarse.
-license: Proprietary
+
 compatibility: Opcional si aplica.
 metadata:
   author: Tu Nombre

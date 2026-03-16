@@ -1,11 +1,9 @@
 ---
 name: pairwise-test-design
 description: Diseña combinaciones de prueba pairwise o combinatorias de riesgo para reducir casos manteniendo cobertura útil. Usar cuando el usuario pida optimizar matrices de datos, parámetros o variantes de configuración.
-license: Proprietary
+
 compatibility: Diseñada para GitHub Copilot en VS Code con tablas de parámetros, reglas de negocio o combinaciones de entrada susceptibles de explosión combinatoria.
-metadata:
-  author: Lucas del Reguero Martinez
-  version: "1.0"
+
 ---
 
 # Pairwise test design

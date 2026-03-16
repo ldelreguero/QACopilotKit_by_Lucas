@@ -1,11 +1,9 @@
 ---
 name: playwright-api
 description: Implementa y depura pruebas API con APIRequestContext de Playwright para REST o GraphQL, con foco en aislamiento, validacion y reutilizacion. Usar cuando el usuario pida tests API dentro del stack Playwright.
-license: Proprietary
+
 compatibility: Diseñada para GitHub Copilot en VS Code con Playwright Test; apta para proyectos API puros o flujos hibridos UI + API.
-metadata:
-  author: Lucas del Reguero Martinez
-  version: "1.0"
+
 ---
 
 # Playwright API

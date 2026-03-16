@@ -1,11 +1,9 @@
 ---
 name: regression-selection
 description: Prioriza qué tests de regresión ejecutar según cambios, riesgo, cobertura y criticidad funcional. Usar cuando el usuario pida reducir suites, seleccionar smoke/regresión o justificar cobertura incremental.
-license: Proprietary
+
 compatibility: Diseñada para GitHub Copilot en VS Code con acceso a cambios de código, historial de fallos, suites existentes o conocimiento básico del impacto funcional.
-metadata:
-  author: Lucas del Reguero Martinez
-  version: "1.0"
+
 ---
 
 # Regression selection

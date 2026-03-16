@@ -1,11 +1,9 @@
 ---
 name: qa-analista
 description: Analiza resultados de tests, compara JSON y payloads, detecta regresiones, valida contratos y resume impacto funcional. Usar cuando el usuario pida comparar respuestas, revisar cambios entre ejecuciones, interpretar reportes Allure o validar integridad de datos.
-license: Proprietary
+
 compatibility: Diseñada para GitHub Copilot en VS Code con acceso a reportes, JSON, resultados de tests y artefactos de ejecución.
-metadata:
-  author: Lucas del Reguero Martinez
-  version: "1.0"
+
 ---
 
 # QA analista

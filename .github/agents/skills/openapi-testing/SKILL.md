@@ -1,11 +1,9 @@
 ---
 name: openapi-testing
 description: Usa OpenAPI como fuente para generar y validar pruebas, detectar drift y organizar cobertura por schema y endpoint. Usar cuando el usuario pida trabajar spec-first con OpenAPI o Swagger.
-license: Proprietary
+
 compatibility: Diseñada para GitHub Copilot en VS Code con especificaciones OpenAPI 3.x en YAML o JSON.
-metadata:
-  author: Lucas del Reguero Martinez
-  version: "1.0"
+
 ---
 
 # OpenAPI testing

@@ -1,11 +1,9 @@
 ---
 name: contract-first-api
 description: Define y operacionaliza pruebas contract-first para consumidores y proveedores, con versionado, verificacion y puertas de CI. Usar cuando el usuario necesite Pact u otro flujo de contratos entre servicios.
-license: Proprietary
+
 compatibility: Diseñada para GitHub Copilot en VS Code con equipos que exponen contratos versionados entre servicios o consumidores externos.
-metadata:
-  author: Lucas del Reguero Martinez
-  version: "1.0"
+
 ---
 
 # Contract first API

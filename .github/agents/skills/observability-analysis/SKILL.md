@@ -1,11 +1,9 @@
 ---
 name: observability-analysis
 description: Analiza trazas, spans, métricas y correlación entre logs y requests para detectar drift operativo o fallos instrumentados. Usar cuando el usuario pida revisar OpenTelemetry, observabilidad o evidencias de ejecución distribuidas.
-license: Proprietary
+
 compatibility: Diseñada para GitHub Copilot en VS Code con acceso a artefactos de tracing, métricas, logs o resultados exportados desde OpenTelemetry u otra capa de observabilidad.
-metadata:
-  author: Lucas del Reguero Martinez
-  version: "1.0"
+
 ---
 
 # Observability analysis

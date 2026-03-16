@@ -1,11 +1,9 @@
 ---
 name: qa-maestro-orquestador
 description: Orquesta el flujo completo de QA decidiendo qué agente activar, en qué orden y con qué contexto. Usar cuando el usuario pida setup, ejecución, debugging, análisis o un pipeline QA end-to-end que requiera delegación entre roles especializados.
-license: Proprietary
+
 compatibility: Diseñada para GitHub Copilot en VS Code con subagentes QA disponibles en el workspace.
-metadata:
-  author: Lucas del Reguero Martinez
-  version: "1.0"
+
 ---
 
 # QA maestro orquestador

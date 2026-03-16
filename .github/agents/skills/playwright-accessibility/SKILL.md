@@ -1,11 +1,9 @@
 ---
 name: playwright-accessibility
 description: Define y ejecuta pruebas de accesibilidad con Playwright, axe-core y verificacion manual de teclado, foco y semantica. Usar cuando el usuario pida crear, revisar o depurar cobertura WCAG.
-license: Proprietary
+
 compatibility: Diseñada para GitHub Copilot en VS Code con Playwright; puede apoyarse en axe-core y MCP si el proyecto ya los usa.
-metadata:
-  author: Lucas del Reguero Martinez
-  version: "1.0"
+
 ---
 
 # Playwright accessibility

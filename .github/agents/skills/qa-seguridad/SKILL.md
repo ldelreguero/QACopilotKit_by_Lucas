@@ -1,11 +1,9 @@
 ---
 name: qa-seguridad
 description: Orquesta y ejecuta análisis QA de seguridad funcional y de aplicación, priorizando OWASP, validación de authz/authn e inputs hostiles. Usar cuando el usuario pida revisar riesgos, diseñar pruebas de seguridad o preparar un baseline seguro.
-license: Proprietary
+
 compatibility: Diseñada para GitHub Copilot en VS Code con acceso a código, endpoints, suites de test o documentación técnica del sistema bajo prueba.
-metadata:
-  author: Lucas del Reguero Martinez
-  version: "1.0"
+
 ---
 
 # QA seguridad

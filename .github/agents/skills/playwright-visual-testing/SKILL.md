@@ -1,11 +1,9 @@
 ---
 name: playwright-visual-testing
 description: Diseña y ejecuta pruebas visuales con Playwright basadas en screenshots, baselines y diffs controlados. Usar cuando el usuario pida visual regression, screenshot diff o cobertura responsive en CI.
-license: Proprietary
+
 compatibility: Diseñada para GitHub Copilot en VS Code con Playwright y pipeline capaz de almacenar baselines o artefactos visuales.
-metadata:
-  author: Lucas del Reguero Martinez
-  version: "1.0"
+
 ---
 
 # Playwright visual testing

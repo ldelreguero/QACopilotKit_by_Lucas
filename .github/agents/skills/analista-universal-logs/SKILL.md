@@ -1,11 +1,9 @@
 ---
 name: analista-universal-logs
 description: Analiza logs técnicos, stack traces y eventos distribuidos para identificar causa raíz, cadena de propagación, impacto y criticidad. Usar cuando el usuario comparta logs, errores operativos, incidentes, reinicios, timeouts o fallos entre servicios.
-license: Proprietary
+
 compatibility: Diseñada para GitHub Copilot en VS Code con acceso a archivos de logs, búsquedas y herramientas de lectura.
-metadata:
-  author: Lucas del Reguero Martinez
-  version: "1.0"
+
 ---
 
 # Analista universal de logs
