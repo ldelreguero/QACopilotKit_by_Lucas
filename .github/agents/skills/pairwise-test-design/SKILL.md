@@ -8,7 +8,7 @@ metadata:
   version: "1.0"
 ---
 
-# Pairwise Test Design
+# Pairwise test design
 
 ## Cuando usar
 

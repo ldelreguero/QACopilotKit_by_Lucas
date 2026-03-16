@@ -8,7 +8,7 @@ metadata:
   version: "1.0"
 ---
 
-# QA Arquitecto
+# QA arquitecto
 
 ## Cuándo usar
 
@@ -19,6 +19,8 @@ Usa esta skill cuando la tarea implique:
 - configurar Playwright, MCP, reporters, fixtures y variables de entorno
 - establecer convenciones, carpetas y estrategia base de testing
 - preparar el repositorio para que otros agentes implementen o ejecuten tests
+
+No la uses como sustituto de planificación exploratoria interactiva de UI cuando el trabajo requiera recorrer una interfaz real y producir un plan táctico detallado.
 
 ## Resultado esperado
 
@@ -48,6 +50,8 @@ La salida debe dejar claro:
    La salida debe permitir que un agente ejecutor cree tests sin redefinir la arquitectura.
 8. Usa la base canónica para las reglas transversales.
    No reescribas estándares Playwright de locators, waits, POM o assertions si ya viven en `playwright-best-practices`.
+9. Mantén la frontera con el planner interno.
+   Si hace falta explorar una aplicación real para redactar escenarios detallados paso a paso, deriva al worker `playwright-test-planner` en vez de absorber ese flujo aquí.
 
 ## Recomendaciones de estructura
 
@@ -126,3 +130,4 @@ Si no existe esa necesidad, deja la configuración sin MCP para mantener menor c
 - Si el usuario pide setup híbrido pero no hay un caso real de UI + API combinados, recomienda empezar por Web o API puro.
 - Si el repo ya tiene convenciones, respétalas antes de imponer una estructura nueva.
 - Si falta contexto del sistema bajo prueba, prioriza un esqueleto mínimo y deja explícitas las decisiones pendientes.
+- Si la estrategia ya está definida y solo falta bajar escenarios observando la UI, el siguiente paso correcto no es esta skill sino el planner interno especializado.

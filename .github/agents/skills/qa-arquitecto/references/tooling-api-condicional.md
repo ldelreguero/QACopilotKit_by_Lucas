@@ -16,7 +16,7 @@ No lo promuevas como baseline por defecto si el stack activo ya cubre API con Pl
 
 No justifica una skill activa propia si el repo no depende de Newman como estándar del equipo.
 
-## REST Assured
+## REST assured
 
 Úsalo solo si existe stack Java activo o un ecosistema donde mantener tests API en Java sea una restricción real.
 

@@ -1,15 +1,15 @@
-# File Upload & Download Testing
+# File upload & download testing
 
-## Table of Contents
+## Table of contents
 
 1. [File Downloads](#file-downloads)
 2. [File Uploads](#file-uploads)
 3. [Drag and Drop](#drag-and-drop)
 4. [File Content Verification](#file-content-verification)
 
-## File Downloads
+## File downloads
 
-### Basic Download
+### Basic download
 
 ```typescript
 test("download PDF report", async ({ page }) => {
@@ -28,7 +28,7 @@ test("download PDF report", async ({ page }) => {
 });
 ```
 
-### Download with Custom Path
+### Download with custom path
 
 ```typescript
 test("download to temp directory", async ({ page }, testInfo) => {
@@ -47,7 +47,7 @@ test("download to temp directory", async ({ page }, testInfo) => {
 });
 ```
 
-### Verify Download Content
+### Verify download content
 
 ```typescript
 import fs from "fs";
@@ -74,7 +74,7 @@ test("verify CSV content", async ({ page }, testInfo) => {
 });
 ```
 
-### Multiple Downloads
+### Multiple downloads
 
 ```typescript
 test("download multiple files", async ({ page }) => {
@@ -98,7 +98,7 @@ test("download multiple files", async ({ page }) => {
 });
 ```
 
-### Download Fixture
+### Download fixture
 
 ```typescript
 // fixtures/download.fixture.ts
@@ -137,9 +137,9 @@ export const test = base.extend<DownloadFixtures>({
 });
 ```
 
-## File Uploads
+## File uploads
 
-### Basic Upload
+### Basic upload
 
 ```typescript
 test("upload profile picture", async ({ page }) => {
@@ -158,7 +158,7 @@ test("upload profile picture", async ({ page }) => {
 });
 ```
 
-### Multiple File Upload
+### Multiple file upload
 
 ```typescript
 test("upload multiple documents", async ({ page }) => {
@@ -182,7 +182,7 @@ test("upload multiple documents", async ({ page }) => {
 });
 ```
 
-### Upload with File Chooser
+### Upload with file chooser
 
 ```typescript
 test("upload via file chooser dialog", async ({ page }) => {
@@ -199,7 +199,7 @@ test("upload via file chooser dialog", async ({ page }) => {
 });
 ```
 
-### Clear and Re-upload
+### Clear and re-upload
 
 ```typescript
 test("replace uploaded file", async ({ page }) => {
@@ -221,7 +221,7 @@ test("replace uploaded file", async ({ page }) => {
 });
 ```
 
-### Upload from Buffer
+### Upload from buffer
 
 ```typescript
 test("upload generated file", async ({ page }) => {
@@ -240,9 +240,9 @@ test("upload generated file", async ({ page }) => {
 });
 ```
 
-## Drag and Drop
+## Drag and drop
 
-### Drag and Drop Upload
+### Drag and drop upload
 
 ```typescript
 test("drag and drop file upload", async ({ page }) => {
@@ -272,7 +272,7 @@ test("drag and drop file upload", async ({ page }) => {
 });
 ```
 
-### Simpler Drag and Drop
+### Simpler drag and drop
 
 ```typescript
 test("drag and drop with setInputFiles", async ({ page }) => {
@@ -288,9 +288,9 @@ test("drag and drop with setInputFiles", async ({ page }) => {
 });
 ```
 
-## File Content Verification
+## File content verification
 
-### Verify PDF Content
+### Verify PDF content
 
 ```typescript
 import pdf from "pdf-parse";
@@ -314,7 +314,7 @@ test("verify PDF content", async ({ page }, testInfo) => {
 });
 ```
 
-### Verify Excel Content
+### Verify excel content
 
 ```typescript
 import XLSX from "xlsx";
@@ -340,7 +340,7 @@ test("verify Excel export", async ({ page }, testInfo) => {
 });
 ```
 
-### Verify JSON Download
+### Verify JSON download
 
 ```typescript
 test("verify JSON export", async ({ page }, testInfo) => {
@@ -360,7 +360,7 @@ test("verify JSON export", async ({ page }, testInfo) => {
 });
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern                          | Problem                         | Solution                                      |
 | ------------------------------------- | ------------------------------- | --------------------------------------------- |
@@ -369,7 +369,7 @@ test("verify JSON export", async ({ page }, testInfo) => {
 | Skipping content verification         | Download might be empty/corrupt | Verify file content when possible             |
 | Using `force: true` for hidden inputs | May not trigger proper events   | Use `setInputFiles` on hidden inputs directly |
 
-## Related References
+## Related references
 
 - **Fixtures**: See [fixtures-hooks.md](fixtures-hooks.md) for download fixture patterns
 - **Debugging**: See [debugging.md](debugging.md) for troubleshooting download issues

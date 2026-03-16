@@ -1,6 +1,6 @@
-# Global Setup & Teardown
+# Global setup & teardown
 
-## Table of Contents
+## Table of contents
 
 1. [Global Setup](#global-setup)
 2. [Global Teardown](#global-teardown)
@@ -9,9 +9,9 @@
 5. [Setup Projects vs Global Setup](#setup-projects-vs-global-setup)
 6. [Parallel Execution Caveats](#parallel-execution-caveats)
 
-## Global Setup
+## Global setup
 
-### Basic Global Setup
+### Basic global setup
 
 ```typescript
 // global-setup.ts
@@ -25,7 +25,7 @@ async function globalSetup(config: FullConfig) {
 export default globalSetup;
 ```
 
-### Configure Global Setup
+### Configure global setup
 
 ```typescript
 // playwright.config.ts
@@ -39,7 +39,7 @@ export default defineConfig({
 
 > **Authentication in Global Setup**: For authentication patterns using storage state in global setup, see [fixtures-hooks.md](fixtures-hooks.md#authentication-patterns). Setup projects are generally preferred for authentication as they provide access to Playwright fixtures.
 
-### Global Setup with Return Value
+### Global setup with return value
 
 ```typescript
 // global-setup.ts
@@ -55,7 +55,7 @@ async function globalSetup(config: FullConfig): Promise<() => Promise<void>> {
 export default globalSetup;
 ```
 
-### Access Config in Global Setup
+### Access config in global setup
 
 ```typescript
 // global-setup.ts
@@ -76,9 +76,9 @@ async function globalSetup(config: FullConfig) {
 export default globalSetup;
 ```
 
-## Global Teardown
+## Global teardown
 
-### Basic Global Teardown
+### Basic global teardown
 
 ```typescript
 // global-teardown.ts
@@ -103,7 +103,7 @@ async function globalTeardown(config: FullConfig) {
 export default globalTeardown;
 ```
 
-### Conditional Teardown
+### Conditional teardown
 
 ```typescript
 // global-teardown.ts
@@ -121,14 +121,14 @@ async function globalTeardown(config: FullConfig) {
 export default globalTeardown;
 ```
 
-## Database Patterns
+## Database patterns
 
 This section covers **one-time database setup** (migrations, snapshots, per-worker databases). For related topics:
 
 - **Per-test database fixtures** (isolation, transaction rollback): See [fixtures-hooks.md](fixtures-hooks.md#database-fixtures)
 - **Test data factories** (builders, Faker): See [test-data.md](test-data.md)
 
-### Database Migration in Setup
+### Database migration in setup
 
 ```typescript
 // global-setup.ts
@@ -147,7 +147,7 @@ async function globalSetup() {
 export default globalSetup;
 ```
 
-### Database Snapshot Pattern
+### Database snapshot pattern
 
 ```typescript
 // global-setup.ts
@@ -174,7 +174,7 @@ async function globalSetup() {
 export default globalSetup;
 ```
 
-### Test Database per Worker
+### Test database per worker
 
 ```typescript
 // global-setup.ts
@@ -200,9 +200,9 @@ async function globalTeardown(config: FullConfig) {
 }
 ```
 
-## Environment Provisioning
+## Environment provisioning
 
-### Start Services in Setup
+### Start services in setup
 
 ```typescript
 // global-setup.ts
@@ -243,7 +243,7 @@ async function waitForServer(url: string, timeout: number) {
 export default globalSetup;
 ```
 
-### Docker Compose Setup
+### Docker compose setup
 
 ```typescript
 // global-setup.ts
@@ -280,7 +280,7 @@ async function globalTeardown() {
 export default globalTeardown;
 ```
 
-### Environment Variables Setup
+### Environment variables setup
 
 ```typescript
 // global-setup.ts
@@ -304,9 +304,9 @@ async function globalSetup() {
 export default globalSetup;
 ```
 
-## Setup Projects vs Global Setup
+## Setup projects vs global setup
 
-### When to Use Each
+### When to use each
 
 | Use Global Setup                      | Use Setup Projects                       |
 | ------------------------------------- | ---------------------------------------- |
@@ -315,7 +315,7 @@ export default globalSetup;
 | Runs once before all projects         | Can run per-project or have dependencies |
 | Shared across all workers             | Can be parallelized                      |
 
-### Setup Project Pattern
+### Setup project pattern
 
 ```typescript
 // playwright.config.ts
@@ -343,7 +343,7 @@ export default defineConfig({
 
 > **For complete authentication setup patterns**, see [fixtures-hooks.md](fixtures-hooks.md#authentication-patterns).
 
-### Combining Both
+### Combining both
 
 ```typescript
 // playwright.config.ts
@@ -367,9 +367,9 @@ export default defineConfig({
 });
 ```
 
-## Parallel Execution Caveats
+## Parallel execution caveats
 
-### Understanding Global Setup Execution
+### Understanding global setup execution
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -391,7 +391,7 @@ export default defineConfig({
 - If tests **modify** shared state, they may conflict with parallel workers
 - Global setup **cannot** react to individual test needs
 
-### When to Prefer Worker-Scoped Fixtures
+### When to prefer Worker-Scoped fixtures
 
 Use **worker-scoped fixtures** instead of globalSetup when:
 
@@ -402,7 +402,7 @@ Use **worker-scoped fixtures** instead of globalSetup when:
 | Setup depends on test configuration  | Fixtures receive test context and options            |
 | Resources need cleanup per worker    | Worker fixtures auto-cleanup when worker exits       |
 
-### Common Parallel Pitfall
+### Common parallel pitfall
 
 ```typescript
 // ❌ BAD: Global setup creates ONE user, all workers fight over it
@@ -416,7 +416,7 @@ async function globalSetup() {
 
 > **For worker-scoped fixture patterns** (per-worker databases, unique test data, `workerIndex` isolation), see [fixtures-hooks.md](fixtures-hooks.md#isolate-test-data-between-parallel-workers).
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern                   | Problem                          | Solution                                   |
 | ------------------------------ | -------------------------------- | ------------------------------------------ |
@@ -427,7 +427,7 @@ async function globalSetup() {
 | Shared mutable state           | Race conditions in parallel      | Use worker-scoped fixtures for isolation   |
 | Global setup for per-test data | Tests conflict                   | Use test-scoped fixtures                   |
 
-## Related References
+## Related references
 
 - **Fixtures & Auth**: See [fixtures-hooks.md](fixtures-hooks.md) for worker-scoped fixtures and auth patterns
 - **CI/CD**: See [ci-cd.md](ci-cd.md) for CI setup patterns

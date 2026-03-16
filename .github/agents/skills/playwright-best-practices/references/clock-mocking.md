@@ -1,6 +1,6 @@
-# Date, Time & Clock Mocking
+# Date, time & clock mocking
 
-## Table of Contents
+## Table of contents
 
 1. [Clock API Basics](#clock-api-basics)
 2. [Fixed Time Testing](#fixed-time-testing)
@@ -8,9 +8,9 @@
 4. [Timezone Testing](#timezone-testing)
 5. [Timer Mocking](#timer-mocking)
 
-## Clock API Basics
+## Clock API basics
 
-### Install Clock
+### Install clock
 
 ```typescript
 test("mock current time", async ({ page }) => {
@@ -24,7 +24,7 @@ test("mock current time", async ({ page }) => {
 });
 ```
 
-### Clock with Fixture
+### Clock with fixture
 
 ```typescript
 // fixtures/clock.fixture.ts
@@ -52,9 +52,9 @@ test("subscription expiry", async ({ page, mockTime }) => {
 });
 ```
 
-## Fixed Time Testing
+## Fixed time testing
 
-### Test Date-Dependent Features
+### Test Date-Dependent features
 
 ```typescript
 test("show holiday banner in December", async ({ page }) => {
@@ -74,7 +74,7 @@ test("no holiday banner in January", async ({ page }) => {
 });
 ```
 
-### Test Relative Time Display
+### Test relative time display
 
 ```typescript
 test("shows relative time correctly", async ({ page }) => {
@@ -98,7 +98,7 @@ test("shows relative time correctly", async ({ page }) => {
 });
 ```
 
-### Test Date Boundaries
+### Test date boundaries
 
 ```typescript
 test.describe("end of month billing", () => {
@@ -118,9 +118,9 @@ test.describe("end of month billing", () => {
 });
 ```
 
-## Time Advancement
+## Time advancement
 
-### Advance Time Manually
+### Advance time manually
 
 ```typescript
 test("session timeout warning", async ({ page }) => {
@@ -139,7 +139,7 @@ test("session timeout warning", async ({ page }) => {
 });
 ```
 
-### Pause and Resume Time
+### Pause and resume time
 
 ```typescript
 test("countdown timer", async ({ page }) => {
@@ -161,7 +161,7 @@ test("countdown timer", async ({ page }) => {
 });
 ```
 
-### Run Pending Timers
+### Run pending timers
 
 ```typescript
 test("debounced search", async ({ page }) => {
@@ -181,9 +181,9 @@ test("debounced search", async ({ page }) => {
 });
 ```
 
-## Timezone Testing
+## Timezone testing
 
-### Test Different Timezones
+### Test different timezones
 
 ```typescript
 test.describe("timezone display", () => {
@@ -221,7 +221,7 @@ test.describe("timezone display", () => {
 });
 ```
 
-### Timezone Fixture
+### Timezone fixture
 
 ```typescript
 // fixtures/timezone.fixture.ts
@@ -250,7 +250,7 @@ export const test = base.extend<TimezoneFixtures>({
 });
 ```
 
-## Timer Mocking
+## Timer mocking
 
 ### Mock setInterval
 
@@ -278,7 +278,7 @@ test("auto-refresh data", async ({ page }) => {
 });
 ```
 
-### Mock setTimeout Chains
+### Mock setTimeout chains
 
 ```typescript
 test("notification queue", async ({ page }) => {
@@ -301,7 +301,7 @@ test("notification queue", async ({ page }) => {
 });
 ```
 
-### Test Animation Frames
+### Test animation frames
 
 ```typescript
 test("animation completes", async ({ page }) => {
@@ -321,9 +321,9 @@ test("animation completes", async ({ page }) => {
 });
 ```
 
-## Best Practices
+## Best practices
 
-### Always Install Clock Before Navigation
+### Always install clock before navigation
 
 ```typescript
 // Good
@@ -339,7 +339,7 @@ test("date test", async ({ page }) => {
 });
 ```
 
-### Use ISO Strings for Clarity
+### Use ISO strings for clarity
 
 ```typescript
 // Good - explicit timezone
@@ -349,7 +349,7 @@ await page.clock.install({ time: new Date("2025-01-15T09:00:00Z") });
 await page.clock.install({ time: new Date("2025-01-15T09:00:00") });
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern                             | Problem                         | Solution                               |
 | ---------------------------------------- | ------------------------------- | -------------------------------------- |
@@ -358,7 +358,7 @@ await page.clock.install({ time: new Date("2025-01-15T09:00:00") });
 | Not accounting for timezone              | Tests fail in different regions | Use explicit UTC times or set timezone |
 | Using `waitForTimeout` with mocked clock | Conflicts with mocked timers    | Use `fastForward` instead              |
 
-## Related References
+## Related references
 
 - **Assertions**: See [assertions-waiting.md](assertions-waiting.md) for time-based assertions
 - **Fixtures**: See [fixtures-hooks.md](fixtures-hooks.md) for clock fixtures

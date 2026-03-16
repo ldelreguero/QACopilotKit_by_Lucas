@@ -1,6 +1,6 @@
-# Performance Testing & Web Vitals
+# Performance testing & web vitals
 
-## Table of Contents
+## Table of contents
 
 1. [Core Web Vitals](#core-web-vitals)
 2. [Performance Metrics](#performance-metrics)
@@ -9,7 +9,7 @@
 5. [Performance Fixtures](#performance-fixtures)
 6. [CI Performance Monitoring](#ci-performance-monitoring)
 
-## Core Web Vitals
+## Core web vitals
 
 ### Measure LCP, FID, CLS
 
@@ -53,7 +53,7 @@ test("core web vitals within thresholds", async ({ page }) => {
 });
 ```
 
-### Using web-vitals Library
+### Using web-vitals library
 
 ```typescript
 test("web vitals with library", async ({ page }) => {
@@ -95,9 +95,9 @@ test("web vitals with library", async ({ page }) => {
 });
 ```
 
-## Performance Metrics
+## Performance metrics
 
-### Navigation Timing
+### Navigation timing
 
 ```typescript
 test("page load performance", async ({ page }) => {
@@ -135,7 +135,7 @@ test("page load performance", async ({ page }) => {
 });
 ```
 
-### Resource Timing
+### Resource timing
 
 ```typescript
 test("resource loading performance", async ({ page }) => {
@@ -164,7 +164,7 @@ test("resource loading performance", async ({ page }) => {
 });
 ```
 
-### Memory Usage
+### Memory usage
 
 ```typescript
 test("memory usage is reasonable", async ({ page }) => {
@@ -191,9 +191,9 @@ test("memory usage is reasonable", async ({ page }) => {
 });
 ```
 
-## Performance Budgets
+## Performance budgets
 
-### Define Budgets
+### Define budgets
 
 ```typescript
 // performance-budgets.ts
@@ -218,7 +218,7 @@ export const budgets = {
 };
 ```
 
-### Test Against Budgets
+### Test against budgets
 
 ```typescript
 import { budgets } from "./performance-budgets";
@@ -267,7 +267,7 @@ test("homepage meets performance budget", async ({ page }) => {
 });
 ```
 
-### Budget Fixture
+### Budget fixture
 
 ```typescript
 // fixtures/performance.fixture.ts
@@ -319,7 +319,7 @@ export const test = base.extend<PerformanceFixtures>({
 });
 ```
 
-## Lighthouse Integration
+## Lighthouse integration
 
 ### Using playwright-lighthouse
 
@@ -355,7 +355,7 @@ test("lighthouse audit", async ({ page }) => {
 });
 ```
 
-### Lighthouse with Config
+### Lighthouse with config
 
 ```typescript
 test("lighthouse with custom config", async ({ page }, testInfo) => {
@@ -392,9 +392,9 @@ test("lighthouse with custom config", async ({ page }, testInfo) => {
 });
 ```
 
-## CI Performance Monitoring
+## CI performance monitoring
 
-### Track Performance Over Time
+### Track performance over time
 
 ```typescript
 // reporters/perf-reporter.ts
@@ -435,7 +435,7 @@ class PerfReporter implements Reporter {
 export default PerfReporter;
 ```
 
-### Performance Regression Detection
+### Performance regression detection
 
 ```typescript
 test("no performance regression", async ({ page }) => {
@@ -461,7 +461,7 @@ test("no performance regression", async ({ page }) => {
 });
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern                | Problem                   | Solution                         |
 | --------------------------- | ------------------------- | -------------------------------- |
@@ -470,7 +470,7 @@ test("no performance regression", async ({ page }) => {
 | No baseline comparison      | Can't detect regressions  | Track metrics over time          |
 | Testing in dev mode         | Slow, not production-like | Test production builds           |
 
-## Related References
+## Related references
 
 - **Performance Optimization**: See [performance.md](performance.md) for test execution performance
 - **CI/CD**: See [ci-cd.md](ci-cd.md) for CI integration

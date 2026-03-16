@@ -8,7 +8,7 @@
 - validación de inputs e inyección
 - headers y configuraciones mínimas de seguridad
 
-## qaskills candidatas a consolidar en la siguiente ola
+## Qaskills candidatas a consolidar en la siguiente ola
 
 - ninguna en seguridad baseline
 

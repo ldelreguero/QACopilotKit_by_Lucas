@@ -1,8 +1,8 @@
-# Allure y Tendencias
+# Allure y tendencias
 
 Esta guía resume el valor útil de la qaskill legacy de Allure para el rol analítico.
 
-## Qué debe mirar el analista en Allure
+## Qué debe mirar el analista en allure
 
 - tendencia de pasados/fallidos entre ejecuciones
 - agrupación por suite, feature, historia o severidad

@@ -1,6 +1,6 @@
-# Multi-User & Collaboration Testing
+# Multi-User & collaboration testing
 
-## Table of Contents
+## Table of contents
 
 1. [Multiple Browser Contexts](#multiple-browser-contexts)
 2. [Real-Time Collaboration](#real-time-collaboration)
@@ -8,9 +8,9 @@
 4. [Concurrent Actions](#concurrent-actions)
 5. [Chat & Messaging](#chat--messaging)
 
-## Multiple Browser Contexts
+## Multiple browser contexts
 
-### Two Users in Same Test
+### Two users in same test
 
 ```typescript
 test("two users see each other's changes", async ({ browser }) => {
@@ -37,7 +37,7 @@ test("two users see each other's changes", async ({ browser }) => {
 });
 ```
 
-### Multiple Users with Auth States
+### Multiple users with auth states
 
 ```typescript
 test("admin and user interaction", async ({ browser }) => {
@@ -72,7 +72,7 @@ test("admin and user interaction", async ({ browser }) => {
 });
 ```
 
-### Multi-User Fixture
+### Multi-User fixture
 
 ```typescript
 // fixtures/multi-user.fixture.ts
@@ -122,9 +122,9 @@ test("3 users collaborate", async ({ createUser }) => {
 });
 ```
 
-## Real-Time Collaboration
+## Real-Time collaboration
 
-### Collaborative Document
+### Collaborative document
 
 ```typescript
 test("real-time collaborative editing", async ({ browser }) => {
@@ -160,7 +160,7 @@ test("real-time collaborative editing", async ({ browser }) => {
 });
 ```
 
-### Cursor Presence
+### Cursor presence
 
 ```typescript
 test("shows other user cursors", async ({ browser }) => {
@@ -193,7 +193,7 @@ test("shows other user cursors", async ({ browser }) => {
 });
 ```
 
-## Role-Based Testing
+## Role-Based testing
 
 ### Test RBAC
 
@@ -241,7 +241,7 @@ for (const { role, canDelete, canEdit, canView } of roles) {
 }
 ```
 
-### Permission Escalation Test
+### Permission escalation test
 
 ```typescript
 test("cannot access admin routes as user", async ({ browser }) => {
@@ -261,9 +261,9 @@ test("cannot access admin routes as user", async ({ browser }) => {
 });
 ```
 
-## Concurrent Actions
+## Concurrent actions
 
-### Race Condition Testing
+### Race condition testing
 
 ```typescript
 test("handles concurrent edits", async ({ browser }) => {
@@ -304,7 +304,7 @@ test("handles concurrent edits", async ({ browser }) => {
 });
 ```
 
-### Optimistic Locking Test
+### Optimistic locking test
 
 ```typescript
 test("optimistic locking prevents overwrites", async ({ browser }) => {
@@ -338,9 +338,9 @@ test("optimistic locking prevents overwrites", async ({ browser }) => {
 });
 ```
 
-## Chat & Messaging
+## Chat & messaging
 
-### Real-Time Chat
+### Real-Time chat
 
 ```typescript
 test("chat messages sync between users", async ({ browser }) => {
@@ -378,7 +378,7 @@ test("chat messages sync between users", async ({ browser }) => {
 });
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern                  | Problem                       | Solution                     |
 | ----------------------------- | ----------------------------- | ---------------------------- |
@@ -387,7 +387,7 @@ test("chat messages sync between users", async ({ browser }) => {
 | Hardcoded timing for sync     | Flaky tests                   | Use `expect().toBeVisible()` |
 | Testing only single user      | Misses collaboration bugs     | Test multi-user scenarios    |
 
-## Related References
+## Related references
 
 - **Authentication**: See [fixtures-hooks.md](fixtures-hooks.md) for auth setup
 - **WebSockets**: See [websockets.md](websockets.md) for real-time mocking

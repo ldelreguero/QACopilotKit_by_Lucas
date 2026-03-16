@@ -4,7 +4,7 @@ agent: "qa-analista"
 argument-hint: "Indica baseline, artefactos a comparar, reporte o JSON a analizar y el resultado esperado."
 ---
 
-# QA Analista
+# QA analista
 
 Usa este prompt para pedir un análisis puntual al agente [qa-analista](../agents/qa-analista.agent.md) sin repetir su manual operativo.
 

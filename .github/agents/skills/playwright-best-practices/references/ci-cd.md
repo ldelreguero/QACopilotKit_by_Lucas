@@ -1,6 +1,6 @@
-# CI/CD Integration
+# CI/CD integration
 
-## Table of Contents
+## Table of contents
 
 1. [GitHub Actions](#github-actions)
 2. [Docker](#docker)
@@ -9,9 +9,9 @@
 5. [Environment Management](#environment-management)
 6. [Caching](#caching)
 
-## GitHub Actions
+## GitHub actions
 
-### Basic Workflow
+### Basic workflow
 
 ```yaml
 # .github/workflows/playwright.yml
@@ -52,7 +52,7 @@ jobs:
           retention-days: 30
 ```
 
-### With Sharding
+### With sharding
 
 ```yaml
 name: Playwright Tests
@@ -128,7 +128,7 @@ jobs:
           retention-days: 14
 ```
 
-### With Container
+### With container
 
 ```yaml
 jobs:
@@ -172,7 +172,7 @@ COPY . .
 CMD ["npx", "playwright", "test"]
 ```
 
-### Docker Compose
+### Docker compose
 
 ```yaml
 # docker-compose.yml
@@ -196,7 +196,7 @@ services:
       - "3000:3000"
 ```
 
-### Run with Docker
+### Run with docker
 
 ```bash
 # Build and run
@@ -236,7 +236,7 @@ export default defineConfig({
 });
 ```
 
-### CI-Specific Reporter
+### Ci-specific reporter
 
 ```typescript
 export default defineConfig({
@@ -248,7 +248,7 @@ export default defineConfig({
 
 ## Sharding
 
-### Command Line
+### Command line
 
 ```bash
 # Split into 4 shards, run shard 1
@@ -271,16 +271,16 @@ export default defineConfig({
 });
 ```
 
-### Merge Sharded Reports
+### Merge sharded reports
 
 ```bash
 # After all shards complete, merge blob reports
 npx playwright merge-reports --reporter html ./all-blob-reports
 ```
 
-## Environment Management
+## Environment management
 
-### Environment Variables
+### Environment variables
 
 ```typescript
 // playwright.config.ts
@@ -297,7 +297,7 @@ export default defineConfig({
 });
 ```
 
-### Multiple Environments
+### Multiple environments
 
 ```yaml
 # .github/workflows/playwright.yml
@@ -314,7 +314,7 @@ jobs:
           TEST_USER: ${{ secrets[format('TEST_USER_{0}', matrix.environment)] }}
 ```
 
-### Secrets Management
+### Secrets management
 
 ```yaml
 # GitHub Actions secrets
@@ -335,7 +335,7 @@ test("login", async ({ page }) => {
 
 ## Caching
 
-### Cache Playwright Browsers
+### Cache Playwright browsers
 
 ```yaml
 - name: Cache Playwright browsers
@@ -354,7 +354,7 @@ test("login", async ({ page }) => {
   run: npx playwright install-deps
 ```
 
-### Cache Node Modules
+### Cache node modules
 
 ```yaml
 - uses: actions/setup-node@v4
@@ -366,7 +366,7 @@ test("login", async ({ page }) => {
   run: npm ci
 ```
 
-## Best Practices
+## Best practices
 
 | Practice                      | Benefit                   |
 | ----------------------------- | ------------------------- |
@@ -378,7 +378,7 @@ test("login", async ({ page }) => {
 | Cache browsers                | Faster setup              |
 | Use blob reporter for shards  | Merge reports correctly   |
 
-## CI Configuration Reference
+## CI configuration reference
 
 ```typescript
 // playwright.config.ts - CI optimized
@@ -400,7 +400,7 @@ export default defineConfig({
 });
 ```
 
-## Related References
+## Related references
 
 - **Performance optimization**: See [performance.md](performance.md) for sharding and parallelization
 - **Debugging CI failures**: See [debugging.md](debugging.md) for troubleshooting

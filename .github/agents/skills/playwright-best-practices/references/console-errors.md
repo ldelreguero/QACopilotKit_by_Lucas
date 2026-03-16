@@ -1,6 +1,6 @@
-# Browser Console & JavaScript Error Handling
+# Browser console & JavaScript error handling
 
-## Table of Contents
+## Table of contents
 
 1. [Capturing Console Messages](#capturing-console-messages)
 2. [Failing on Console Errors](#failing-on-console-errors)
@@ -8,9 +8,9 @@
 4. [Monitoring Warnings](#monitoring-warnings)
 5. [Console Fixtures](#console-fixtures)
 
-## Capturing Console Messages
+## Capturing console messages
 
-### Basic Console Capture
+### Basic console capture
 
 ```typescript
 test("capture console logs", async ({ page }) => {
@@ -27,7 +27,7 @@ test("capture console logs", async ({ page }) => {
 });
 ```
 
-### Capture by Type
+### Capture by type
 
 ```typescript
 test("capture specific console types", async ({ page }) => {
@@ -57,7 +57,7 @@ test("capture specific console types", async ({ page }) => {
 });
 ```
 
-### Capture with Stack Trace
+### Capture with stack trace
 
 ```typescript
 test("capture errors with location", async ({ page }) => {
@@ -85,9 +85,9 @@ test("capture errors with location", async ({ page }) => {
 });
 ```
 
-## Failing on Console Errors
+## Failing on console errors
 
-### Fail Test on Any Error
+### Fail test on any error
 
 ```typescript
 test("no console errors allowed", async ({ page }) => {
@@ -107,7 +107,7 @@ test("no console errors allowed", async ({ page }) => {
 });
 ```
 
-### Fail with Allowed Exceptions
+### Fail with allowed exceptions
 
 ```typescript
 test("no unexpected console errors", async ({ page }) => {
@@ -137,7 +137,7 @@ test("no unexpected console errors", async ({ page }) => {
 });
 ```
 
-### Auto-Fail Fixture
+### Auto-Fail fixture
 
 ```typescript
 // fixtures/console.fixture.ts
@@ -172,9 +172,9 @@ export const test = base.extend<ConsoleFixtures>({
 });
 ```
 
-## JavaScript Error Detection
+## JavaScript error detection
 
-### Catch Uncaught Exceptions
+### Catch uncaught exceptions
 
 ```typescript
 test("no uncaught exceptions", async ({ page }) => {
@@ -194,7 +194,7 @@ test("no uncaught exceptions", async ({ page }) => {
 });
 ```
 
-### Capture Error Details
+### Capture error details
 
 ```typescript
 test("capture JS error details", async ({ page }) => {
@@ -219,7 +219,7 @@ test("capture JS error details", async ({ page }) => {
 });
 ```
 
-### Test Error Boundary Triggers
+### Test error boundary triggers
 
 ```typescript
 test("error boundary catches render error", async ({ page }) => {
@@ -245,9 +245,9 @@ test("error boundary catches render error", async ({ page }) => {
 });
 ```
 
-## Monitoring Warnings
+## Monitoring warnings
 
-### Capture Deprecation Warnings
+### Capture deprecation warnings
 
 ```typescript
 test("no deprecation warnings", async ({ page }) => {
@@ -275,7 +275,7 @@ test("no deprecation warnings", async ({ page }) => {
 });
 ```
 
-### React Development Warnings
+### React development warnings
 
 ```typescript
 test("no React warnings", async ({ page }) => {
@@ -308,9 +308,9 @@ test("no React warnings", async ({ page }) => {
 });
 ```
 
-## Console Fixtures
+## Console fixtures
 
-### Comprehensive Console Fixture
+### Comprehensive console fixture
 
 ```typescript
 // fixtures/console.fixture.ts
@@ -380,7 +380,7 @@ test("page loads without errors", async ({ page, assertNoErrors }) => {
 });
 ```
 
-### Attach Console to Report
+### Attach console to report
 
 ```typescript
 test("capture console for debugging", async ({ page }, testInfo) => {
@@ -405,7 +405,7 @@ test("capture console for debugging", async ({ page }, testInfo) => {
 });
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern               | Problem                    | Solution                    |
 | -------------------------- | -------------------------- | --------------------------- |
@@ -414,7 +414,7 @@ test("capture console for debugging", async ({ page }, testInfo) => {
 | Not capturing stack traces | Hard to debug              | Include location info       |
 | Checking only at end       | Miss errors during actions | Capture continuously        |
 
-## Related References
+## Related references
 
 - **Debugging**: See [debugging.md](debugging.md) for troubleshooting
 - **Error Testing**: See [error-testing.md](error-testing.md) for error scenarios

@@ -1,6 +1,6 @@
-# Canvas & WebGL Testing
+# Canvas & WebGL testing
 
-## Table of Contents
+## Table of contents
 
 1. [Canvas Basics](#canvas-basics)
 2. [Visual Comparison](#visual-comparison)
@@ -9,9 +9,9 @@
 5. [Chart Libraries](#chart-libraries)
 6. [Game & Animation Testing](#game--animation-testing)
 
-## Canvas Basics
+## Canvas basics
 
-### Locating Canvas Elements
+### Locating canvas elements
 
 ```typescript
 test("find canvas", async ({ page }) => {
@@ -33,7 +33,7 @@ test("find canvas", async ({ page }) => {
 });
 ```
 
-### Canvas Screenshot Testing
+### Canvas screenshot testing
 
 ```typescript
 test("canvas renders correctly", async ({ page }) => {
@@ -59,7 +59,7 @@ test("canvas renders correctly", async ({ page }) => {
 });
 ```
 
-### Extracting Canvas Data
+### Extracting canvas data
 
 ```typescript
 test("verify canvas content", async ({ page }) => {
@@ -87,9 +87,9 @@ test("verify canvas content", async ({ page }) => {
 });
 ```
 
-## Visual Comparison
+## Visual comparison
 
-### Screenshot Assertions
+### Screenshot assertions
 
 ```typescript
 test("chart matches baseline", async ({ page }) => {
@@ -111,7 +111,7 @@ test("chart matches baseline", async ({ page }) => {
 });
 ```
 
-### Handling Animation
+### Handling animation
 
 ```typescript
 test("animated canvas", async ({ page }) => {
@@ -147,7 +147,7 @@ test("wait for animation complete", async ({ page }) => {
 });
 ```
 
-### Threshold Configuration
+### Threshold configuration
 
 ```typescript
 // playwright.config.ts
@@ -163,9 +163,9 @@ export default defineConfig({
 });
 ```
 
-## Interaction Testing
+## Interaction testing
 
-### Click on Canvas
+### Click on canvas
 
 ```typescript
 test("click on canvas element", async ({ page }) => {
@@ -181,7 +181,7 @@ test("click on canvas element", async ({ page }) => {
 });
 ```
 
-### Drawing on Canvas
+### Drawing on canvas
 
 ```typescript
 test("draw on canvas", async ({ page }) => {
@@ -208,7 +208,7 @@ test("draw on canvas", async ({ page }) => {
 });
 ```
 
-### Drag and Drop
+### Drag and drop
 
 ```typescript
 test("drag canvas element", async ({ page }) => {
@@ -228,7 +228,7 @@ test("drag canvas element", async ({ page }) => {
 });
 ```
 
-### Touch Gestures on Canvas
+### Touch gestures on canvas
 
 ```typescript
 test("pinch zoom on canvas", async ({ page }) => {
@@ -302,9 +302,9 @@ test("pinch zoom on canvas", async ({ page }) => {
 });
 ```
 
-## WebGL Testing
+## WebGL testing
 
-### Checking WebGL Support
+### Checking WebGL support
 
 ```typescript
 test("WebGL is supported", async ({ page }) => {
@@ -321,7 +321,7 @@ test("WebGL is supported", async ({ page }) => {
 });
 ```
 
-### WebGL Screenshot Testing
+### WebGL screenshot testing
 
 ```typescript
 test("3D scene renders", async ({ page }) => {
@@ -356,7 +356,7 @@ test("3D scene renders", async ({ page }) => {
 });
 ```
 
-### Testing Three.js Applications
+### Testing three.js applications
 
 ```typescript
 test("Three.js scene interaction", async ({ page }) => {
@@ -390,9 +390,9 @@ test("Three.js scene interaction", async ({ page }) => {
 });
 ```
 
-## Chart Libraries
+## Chart libraries
 
-### Chart.js Testing
+### Chart.js testing
 
 ```typescript
 test("Chart.js renders data", async ({ page }) => {
@@ -417,7 +417,7 @@ test("Chart.js renders data", async ({ page }) => {
 });
 ```
 
-### D3.js / ECharts Testing
+### D3.js / echarts testing
 
 ```typescript
 test("chart library interaction", async ({ page }) => {
@@ -439,9 +439,9 @@ test("chart library interaction", async ({ page }) => {
 });
 ```
 
-## Game & Animation Testing
+## Game & animation testing
 
-### Frame-by-Frame Testing
+### Frame-by-Frame testing
 
 ```typescript
 test("game frame control", async ({ page }) => {
@@ -459,7 +459,7 @@ test("game frame control", async ({ page }) => {
 });
 ```
 
-### Testing Game State
+### Testing game state
 
 ```typescript
 test("game state changes", async ({ page }) => {
@@ -476,7 +476,7 @@ test("game state changes", async ({ page }) => {
 });
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern             | Problem                  | Solution                            |
 | ------------------------ | ------------------------ | ----------------------------------- |
@@ -486,7 +486,7 @@ test("game state changes", async ({ page }) => {
 | Ignoring animation       | Flaky screenshots        | Pause/disable animations            |
 | Hardcoded coordinates    | Breaks on resize         | Calculate relative to canvas bounds |
 
-## Related References
+## Related references
 
 - **Visual Testing**: See [test-organization.md](test-organization.md) for visual regression setup
 - **Mobile Gestures**: See [mobile-testing.md](mobile-testing.md) for touch interactions

@@ -1,6 +1,6 @@
-# Browser Extension Testing
+# Browser extension testing
 
-## Table of Contents
+## Table of contents
 
 1. [Setup & Configuration](#setup--configuration)
 2. [Loading Extensions](#loading-extensions)
@@ -10,7 +10,7 @@
 6. [Extension APIs](#extension-apis)
 7. [Cross-Browser Testing](#cross-browser-testing)
 
-## Setup & Configuration
+## Setup & configuration
 
 ### Prerequisites
 
@@ -19,7 +19,7 @@ npm install -D @playwright/test
 npx playwright install chromium  # Extensions only work in Chromium
 ```
 
-### Basic Configuration
+### Basic configuration
 
 ```typescript
 // playwright.config.ts
@@ -43,7 +43,7 @@ export default defineConfig({
 });
 ```
 
-### Extension Fixture
+### Extension fixture
 
 ```typescript
 // fixtures/extension.ts
@@ -99,9 +99,9 @@ export const test = base.extend<ExtensionFixtures>({
 export { expect } from "@playwright/test";
 ```
 
-## Loading Extensions
+## Loading extensions
 
-### Manifest V3 (Service Worker)
+### Manifest V3 (service worker)
 
 ```typescript
 test("load MV3 extension", async () => {
@@ -123,7 +123,7 @@ test("load MV3 extension", async () => {
 });
 ```
 
-### Manifest V2 (Background Page)
+### Manifest V2 (background page)
 
 ```typescript
 test("load MV2 extension", async () => {
@@ -145,7 +145,7 @@ test("load MV2 extension", async () => {
 });
 ```
 
-### Multiple Extensions
+### Multiple extensions
 
 ```typescript
 test("load multiple extensions", async () => {
@@ -170,9 +170,9 @@ test("load multiple extensions", async () => {
 });
 ```
 
-## Popup Testing
+## Popup testing
 
-### Opening Extension Popup
+### Opening extension popup
 
 ```typescript
 test("test popup UI", async ({ context, extensionId }) => {
@@ -187,7 +187,7 @@ test("test popup UI", async ({ context, extensionId }) => {
 });
 ```
 
-### Popup State Persistence
+### Popup state persistence
 
 ```typescript
 test("popup remembers state", async ({ context, extensionId }) => {
@@ -208,7 +208,7 @@ test("popup remembers state", async ({ context, extensionId }) => {
 });
 ```
 
-### Popup Communication with Background
+### Popup communication with background
 
 ```typescript
 test("popup sends message to background", async ({ context, extensionId }) => {
@@ -233,9 +233,9 @@ test("popup sends message to background", async ({ context, extensionId }) => {
 });
 ```
 
-## Background Script Testing
+## Background script testing
 
-### Manifest V3 Service Worker
+### Manifest V3 service worker
 
 ```typescript
 test("service worker handles messages", async ({ context, extensionId }) => {
@@ -253,7 +253,7 @@ test("service worker handles messages", async ({ context, extensionId }) => {
 });
 ```
 
-### Testing Background Logic
+### Testing background logic
 
 ```typescript
 test("background script logic", async ({ context }) => {
@@ -272,7 +272,7 @@ test("background script logic", async ({ context }) => {
 });
 ```
 
-### Alarms and Timers
+### Alarms and timers
 
 ```typescript
 test("alarm triggers correctly", async ({ context }) => {
@@ -302,9 +302,9 @@ test("alarm triggers correctly", async ({ context }) => {
 });
 ```
 
-## Content Script Testing
+## Content script testing
 
-### Injected Content Script
+### Injected content script
 
 ```typescript
 test("content script injects UI", async ({ context }) => {
@@ -322,7 +322,7 @@ test("content script injects UI", async ({ context }) => {
 });
 ```
 
-### Content Script Communication
+### Content script communication
 
 ```typescript
 test("content script communicates with background", async ({
@@ -340,7 +340,7 @@ test("content script communicates with background", async ({
 });
 ```
 
-### Page Modification Testing
+### Page modification testing
 
 ```typescript
 test("content script modifies page", async ({ context }) => {
@@ -364,7 +364,7 @@ test("content script modifies page", async ({ context }) => {
 });
 ```
 
-## Extension APIs
+## Extension apis
 
 ### Storage API
 
@@ -422,7 +422,7 @@ test("chrome.tabs operations", async ({ context }) => {
 });
 ```
 
-### Context Menus
+### Context menus
 
 ```typescript
 test("context menu actions", async ({ context, extensionId }) => {
@@ -489,7 +489,7 @@ test("request permissions", async ({ context, extensionId }) => {
 });
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern                   | Problem               | Solution                                 |
 | ------------------------------ | --------------------- | ---------------------------------------- |
@@ -499,7 +499,7 @@ test("request permissions", async ({ context, extensionId }) => {
 | Testing packed extensions only | Slow iteration        | Test unpacked during development         |
 | Ignoring MV3 differences       | Breaking changes      | Test both MV2 and MV3 if supporting both |
 
-## Related References
+## Related references
 
 - **Service Workers**: See [service-workers.md](service-workers.md) for SW testing patterns
 - **Multi-Context**: See [multi-context.md](multi-context.md) for popup handling

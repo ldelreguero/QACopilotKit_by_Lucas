@@ -1,6 +1,6 @@
-# Security Testing Basics
+# Security testing basics
 
-## Table of Contents
+## Table of contents
 
 1. [XSS Prevention](#xss-prevention)
 2. [CSRF Protection](#csrf-protection)
@@ -9,9 +9,9 @@
 5. [Input Validation](#input-validation)
 6. [Security Headers](#security-headers)
 
-## XSS Prevention
+## XSS prevention
 
-### Test Reflected XSS
+### Test reflected XSS
 
 ```typescript
 test("input is properly escaped", async ({ page }) => {
@@ -40,7 +40,7 @@ test("input is properly escaped", async ({ page }) => {
 });
 ```
 
-### Test Stored XSS
+### Test stored XSS
 
 ```typescript
 test("user content is sanitized", async ({ page }) => {
@@ -65,7 +65,7 @@ test("user content is sanitized", async ({ page }) => {
 });
 ```
 
-### Monitor for XSS Execution
+### Monitor for XSS execution
 
 ```typescript
 test("no XSS execution", async ({ page }) => {
@@ -98,9 +98,9 @@ test("no XSS execution", async ({ page }) => {
 });
 ```
 
-## CSRF Protection
+## CSRF protection
 
-### Verify CSRF Token Present
+### Verify CSRF token present
 
 ```typescript
 test("forms include CSRF token", async ({ page }) => {
@@ -118,7 +118,7 @@ test("forms include CSRF token", async ({ page }) => {
 });
 ```
 
-### Test CSRF Token Validation
+### Test CSRF token validation
 
 ```typescript
 test("rejects requests without CSRF token", async ({ page, request }) => {
@@ -150,7 +150,7 @@ test("rejects requests with invalid CSRF token", async ({ page, request }) => {
 });
 ```
 
-### Test CSRF with Valid Token
+### Test CSRF with valid token
 
 ```typescript
 test("accepts requests with valid CSRF token", async ({ page }) => {
@@ -170,9 +170,9 @@ test("accepts requests with valid CSRF token", async ({ page }) => {
 });
 ```
 
-## Authentication Security
+## Authentication security
 
-### Test Session Expiry
+### Test session expiry
 
 ```typescript
 test("session expires after timeout", async ({ page, context }) => {
@@ -195,7 +195,7 @@ test("session expires after timeout", async ({ page, context }) => {
 });
 ```
 
-### Test Concurrent Sessions
+### Test concurrent sessions
 
 ```typescript
 test("handles concurrent session limit", async ({ browser }) => {
@@ -229,7 +229,7 @@ test("handles concurrent session limit", async ({ browser }) => {
 });
 ```
 
-### Test Password Reset Security
+### Test password reset security
 
 ```typescript
 test("password reset token is single-use", async ({ page, request }) => {
@@ -255,9 +255,9 @@ test("password reset token is single-use", async ({ page, request }) => {
 });
 ```
 
-## Authorization Testing
+## Authorization testing
 
-### Test Unauthorized Access
+### Test unauthorized access
 
 ```typescript
 test.describe("authorization", () => {
@@ -290,7 +290,7 @@ test.describe("authorization", () => {
 });
 ```
 
-### Test IDOR (Insecure Direct Object Reference)
+### Test IDOR (insecure direct object reference)
 
 ```typescript
 test("cannot access other user resources by changing ID", async ({
@@ -309,9 +309,9 @@ test("cannot access other user resources by changing ID", async ({
 });
 ```
 
-## Input Validation
+## Input validation
 
-### Test SQL Injection Prevention
+### Test SQL injection prevention
 
 ```typescript
 test("SQL injection is prevented", async ({ page }) => {
@@ -339,7 +339,7 @@ test("SQL injection is prevented", async ({ page }) => {
 });
 ```
 
-### Test Input Length Limits
+### Test input length limits
 
 ```typescript
 test("enforces input length limits", async ({ page }) => {
@@ -357,9 +357,9 @@ test("enforces input length limits", async ({ page }) => {
 });
 ```
 
-## Security Headers
+## Security headers
 
-### Verify Security Headers
+### Verify security headers
 
 ```typescript
 test("response includes security headers", async ({ page }) => {
@@ -386,7 +386,7 @@ test("response includes security headers", async ({ page }) => {
 });
 ```
 
-### Test CSP Violations
+### Test CSP violations
 
 ```typescript
 test("CSP blocks inline scripts", async ({ page }) => {
@@ -414,7 +414,7 @@ test("CSP blocks inline scripts", async ({ page }) => {
 
 > **For comprehensive console monitoring** (fixtures, allowed patterns, fail on errors), see [console-errors.md](console-errors.md).
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern               | Problem               | Solution                      |
 | -------------------------- | --------------------- | ----------------------------- |
@@ -423,7 +423,7 @@ test("CSP blocks inline scripts", async ({ page }) => {
 | Skipping auth tests in dev | Bugs reach production | Test auth in all environments |
 | Not testing authorization  | Access control bugs   | Test all role combinations    |
 
-## Related References
+## Related references
 
 - **Authentication**: See [fixtures-hooks.md](fixtures-hooks.md) for auth fixtures
 - **Multi-User**: See [multi-user.md](multi-user.md) for role-based testing

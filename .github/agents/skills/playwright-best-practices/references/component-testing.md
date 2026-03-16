@@ -1,6 +1,6 @@
-# Component Testing
+# Component testing
 
-## Table of Contents
+## Table of contents
 
 1. [Setup & Configuration](#setup--configuration)
 2. [Mounting Components](#mounting-components)
@@ -10,7 +10,7 @@
 6. [Mocking Dependencies](#mocking-dependencies)
 7. [Framework-Specific Patterns](#framework-specific-patterns)
 
-## Setup & Configuration
+## Setup & configuration
 
 ### Installation
 
@@ -57,7 +57,7 @@ export default defineConfig({
 });
 ```
 
-### Project Structure
+### Project structure
 
 ```
 src/
@@ -73,9 +73,9 @@ playwright/
   index.tsx     # CT setup (providers, styles)
 ```
 
-## Mounting Components
+## Mounting components
 
-### Basic Mount
+### Basic mount
 
 ```tsx
 // Button.spec.tsx
@@ -90,7 +90,7 @@ test("renders button with text", async ({ mount }) => {
 });
 ```
 
-### Mount with Props
+### Mount with props
 
 ```tsx
 test("renders with all props", async ({ mount }) => {
@@ -136,9 +136,9 @@ test("with custom provider", async ({ mount }) => {
 });
 ```
 
-## Props & State Testing
+## Props & state testing
 
-### Testing Prop Variations
+### Testing prop variations
 
 ```tsx
 test.describe("Button variants", () => {
@@ -153,7 +153,7 @@ test.describe("Button variants", () => {
 });
 ```
 
-### Updating Props
+### Updating props
 
 ```tsx
 test("responds to prop changes", async ({ mount }) => {
@@ -167,7 +167,7 @@ test("responds to prop changes", async ({ mount }) => {
 });
 ```
 
-### Testing Controlled Components
+### Testing controlled components
 
 ```tsx
 test("controlled input", async ({ mount }) => {
@@ -193,7 +193,7 @@ test("controlled input", async ({ mount }) => {
 });
 ```
 
-### Testing Internal State
+### Testing internal state
 
 ```tsx
 test("internal state updates", async ({ mount }) => {
@@ -216,9 +216,9 @@ test("internal state updates", async ({ mount }) => {
 });
 ```
 
-## Events & Interactions
+## Events & interactions
 
-### Testing Click Events
+### Testing click events
 
 ```tsx
 test("click event fires", async ({ mount }) => {
@@ -234,7 +234,7 @@ test("click event fires", async ({ mount }) => {
 });
 ```
 
-### Testing Event Payloads
+### Testing event payloads
 
 ```tsx
 test("onChange provides correct value", async ({ mount }) => {
@@ -254,7 +254,7 @@ test("onChange provides correct value", async ({ mount }) => {
 });
 ```
 
-### Testing Form Submission
+### Testing form submission
 
 ```tsx
 test("form submission", async ({ mount }) => {
@@ -279,7 +279,7 @@ test("form submission", async ({ mount }) => {
 });
 ```
 
-### Testing Keyboard Interactions
+### Testing keyboard interactions
 
 ```tsx
 test("keyboard navigation", async ({ mount }) => {
@@ -299,9 +299,9 @@ test("keyboard navigation", async ({ mount }) => {
 });
 ```
 
-## Slots & Children
+## Slots & children
 
-### Testing Children Content
+### Testing children content
 
 ```tsx
 test("renders children", async ({ mount }) => {
@@ -317,7 +317,7 @@ test("renders children", async ({ mount }) => {
 });
 ```
 
-### Testing Named Slots (Vue)
+### Testing named slots (vue)
 
 ```tsx
 // Vue component with slots
@@ -335,7 +335,7 @@ test("renders named slots", async ({ mount }) => {
 });
 ```
 
-### Testing Render Props
+### Testing render props
 
 ```tsx
 test("render prop pattern", async ({ mount }) => {
@@ -355,9 +355,9 @@ test("render prop pattern", async ({ mount }) => {
 });
 ```
 
-## Mocking Dependencies
+## Mocking dependencies
 
-### Mocking Imports
+### Mocking imports
 
 ```tsx
 // playwright/index.tsx - Mock at setup level
@@ -390,7 +390,7 @@ test("with feature flag", async ({ mount }) => {
 });
 ```
 
-### Mocking API Calls
+### Mocking API calls
 
 ```tsx
 test("component with API", async ({ mount, page }) => {
@@ -407,7 +407,7 @@ test("component with API", async ({ mount, page }) => {
 });
 ```
 
-### Mocking Hooks
+### Mocking hooks
 
 ```tsx
 // Mock custom hook via module mock
@@ -422,9 +422,9 @@ test("with mocked hook", async ({ mount }) => {
 });
 ```
 
-## Framework-Specific Patterns
+## Framework-Specific patterns
 
-### React Testing
+### React testing
 
 ```tsx
 // React with refs
@@ -449,7 +449,7 @@ test("uses context", async ({ mount }) => {
 });
 ```
 
-### Vue Testing
+### Vue testing
 
 ```tsx
 import { test, expect } from "@playwright/experimental-ct-vue";
@@ -470,7 +470,7 @@ test("v-model binding", async ({ mount }) => {
 });
 ```
 
-### Svelte Testing
+### Svelte testing
 
 ```tsx
 import { test, expect } from "@playwright/experimental-ct-svelte";
@@ -484,7 +484,7 @@ test("Svelte component", async ({ mount }) => {
 });
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern                   | Problem             | Solution                          |
 | ------------------------------ | ------------------- | --------------------------------- |
@@ -494,7 +494,7 @@ test("Svelte component", async ({ mount }) => {
 | Testing framework behavior     | Redundant           | Focus on your component logic     |
 | Skipping accessibility         | Misses real issues  | Include a11y checks in CT         |
 
-## Related References
+## Related references
 
 - **Accessibility**: See [accessibility.md](accessibility.md) for a11y testing in components
 - **Fixtures**: See [fixtures-hooks.md](fixtures-hooks.md) for shared test setup

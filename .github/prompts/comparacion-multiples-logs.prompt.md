@@ -4,7 +4,7 @@ agent: "Analista Universal de Logs"
 argument-hint: "Indica los logs o archivos a correlacionar y, si existe, el contexto de arquitectura."
 ---
 
-# Comparación de Múltiples Logs
+# Comparación de múltiples logs
 
 Usa este prompt cuando necesites correlacionar varias fuentes con el agente [Analista Universal de Logs](../agents/analista-universal-logs.agent.md).
 

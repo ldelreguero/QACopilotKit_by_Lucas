@@ -8,7 +8,7 @@ metadata:
   version: "1.0"
 ---
 
-# Analista Universal de Logs
+# Analista universal de logs
 
 ## Cuándo usar
 

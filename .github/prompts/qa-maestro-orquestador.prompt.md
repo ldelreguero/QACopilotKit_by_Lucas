@@ -4,7 +4,7 @@ agent: "qa-maestro-orquestador"
 argument-hint: "Describe la necesidad QA completa: setup, ejecución, debugging, análisis o pipeline end-to-end."
 ---
 
-# QA Maestro Orquestador
+# QA maestro orquestador
 
 Usa este prompt para enrutar una necesidad QA con el agente [qa-maestro-orquestador](../agents/qa-maestro-orquestador.agent.md).
 

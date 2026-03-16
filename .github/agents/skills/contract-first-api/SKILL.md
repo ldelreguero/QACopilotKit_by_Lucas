@@ -8,7 +8,7 @@ metadata:
   version: "1.0"
 ---
 
-# Contract First API
+# Contract first API
 
 ## Cuando usar
 

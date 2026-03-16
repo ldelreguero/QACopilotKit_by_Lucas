@@ -4,7 +4,7 @@ agent: "Analista Universal de Logs"
 argument-hint: "Pega el log o la evidencia y aclara si quieres foco exclusivo en causa raíz."
 ---
 
-# Identificación de Causa Raíz
+# Identificación de causa raíz
 
 Usa este prompt cuando el objetivo principal sea aislar la causa raíz, no solo describir síntomas.
 

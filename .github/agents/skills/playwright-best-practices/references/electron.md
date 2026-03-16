@@ -1,6 +1,6 @@
-# Electron Testing
+# Electron testing
 
-## Table of Contents
+## Table of contents
 
 1. [Setup & Configuration](#setup--configuration)
 2. [Launching Electron Apps](#launching-electron-apps)
@@ -10,7 +10,7 @@
 6. [Native Features](#native-features)
 7. [Packaging & Distribution](#packaging--distribution)
 
-## Setup & Configuration
+## Setup & configuration
 
 ### Installation
 
@@ -18,7 +18,7 @@
 npm install -D @playwright/test electron
 ```
 
-### Basic Configuration
+### Basic configuration
 
 ```typescript
 // playwright.config.ts
@@ -33,7 +33,7 @@ export default defineConfig({
 });
 ```
 
-### Electron Test Fixture
+### Electron test fixture
 
 ```typescript
 // fixtures/electron.ts
@@ -80,7 +80,7 @@ export const test = base.extend<ElectronFixtures>({
 export { expect } from "@playwright/test";
 ```
 
-### Launch Options
+### Launch options
 
 ```typescript
 // Advanced launch configuration
@@ -98,9 +98,9 @@ const electronApp = await electron.launch({
 });
 ```
 
-## Launching Electron Apps
+## Launching electron apps
 
-### Development Mode
+### Development mode
 
 ```typescript
 test("launch in dev mode", async () => {
@@ -115,7 +115,7 @@ test("launch in dev mode", async () => {
 });
 ```
 
-### Packaged Application
+### Packaged application
 
 ```typescript
 test("launch packaged app", async () => {
@@ -137,7 +137,7 @@ test("launch packaged app", async () => {
 });
 ```
 
-### Multiple Windows
+### Multiple windows
 
 ```typescript
 test("handle multiple windows", async ({ electronApp }) => {
@@ -159,9 +159,9 @@ test("handle multiple windows", async ({ electronApp }) => {
 });
 ```
 
-## Main Process Testing
+## Main process testing
 
-### Evaluate in Main Process
+### Evaluate in main process
 
 ```typescript
 test("access main process", async ({ electronApp }) => {
@@ -174,7 +174,7 @@ test("access main process", async ({ electronApp }) => {
 });
 ```
 
-### Access Electron APIs
+### Access electron apis
 
 ```typescript
 test("electron API access", async ({ electronApp }) => {
@@ -198,7 +198,7 @@ test("electron API access", async ({ electronApp }) => {
 });
 ```
 
-### BrowserWindow Properties
+### BrowserWindow properties
 
 ```typescript
 test("check window properties", async ({ electronApp, window }) => {
@@ -226,9 +226,9 @@ test("check window properties", async ({ electronApp, window }) => {
 });
 ```
 
-## Renderer Process Testing
+## Renderer process testing
 
-### Standard Page Testing
+### Standard page testing
 
 ```typescript
 test("renderer interactions", async ({ window }) => {
@@ -246,7 +246,7 @@ test("renderer interactions", async ({ window }) => {
 });
 ```
 
-### Access Node.js in Renderer
+### Access node.js in renderer
 
 ```typescript
 test("node integration", async ({ window }) => {
@@ -262,7 +262,7 @@ test("node integration", async ({ window }) => {
 });
 ```
 
-### Context Isolation Testing
+### Context isolation testing
 
 ```typescript
 test("context isolation", async ({ window }) => {
@@ -280,9 +280,9 @@ test("context isolation", async ({ window }) => {
 });
 ```
 
-## IPC Communication
+## IPC communication
 
-### Testing IPC from Renderer
+### Testing IPC from renderer
 
 ```typescript
 test("IPC invoke", async ({ window }) => {
@@ -295,7 +295,7 @@ test("IPC invoke", async ({ window }) => {
 });
 ```
 
-### Testing IPC from Main Process
+### Testing IPC from main process
 
 ```typescript
 test("main to renderer IPC", async ({ electronApp, window }) => {
@@ -320,7 +320,7 @@ test("main to renderer IPC", async ({ electronApp, window }) => {
 });
 ```
 
-### Mock IPC Handlers
+### Mock IPC handlers
 
 ```typescript
 // In test setup or fixture
@@ -345,9 +345,9 @@ test("mock IPC handler", async ({ electronApp, window }) => {
 });
 ```
 
-## Native Features
+## Native features
 
-### File System Dialogs
+### File system dialogs
 
 ```typescript
 test("file dialog", async ({ electronApp, window }) => {
@@ -379,7 +379,7 @@ test("save dialog", async ({ electronApp, window }) => {
 });
 ```
 
-### Menu Testing
+### Menu testing
 
 ```typescript
 test("application menu", async ({ electronApp }) => {
@@ -404,7 +404,7 @@ test("application menu", async ({ electronApp }) => {
 });
 ```
 
-### Native Notifications
+### Native notifications
 
 ```typescript
 test("notifications", async ({ electronApp, window }) => {
@@ -454,9 +454,9 @@ test("clipboard operations", async ({ electronApp, window }) => {
 });
 ```
 
-## Packaging & Distribution
+## Packaging & distribution
 
-### Testing Packaged Apps
+### Testing packaged apps
 
 ```typescript
 // fixtures/packaged-electron.ts
@@ -492,7 +492,7 @@ export const test = base.extend({
 });
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern                          | Problem                      | Solution                                     |
 | ------------------------------------- | ---------------------------- | -------------------------------------------- |
@@ -502,7 +502,7 @@ export const test = base.extend({
 | Ignoring IPC in tests                 | Missing coverage             | Test IPC communication explicitly            |
 | Not mocking native dialogs            | Tests hang waiting for input | Mock dialog responses                        |
 
-## Related References
+## Related references
 
 - **Fixtures**: See [fixtures-hooks.md](fixtures-hooks.md) for custom fixture patterns
 - **Component Testing**: See [component-testing.md](component-testing.md) for renderer testing patterns

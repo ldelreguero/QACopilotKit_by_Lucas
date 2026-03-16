@@ -1,6 +1,6 @@
-# WebSocket & Real-Time Testing
+# WebSocket & Real-Time testing
 
-## Table of Contents
+## Table of contents
 
 1. [WebSocket Basics](#websocket-basics)
 2. [Mocking WebSocket Messages](#mocking-websocket-messages)
@@ -8,9 +8,9 @@
 4. [Server-Sent Events](#server-sent-events)
 5. [Reconnection Testing](#reconnection-testing)
 
-## WebSocket Basics
+## WebSocket basics
 
-### Wait for WebSocket Connection
+### Wait for WebSocket connection
 
 ```typescript
 test("chat connects via websocket", async ({ page }) => {
@@ -27,7 +27,7 @@ test("chat connects via websocket", async ({ page }) => {
 });
 ```
 
-### Monitor WebSocket Messages
+### Monitor WebSocket messages
 
 ```typescript
 test("receives real-time updates", async ({ page }) => {
@@ -51,7 +51,7 @@ test("receives real-time updates", async ({ page }) => {
 });
 ```
 
-### Capture Sent Messages
+### Capture sent messages
 
 ```typescript
 test("sends correct message format", async ({ page }) => {
@@ -78,9 +78,9 @@ test("sends correct message format", async ({ page }) => {
 });
 ```
 
-## Mocking WebSocket Messages
+## Mocking WebSocket messages
 
-### Inject Messages via Page Evaluate
+### Inject messages via page evaluate
 
 ```typescript
 test("displays incoming chat message", async ({ page }) => {
@@ -107,7 +107,7 @@ test("displays incoming chat message", async ({ page }) => {
 });
 ```
 
-### Mock WebSocket with Route Handler
+### Mock WebSocket with route handler
 
 ```typescript
 test("mock websocket entirely", async ({ page, context }) => {
@@ -139,7 +139,7 @@ test("mock websocket entirely", async ({ page, context }) => {
 });
 ```
 
-### WebSocket Mock Fixture
+### WebSocket mock fixture
 
 ```typescript
 // fixtures/websocket.fixture.ts
@@ -215,9 +215,9 @@ test("chat with mocked websocket", async ({ page, mockWebSocket }) => {
 });
 ```
 
-## Testing Real-Time Features
+## Testing Real-Time features
 
-### Live Notifications
+### Live notifications
 
 ```typescript
 test("displays live notification", async ({ page }) => {
@@ -239,7 +239,7 @@ test("displays live notification", async ({ page }) => {
 });
 ```
 
-### Live Data Updates
+### Live data updates
 
 ```typescript
 test("updates stock price in real-time", async ({ page }) => {
@@ -265,7 +265,7 @@ test("updates stock price in real-time", async ({ page }) => {
 });
 ```
 
-### Collaborative Editing
+### Collaborative editing
 
 ```typescript
 test("shows collaborator cursor", async ({ page }) => {
@@ -289,9 +289,9 @@ test("shows collaborator cursor", async ({ page }) => {
 });
 ```
 
-## Server-Sent Events
+## Server-Sent events
 
-### Test SSE Updates
+### Test SSE updates
 
 ```typescript
 test("receives SSE updates", async ({ page }) => {
@@ -314,7 +314,7 @@ test("receives SSE updates", async ({ page }) => {
 });
 ```
 
-### Simulate Multiple SSE Events
+### Simulate multiple SSE events
 
 ```typescript
 test("handles multiple SSE events", async ({ page }) => {
@@ -340,9 +340,9 @@ test("handles multiple SSE events", async ({ page }) => {
 });
 ```
 
-## Reconnection Testing
+## Reconnection testing
 
-### Test Connection Loss
+### Test connection loss
 
 ```typescript
 test("handles connection loss gracefully", async ({ page }) => {
@@ -358,7 +358,7 @@ test("handles connection loss gracefully", async ({ page }) => {
 });
 ```
 
-### Test Reconnection
+### Test reconnection
 
 ```typescript
 test("reconnects after connection loss", async ({ page }) => {
@@ -387,7 +387,7 @@ test("reconnects after connection loss", async ({ page }) => {
 });
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern                          | Problem                       | Solution                           |
 | ------------------------------------- | ----------------------------- | ---------------------------------- |
@@ -396,7 +396,7 @@ test("reconnects after connection loss", async ({ page }) => {
 | Ignoring connection state             | Tests pass but feature broken | Test connected/disconnected states |
 | No cleanup of listeners               | Memory leaks in tests         | Clean up event listeners           |
 
-## Related References
+## Related references
 
 - **Network**: See [network-advanced.md](network-advanced.md) for HTTP mocking patterns
 - **Assertions**: See [assertions-waiting.md](assertions-waiting.md) for polling patterns

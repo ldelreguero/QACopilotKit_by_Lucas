@@ -1,4 +1,4 @@
-# Arquitectura Playwright Escalable
+# Arquitectura Playwright escalable
 
 Esta guía resume el delta útil extraído de las qaskills legacy de arquitectura Playwright sin copiar su contenido completo.
 
@@ -39,7 +39,7 @@ Si el proyecto todavía es pequeño, empieza con una estructura mínima y escala
 - `Modules`: flujos multi-step, condicionales y reglas de negocio del test.
 - `Tests`: intención, assertions y composición de módulos o fixtures.
 
-## Cuándo usar POM simple vs Pages + Modules
+## Cuándo usar POM simple vs pages + modules
 
 - POM simple: suites pequeñas o medianas con flujos directos.
 - Pages + Modules: journeys largos, checkout complejos, alta reutilización o muchos condicionales.

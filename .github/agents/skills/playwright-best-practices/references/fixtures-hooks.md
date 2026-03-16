@@ -1,6 +1,6 @@
-# Fixtures & Hooks
+# Fixtures & hooks
 
-## Table of Contents
+## Table of contents
 
 1. [Built-in Fixtures](#built-in-fixtures)
 2. [Custom Fixtures](#custom-fixtures)
@@ -9,9 +9,9 @@
 5. [Authentication Patterns](#authentication-patterns)
 6. [Database Fixtures](#database-fixtures)
 
-## Built-in Fixtures
+## Built-in fixtures
 
-### Core Fixtures
+### Core fixtures
 
 ```typescript
 test("example", async ({
@@ -25,7 +25,7 @@ test("example", async ({
 });
 ```
 
-### Request Fixture
+### Request fixture
 
 ```typescript
 test("API call", async ({ request }) => {
@@ -37,9 +37,9 @@ test("API call", async ({ request }) => {
 });
 ```
 
-## Custom Fixtures
+## Custom fixtures
 
-### Basic Custom Fixture
+### Basic custom fixture
 
 ```typescript
 // fixtures.ts
@@ -72,7 +72,7 @@ export const test = base.extend<MyFixtures>({
 export { expect } from "@playwright/test";
 ```
 
-### Fixture with Options
+### Fixture with options
 
 ```typescript
 type Options = {
@@ -108,7 +108,7 @@ export default defineConfig({
 });
 ```
 
-### Automatic Fixtures
+### Automatic fixtures
 
 ```typescript
 export const test = base.extend<{}, { setupDb: void }>({
@@ -124,9 +124,9 @@ export const test = base.extend<{}, { setupDb: void }>({
 });
 ```
 
-## Fixture Scopes
+## Fixture scopes
 
-### Test Scope (Default)
+### Test scope (default)
 
 Created fresh for each test:
 
@@ -140,7 +140,7 @@ test.extend({
 });
 ```
 
-### Worker Scope
+### Worker scope
 
 Shared across tests in the same worker (each worker gets its own instance; tests in different workers do not share it):
 
@@ -219,7 +219,7 @@ test.afterAll(async () => {
 });
 ```
 
-### Describe-Level Hooks
+### Describe-Level hooks
 
 ```typescript
 test.describe("User Management", () => {
@@ -237,9 +237,9 @@ test.describe("User Management", () => {
 });
 ```
 
-## Authentication Patterns
+## Authentication patterns
 
-### Global Setup with Storage State
+### Global setup with storage state
 
 ```typescript
 // auth.setup.ts
@@ -275,7 +275,7 @@ export default defineConfig({
 });
 ```
 
-### Multiple Auth States
+### Multiple auth states
 
 ```typescript
 // auth.setup.ts
@@ -308,7 +308,7 @@ projects: [
 ];
 ```
 
-### Auth Fixture
+### Auth fixture
 
 ```typescript
 // fixtures/auth.fixture.ts
@@ -333,14 +333,14 @@ export const test = base.extend<{ adminPage: Page; userPage: Page }>({
 });
 ```
 
-## Database Fixtures
+## Database fixtures
 
 This section covers **per-test database fixtures** (isolation, transaction rollback). For related topics:
 
 - **Test data factories** (builders, Faker): See [test-data.md](test-data.md)
 - **One-time database setup** (migrations, snapshots): See [global-setup.md](global-setup.md#database-patterns)
 
-### Transaction Rollback Pattern
+### Transaction rollback pattern
 
 ```typescript
 import { test as base } from "@playwright/test";
@@ -357,7 +357,7 @@ export const test = base.extend<{ dbTransaction: Transaction }>({
 });
 ```
 
-### Seed Data Fixture
+### Seed data fixture
 
 ```typescript
 type TestData = {
@@ -390,7 +390,7 @@ export const test = base.extend<TestData>({
 });
 ```
 
-## Fixture Tips
+## Fixture tips
 
 | Tip                | Explanation                                 |
 | ------------------ | ------------------------------------------- |
@@ -400,7 +400,7 @@ export const test = base.extend<TestData>({
 | Clean up resources | Use teardown in fixtures, not afterEach     |
 | Avoid shared state | Each fixture instance should be independent |
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern                              | Problem                                                    | Solution                                                                                                                                                                              |
 | ----------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -410,7 +410,7 @@ export const test = base.extend<TestData>({
 | Shared `page` or `context` in `beforeAll` | State leak between tests; flaky when tests run in parallel | Use default one-context-per-test, or `beforeEach` + fresh page; if serial is required, prefer `test.describe.configure({ mode: 'serial' })` and document that isolation is sacrificed |
 | Backend/DB state shared across workers    | Tests in different workers collide on same data            | Use worker-scoped fixture with `testInfo.workerIndex` to create unique data per worker                                                                                                |
 
-## Related References
+## Related references
 
 - **Page Objects with fixtures**: See [page-object-model.md](page-object-model.md) for POM patterns
 - **Test organization**: See [test-organization.md](test-organization.md) for test structure

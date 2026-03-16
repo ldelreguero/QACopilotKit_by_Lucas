@@ -1,6 +1,6 @@
-# Mobile & Responsive Testing
+# Mobile & responsive testing
 
-## Table of Contents
+## Table of contents
 
 1. [Device Emulation](#device-emulation)
 2. [Touch Gestures](#touch-gestures)
@@ -8,9 +8,9 @@
 4. [Mobile-Specific UI](#mobile-specific-ui)
 5. [Responsive Breakpoints](#responsive-breakpoints)
 
-## Device Emulation
+## Device emulation
 
-### Use Built-in Devices
+### Use built-in devices
 
 ```typescript
 import { test, devices } from "@playwright/test";
@@ -26,7 +26,7 @@ export default defineConfig({
 });
 ```
 
-### Custom Device Configuration
+### Custom device configuration
 
 ```typescript
 test.use({
@@ -44,7 +44,7 @@ test("custom mobile device", async ({ page }) => {
 });
 ```
 
-### Test Across Multiple Devices
+### Test across multiple devices
 
 ```typescript
 const mobileDevices = ["iPhone 14", "Pixel 7", "Galaxy S21"];
@@ -63,7 +63,7 @@ for (const deviceName of mobileDevices) {
 }
 ```
 
-## Touch Gestures
+## Touch gestures
 
 ### Tap
 
@@ -105,7 +105,7 @@ test("swipe carousel", async ({ page }) => {
 });
 ```
 
-### Swipe Fixture
+### Swipe fixture
 
 ```typescript
 // fixtures/touch.fixture.ts
@@ -172,7 +172,7 @@ test("swipe to delete", async ({ page, swipe }) => {
 });
 ```
 
-### Long Press
+### Long press
 
 ```typescript
 test("long press for context menu", async ({ page }) => {
@@ -194,7 +194,7 @@ test("long press for context menu", async ({ page }) => {
 });
 ```
 
-### Pinch Zoom
+### Pinch zoom
 
 ```typescript
 test("pinch to zoom image", async ({ page }) => {
@@ -222,9 +222,9 @@ test("pinch to zoom image", async ({ page }) => {
 });
 ```
 
-## Viewport Testing
+## Viewport testing
 
-### Test Different Sizes
+### Test different sizes
 
 ```typescript
 const viewports = [
@@ -249,7 +249,7 @@ for (const { name, width, height } of viewports) {
 }
 ```
 
-### Dynamic Viewport Changes
+### Dynamic viewport changes
 
 ```typescript
 test("responsive layout change", async ({ page }) => {
@@ -270,7 +270,7 @@ test("responsive layout change", async ({ page }) => {
 
 ## Mobile-Specific UI
 
-### Hamburger Menu
+### Hamburger menu
 
 ```typescript
 test("mobile navigation", async ({ page }) => {
@@ -293,7 +293,7 @@ test("mobile navigation", async ({ page }) => {
 });
 ```
 
-### Bottom Sheet
+### Bottom sheet
 
 ```typescript
 test("bottom sheet interaction", async ({ page }) => {
@@ -314,7 +314,7 @@ test("bottom sheet interaction", async ({ page }) => {
 });
 ```
 
-### Pull to Refresh
+### Pull to refresh
 
 ```typescript
 test("pull to refresh", async ({ page }) => {
@@ -339,9 +339,9 @@ test("pull to refresh", async ({ page }) => {
 });
 ```
 
-## Responsive Breakpoints
+## Responsive breakpoints
 
-### Test All Breakpoints
+### Test all breakpoints
 
 ```typescript
 const breakpoints = {
@@ -371,7 +371,7 @@ test.describe("responsive header", () => {
 });
 ```
 
-### Visual Regression at Breakpoints
+### Visual regression at breakpoints
 
 ```typescript
 test.describe("visual regression", () => {
@@ -392,7 +392,7 @@ test.describe("visual regression", () => {
 });
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern                | Problem                   | Solution                         |
 | --------------------------- | ------------------------- | -------------------------------- |
@@ -401,7 +401,7 @@ test.describe("visual regression", () => {
 | Hardcoded viewport in tests | Can't test multiple sizes | Use `page.setViewportSize()`     |
 | Not testing orientation     | Landscape bugs missed     | Test both portrait and landscape |
 
-## Related References
+## Related references
 
 - **Visual Testing**: See [test-organization.md](test-organization.md) for screenshot testing
 - **Locators**: See [locators.md](locators.md) for mobile-friendly selectors

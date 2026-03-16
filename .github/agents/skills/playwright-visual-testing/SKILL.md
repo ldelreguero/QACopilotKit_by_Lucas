@@ -8,7 +8,7 @@ metadata:
   version: "1.0"
 ---
 
-# Playwright Visual Testing
+# Playwright visual testing
 
 ## Cuando usar
 

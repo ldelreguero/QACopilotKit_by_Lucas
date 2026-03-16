@@ -4,7 +4,7 @@
 
 Usar Artillery como complemento cuando convenga describir flujos de carga con YAML o cubrir escenarios HTTP, WebSocket o eventos donde una definición declarativa simplifica la suite.
 
-## Cuándo elegir Artillery
+## Cuándo elegir artillery
 
 - escenarios HTTP con múltiples pasos declarativos
 - flujos con WebSocket, eventos o secuencias breves modelables en YAML

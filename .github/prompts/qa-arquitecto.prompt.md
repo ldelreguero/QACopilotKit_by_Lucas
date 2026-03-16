@@ -4,7 +4,7 @@ agent: "qa-arquitecto"
 argument-hint: "Describe el tipo de proyecto, stack, alcance Web/API/Hybrid y restricciones relevantes."
 ---
 
-# QA Arquitecto
+# QA arquitecto
 
 Usa este prompt para pedir a [qa-arquitecto](../agents/qa-arquitecto.agent.md) una propuesta o implementación de setup sin duplicar la lógica del agente.
 

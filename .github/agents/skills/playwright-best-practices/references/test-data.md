@@ -1,11 +1,11 @@
-# Test Data Factories & Generators
+# Test data factories & generators
 
 This file covers **reusable test data builders** (factories, Faker, data generators). For related topics:
 
 - **Per-test database fixtures** (isolation, transaction rollback): See [fixtures-hooks.md](fixtures-hooks.md#database-fixtures)
 - **One-time database setup** (migrations, snapshots): See [global-setup.md](global-setup.md#database-patterns)
 
-## Table of Contents
+## Table of contents
 
 1. [Factory Pattern](#factory-pattern)
 2. [Faker Integration](#faker-integration)
@@ -13,9 +13,9 @@ This file covers **reusable test data builders** (factories, Faker, data generat
 4. [Test Data Fixtures](#test-data-fixtures)
 5. [Database Seeding](#database-seeding)
 
-## Factory Pattern
+## Factory pattern
 
-### Basic Factory
+### Basic factory
 
 ```typescript
 // factories/user.factory.ts
@@ -46,7 +46,7 @@ const user = createUser();
 const admin = createUser({ role: "admin", name: "Admin User" });
 ```
 
-### Factory with Traits
+### Factory with traits
 
 ```typescript
 // factories/product.factory.ts
@@ -100,7 +100,7 @@ const saleItem = createProduct({ name: "Sale Item" }, "sale", "featured");
 const soldOut = createProduct({}, "outOfStock");
 ```
 
-### Factory with Relationships
+### Factory with relationships
 
 ```typescript
 // factories/order.factory.ts
@@ -152,9 +152,9 @@ const bigOrder = createOrder({
 });
 ```
 
-## Faker Integration
+## Faker integration
 
-### Setup Faker
+### Setup faker
 
 ```bash
 npm install -D @faker-js/faker
@@ -194,7 +194,7 @@ export function createFakeUser(overrides: Partial<User> = {}): User {
 }
 ```
 
-### Seeded Faker for Reproducibility
+### Seeded faker for reproducibility
 
 ```typescript
 import { faker } from "@faker-js/faker";
@@ -219,7 +219,7 @@ test("user profile", async ({ page }) => {
 });
 ```
 
-### Faker Fixture
+### Faker fixture
 
 ```typescript
 // fixtures/faker.fixture.ts
@@ -250,9 +250,9 @@ test("create user with fake data", async ({ page, fake }) => {
 });
 ```
 
-## Data-Driven Testing
+## Data-Driven testing
 
-### test.each with Arrays
+### Test.each with arrays
 
 ```typescript
 const loginScenarios = [
@@ -277,7 +277,7 @@ for (const { email, password, expected } of loginScenarios) {
 }
 ```
 
-### Parameterized Tests
+### Parameterized tests
 
 ```typescript
 // data/checkout-scenarios.ts
@@ -320,7 +320,7 @@ test.describe("shipping options", () => {
 });
 ```
 
-### CSV/JSON Data Source
+### CSV/JSON data source
 
 ```typescript
 import fs from "fs";
@@ -348,9 +348,9 @@ test.describe("search functionality", () => {
 });
 ```
 
-## Test Data Fixtures
+## Test data fixtures
 
-### Fixture with Factory
+### Fixture with factory
 
 ```typescript
 // fixtures/data.fixture.ts
@@ -392,9 +392,9 @@ test("add product to cart", async ({ page, testUser, testProducts }) => {
 });
 ```
 
-## Database Seeding
+## Database seeding
 
-### API-Based Seeding
+### Api-based seeding
 
 ```typescript
 // fixtures/seed.fixture.ts
@@ -444,7 +444,7 @@ test("user profile page", async ({ page, seedUser }) => {
 });
 ```
 
-### Transaction Rollback Seeding
+### Transaction rollback seeding
 
 ```typescript
 // fixtures/db.fixture.ts
@@ -477,7 +477,7 @@ export const test = base.extend<{}, { db: DbTransaction }>({
 });
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern                    | Problem                         | Solution                   |
 | ------------------------------- | ------------------------------- | -------------------------- |
@@ -486,7 +486,7 @@ export const test = base.extend<{}, { db: DbTransaction }>({
 | Shared mutable test data        | Tests interfere with each other | Create fresh data per test |
 | Manual data creation everywhere | Duplication, maintenance burden | Centralize in factories    |
 
-## Related References
+## Related references
 
 - **Fixtures**: See [fixtures-hooks.md](fixtures-hooks.md) for fixture patterns
 - **API Testing**: See [test-organization.md](test-organization.md) for API mocking

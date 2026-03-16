@@ -8,7 +8,7 @@ metadata:
   version: "1.0"
 ---
 
-# Regression Selection
+# Regression selection
 
 ## Cuando usar
 

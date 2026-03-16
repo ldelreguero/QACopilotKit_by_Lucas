@@ -1,6 +1,6 @@
-# Browser APIs: Geolocation, Permissions & More
+# Browser apis: geolocation, permissions & more
 
-## Table of Contents
+## Table of contents
 
 1. [Geolocation](#geolocation)
 2. [Permissions](#permissions)
@@ -10,7 +10,7 @@
 
 ## Geolocation
 
-### Mock Location
+### Mock location
 
 ```typescript
 test("shows nearby stores", async ({ context }) => {
@@ -26,7 +26,7 @@ test("shows nearby stores", async ({ context }) => {
 });
 ```
 
-### Geolocation Fixture
+### Geolocation fixture
 
 ```typescript
 // fixtures/geolocation.fixture.ts
@@ -62,7 +62,7 @@ test("delivery zone check", async ({ page, setLocation }) => {
 });
 ```
 
-### Test Location Changes
+### Test location changes
 
 ```typescript
 test("tracks location updates", async ({ context }) => {
@@ -89,7 +89,7 @@ test("tracks location updates", async ({ context }) => {
 });
 ```
 
-### Test Geolocation Denial
+### Test geolocation denial
 
 ```typescript
 test("handles location denied", async ({ browser }) => {
@@ -111,7 +111,7 @@ test("handles location denied", async ({ browser }) => {
 
 ## Permissions
 
-### Grant Permissions
+### Grant permissions
 
 ```typescript
 test("notifications with permission", async ({ context }) => {
@@ -126,7 +126,7 @@ test("notifications with permission", async ({ context }) => {
 });
 ```
 
-### Test Permission Denied
+### Test permission denied
 
 ```typescript
 test("handles notification permission denied", async ({ browser }) => {
@@ -145,7 +145,7 @@ test("handles notification permission denied", async ({ browser }) => {
 });
 ```
 
-### Multiple Permissions
+### Multiple permissions
 
 ```typescript
 test("video call with permissions", async ({ context }) => {
@@ -171,7 +171,7 @@ test("video call with permissions", async ({ context }) => {
 
 ## Clipboard
 
-### Test Copy to Clipboard
+### Test copy to clipboard
 
 ```typescript
 test("copy button works", async ({ page, context }) => {
@@ -191,7 +191,7 @@ test("copy button works", async ({ page, context }) => {
 });
 ```
 
-### Test Paste from Clipboard
+### Test paste from clipboard
 
 ```typescript
 test("paste from clipboard", async ({ page, context }) => {
@@ -210,7 +210,7 @@ test("paste from clipboard", async ({ page, context }) => {
 });
 ```
 
-### Clipboard Fixture
+### Clipboard fixture
 
 ```typescript
 // fixtures/clipboard.fixture.ts
@@ -241,7 +241,7 @@ export const test = base.extend<ClipboardFixtures>({
 
 ## Notifications
 
-### Mock Notification API
+### Mock notification API
 
 ```typescript
 test("shows browser notification", async ({ page }) => {
@@ -269,7 +269,7 @@ test("shows browser notification", async ({ page }) => {
 });
 ```
 
-### Test Notification Click
+### Test notification click
 
 ```typescript
 test("notification click handler", async ({ page }) => {
@@ -295,9 +295,9 @@ test("notification click handler", async ({ page }) => {
 });
 ```
 
-## Camera & Microphone
+## Camera & microphone
 
-### Mock Media Devices
+### Mock media devices
 
 ```typescript
 test("video preview works", async ({ page, context }) => {
@@ -320,7 +320,7 @@ test("video preview works", async ({ page, context }) => {
 });
 ```
 
-### Test Media Device Selection
+### Test media device selection
 
 ```typescript
 test("switch camera", async ({ page }) => {
@@ -356,7 +356,7 @@ test("switch camera", async ({ page }) => {
 });
 ```
 
-### Test Media Errors
+### Test media errors
 
 ```typescript
 test("handles camera access error", async ({ page }) => {
@@ -376,7 +376,7 @@ test("handles camera access error", async ({ page }) => {
 });
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern                  | Problem                           | Solution                            |
 | ----------------------------- | --------------------------------- | ----------------------------------- |
@@ -385,7 +385,7 @@ test("handles camera access error", async ({ page }) => {
 | Not testing permission denial | Misses error handling             | Test both granted and denied states |
 | Using real camera/mic         | CI has no devices                 | Mock `getUserMedia`                 |
 
-## Related References
+## Related references
 
 - **Fixtures**: See [fixtures-hooks.md](fixtures-hooks.md) for context fixtures
 - **Mobile**: See [mobile-testing.md](mobile-testing.md) for device emulation

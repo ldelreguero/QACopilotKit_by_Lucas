@@ -8,7 +8,7 @@ metadata:
   version: "1.0"
 ---
 
-# Observability Analysis
+# Observability analysis
 
 ## Cuando usar
 

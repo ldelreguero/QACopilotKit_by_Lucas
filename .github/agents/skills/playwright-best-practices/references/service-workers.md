@@ -1,6 +1,6 @@
-# Service Worker Testing
+# Service worker testing
 
-## Table of Contents
+## Table of contents
 
 1. [Service Worker Basics](#service-worker-basics)
 2. [Registration & Lifecycle](#registration--lifecycle)
@@ -9,9 +9,9 @@
 5. [Push Notifications](#push-notifications)
 6. [Background Sync](#background-sync)
 
-## Service Worker Basics
+## Service worker basics
 
-### Waiting for Service Worker Registration
+### Waiting for service worker registration
 
 ```typescript
 test("service worker registers", async ({ page }) => {
@@ -29,7 +29,7 @@ test("service worker registers", async ({ page }) => {
 });
 ```
 
-### Getting Service Worker State
+### Getting service worker state
 
 ```typescript
 test("check SW state", async ({ page }) => {
@@ -52,7 +52,7 @@ test("check SW state", async ({ page }) => {
 });
 ```
 
-### Service Worker Context
+### Service worker context
 
 ```typescript
 test("access service worker", async ({ context, page }) => {
@@ -71,9 +71,9 @@ test("access service worker", async ({ context, page }) => {
 });
 ```
 
-## Registration & Lifecycle
+## Registration & lifecycle
 
-### Testing SW Update Flow
+### Testing SW update flow
 
 ```typescript
 test("service worker updates", async ({ page }) => {
@@ -116,7 +116,7 @@ test("service worker updates", async ({ page }) => {
 });
 ```
 
-### Testing SW Installation
+### Testing SW installation
 
 ```typescript
 test("verify SW install event", async ({ context, page }) => {
@@ -137,7 +137,7 @@ test("verify SW install event", async ({ context, page }) => {
 });
 ```
 
-### Unregistering Service Workers
+### Unregistering service workers
 
 ```typescript
 test.beforeEach(async ({ page }) => {
@@ -157,9 +157,9 @@ test.beforeEach(async ({ page }) => {
 });
 ```
 
-## Cache Testing
+## Cache testing
 
-### Verifying Cached Resources
+### Verifying cached resources
 
 ```typescript
 test("assets are cached", async ({ page }) => {
@@ -182,7 +182,7 @@ test("assets are cached", async ({ page }) => {
 });
 ```
 
-### Testing Cache Strategies
+### Testing cache strategies
 
 ```typescript
 test("cache-first strategy", async ({ page }) => {
@@ -212,7 +212,7 @@ test("cache-first strategy", async ({ page }) => {
 });
 ```
 
-### Testing Cache Updates
+### Testing cache updates
 
 ```typescript
 test("cache updates on new version", async ({ page }) => {
@@ -252,11 +252,11 @@ test("cache updates on new version", async ({ page }) => {
 });
 ```
 
-## Offline Testing
+## Offline testing
 
 This section covers **offline-first apps (PWAs)** that are designed to work offline using service workers, caching, and background sync. For testing **unexpected network failures** (error recovery, graceful degradation), see [error-testing.md](error-testing.md#offline-testing).
 
-### Simulating Offline Mode
+### Simulating offline mode
 
 ```typescript
 test("app works offline", async ({ page, context }) => {
@@ -286,7 +286,7 @@ test("app works offline", async ({ page, context }) => {
 });
 ```
 
-### Testing Offline Fallback
+### Testing offline fallback
 
 ```typescript
 test("shows offline page for uncached routes", async ({ page, context }) => {
@@ -305,7 +305,7 @@ test("shows offline page for uncached routes", async ({ page, context }) => {
 });
 ```
 
-### Testing Offline Form Submission
+### Testing offline form submission
 
 ```typescript
 test("queues form submission offline", async ({ page, context }) => {
@@ -336,9 +336,9 @@ test("queues form submission offline", async ({ page, context }) => {
 });
 ```
 
-## Push Notifications
+## Push notifications
 
-### Mocking Push Subscription
+### Mocking push subscription
 
 ```typescript
 test("handles push subscription", async ({ page, context }) => {
@@ -361,7 +361,7 @@ test("handles push subscription", async ({ page, context }) => {
 });
 ```
 
-### Testing Push Message Handling
+### Testing push message handling
 
 ```typescript
 test("handles push notification", async ({ context, page }) => {
@@ -388,7 +388,7 @@ test("handles push notification", async ({ context, page }) => {
 });
 ```
 
-### Testing Notification Click
+### Testing notification click
 
 ```typescript
 test("notification click opens page", async ({ context, page }) => {
@@ -428,9 +428,9 @@ test("notification click opens page", async ({ context, page }) => {
 });
 ```
 
-## Background Sync
+## Background sync
 
-### Testing Background Sync Registration
+### Testing background sync registration
 
 ```typescript
 test("registers background sync", async ({ page }) => {
@@ -449,7 +449,7 @@ test("registers background sync", async ({ page }) => {
 });
 ```
 
-### Testing Sync Event
+### Testing sync event
 
 ```typescript
 test("sync event fires when online", async ({ context, page }) => {
@@ -486,7 +486,7 @@ test("sync event fires when online", async ({ context, page }) => {
 });
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern                   | Problem                 | Solution                                     |
 | ------------------------------ | ----------------------- | -------------------------------------------- |
@@ -496,7 +496,7 @@ test("sync event fires when online", async ({ context, page }) => {
 | Hardcoded timeouts for caching | Flaky tests             | Wait for cache to populate                   |
 | Ignoring SW update cycle       | Missing update bugs     | Test install, activate, update flows         |
 
-## Related References
+## Related references
 
 - **Network Failures**: See [error-testing.md](error-testing.md#offline-testing) for unexpected network failure patterns
 - **Browser APIs**: See [browser-apis.md](browser-apis.md) for permissions

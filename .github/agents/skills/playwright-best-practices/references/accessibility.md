@@ -1,6 +1,6 @@
-# Accessibility Testing
+# Accessibility testing
 
-## Table of Contents
+## Table of contents
 
 1. [Axe-Core Integration](#axe-core-integration)
 2. [Keyboard Navigation](#keyboard-navigation)
@@ -8,7 +8,7 @@
 4. [Focus Management](#focus-management)
 5. [Color & Contrast](#color--contrast)
 
-## Axe-Core Integration
+## Axe-Core integration
 
 ### Setup
 
@@ -16,7 +16,7 @@
 npm install -D @axe-core/playwright
 ```
 
-### Basic A11y Test
+### Basic a11y test
 
 ```typescript
 import { test, expect } from "@playwright/test";
@@ -31,7 +31,7 @@ test("homepage should have no a11y violations", async ({ page }) => {
 });
 ```
 
-### Scoped Analysis
+### Scoped analysis
 
 ```typescript
 test("form accessibility", async ({ page }) => {
@@ -57,7 +57,7 @@ test("ignore known issues", async ({ page }) => {
 });
 ```
 
-### A11y Fixture
+### A11y fixture
 
 ```typescript
 // fixtures/a11y.fixture.ts
@@ -89,7 +89,7 @@ test("dashboard a11y", async ({ page, makeAxeBuilder }) => {
 });
 ```
 
-### Detailed Violation Reporting
+### Detailed violation reporting
 
 ```typescript
 test("report a11y issues", async ({ page }) => {
@@ -109,9 +109,9 @@ test("report a11y issues", async ({ page }) => {
 });
 ```
 
-## Keyboard Navigation
+## Keyboard navigation
 
-### Tab Order Testing
+### Tab order testing
 
 ```typescript
 test("correct tab order in form", async ({ page }) => {
@@ -129,7 +129,7 @@ test("correct tab order in form", async ({ page }) => {
 });
 ```
 
-### Keyboard-Only Interaction
+### Keyboard-Only interaction
 
 ```typescript
 test("complete flow with keyboard only", async ({ page }) => {
@@ -151,7 +151,7 @@ test("complete flow with keyboard only", async ({ page }) => {
 });
 ```
 
-### Skip Links
+### Skip links
 
 ```typescript
 test("skip link works", async ({ page }) => {
@@ -168,7 +168,7 @@ test("skip link works", async ({ page }) => {
 });
 ```
 
-### Escape Key Handling
+### Escape key handling
 
 ```typescript
 test("escape closes modal", async ({ page }) => {
@@ -186,9 +186,9 @@ test("escape closes modal", async ({ page }) => {
 });
 ```
 
-## ARIA Validation
+## ARIA validation
 
-### Role Verification
+### Role verification
 
 ```typescript
 test("correct ARIA roles", async ({ page }) => {
@@ -205,7 +205,7 @@ test("correct ARIA roles", async ({ page }) => {
 });
 ```
 
-### ARIA States
+### ARIA states
 
 ```typescript
 test("aria-expanded updates correctly", async ({ page }) => {
@@ -227,7 +227,7 @@ test("aria-expanded updates correctly", async ({ page }) => {
 });
 ```
 
-### Live Regions
+### Live regions
 
 ```typescript
 test("live region announces updates", async ({ page }) => {
@@ -243,9 +243,9 @@ test("live region announces updates", async ({ page }) => {
 });
 ```
 
-## Focus Management
+## Focus management
 
-### Focus Trap in Modal
+### Focus trap in modal
 
 ```typescript
 test("focus trapped in modal", async ({ page }) => {
@@ -270,7 +270,7 @@ test("focus trapped in modal", async ({ page }) => {
 });
 ```
 
-### Focus Restoration
+### Focus restoration
 
 ```typescript
 test("focus returns after modal close", async ({ page }) => {
@@ -286,9 +286,9 @@ test("focus returns after modal close", async ({ page }) => {
 });
 ```
 
-## Color & Contrast
+## Color & contrast
 
-### High Contrast Mode
+### High contrast mode
 
 ```typescript
 test("works in high contrast mode", async ({ page }) => {
@@ -304,7 +304,7 @@ test("works in high contrast mode", async ({ page }) => {
 });
 ```
 
-### Reduced Motion
+### Reduced motion
 
 ```typescript
 test("respects reduced motion preference", async ({ page }) => {
@@ -321,9 +321,9 @@ test("respects reduced motion preference", async ({ page }) => {
 });
 ```
 
-## CI Integration
+## CI integration
 
-### A11y as CI Gate
+### A11y as CI gate
 
 ```typescript
 // playwright.config.ts
@@ -344,7 +344,7 @@ export default defineConfig({
   run: npx playwright test --project=a11y
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern                  | Problem                      | Solution                                   |
 | ----------------------------- | ---------------------------- | ------------------------------------------ |
@@ -353,7 +353,7 @@ export default defineConfig({
 | Only automated testing        | Misses many a11y issues      | Combine with manual testing                |
 | Testing without screen reader | Misses interaction issues    | Test with VoiceOver/NVDA periodically      |
 
-## Related References
+## Related references
 
 - **Locators**: See [locators.md](locators.md) for role-based selectors
 - **Visual testing**: See [test-organization.md](test-organization.md) for screenshot comparison

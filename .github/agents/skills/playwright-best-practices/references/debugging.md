@@ -1,6 +1,6 @@
-# Debugging & Troubleshooting
+# Debugging & troubleshooting
 
-## Table of Contents
+## Table of contents
 
 1. [Debug Tools](#debug-tools)
 2. [Trace Viewer](#trace-viewer)
@@ -12,9 +12,9 @@
 8. [Common Issues](#common-issues)
 9. [Logging](#logging)
 
-## Debug Tools
+## Debug tools
 
-### Playwright Inspector
+### Playwright inspector
 
 ```bash
 # Run with inspector
@@ -30,7 +30,7 @@ Features:
 - Inspect DOM state
 - Edit and re-run
 
-### Headed Mode
+### Headed mode
 
 ```bash
 # Run with visible browser
@@ -53,7 +53,7 @@ export default defineConfig({
 });
 ```
 
-### UI Mode
+### UI mode
 
 ```bash
 # Interactive test runner
@@ -82,9 +82,9 @@ test("debug example", async ({ page }) => {
 });
 ```
 
-## Trace Viewer
+## Trace viewer
 
-### Enable Traces
+### Enable traces
 
 ```typescript
 // playwright.config.ts
@@ -97,7 +97,7 @@ export default defineConfig({
 });
 ```
 
-### View Traces
+### View traces
 
 ```bash
 # Open trace file
@@ -107,7 +107,7 @@ npx playwright show-trace trace.zip
 npx playwright show-trace test-results/test-name/trace.zip
 ```
 
-### Trace Contents
+### Trace contents
 
 - Screenshots at each action
 - DOM snapshots
@@ -116,7 +116,7 @@ npx playwright show-trace test-results/test-name/trace.zip
 - Action timeline
 - Source code
 
-### Programmatic Traces
+### Programmatic traces
 
 ```typescript
 test("manual trace", async ({ page, context }) => {
@@ -129,7 +129,7 @@ test("manual trace", async ({ page, context }) => {
 });
 ```
 
-## Identifying Flaky Tests
+## Identifying flaky tests
 
 If a test fails intermittently, it's likely flaky. Quick checks:
 
@@ -143,9 +143,9 @@ If a test fails intermittently, it's likely flaky. Quick checks:
 
 > **For flaky test detection commands, root cause analysis, and fixing strategies**, see [flaky-tests.md](flaky-tests.md).
 
-## Debugging Network Issues
+## Debugging network issues
 
-### Monitor All Requests
+### Monitor all requests
 
 ```typescript
 test("debug network", async ({ page }) => {
@@ -169,7 +169,7 @@ test("debug network", async ({ page }) => {
 });
 ```
 
-### Wait for Specific API Response
+### Wait for specific API response
 
 When debugging network-dependent issues, wait for specific API responses instead of arbitrary timeouts.
 
@@ -185,7 +185,7 @@ console.log("Status:", response.status());
 
 > **For comprehensive waiting patterns** (navigation, element state, network, polling), see [assertions-waiting.md](assertions-waiting.md#waiting-strategies).
 
-### Debug Slow Requests
+### Debug slow requests
 
 ```typescript
 test("find slow requests", async ({ page }) => {
@@ -203,7 +203,7 @@ test("find slow requests", async ({ page }) => {
 
 ## Debugging in CI
 
-### Simulate CI Locally
+### Simulate CI locally
 
 ```bash
 # Run in headless mode like CI
@@ -218,7 +218,7 @@ docker run --rm -v $(pwd):/work -w /work \
   npx playwright test
 ```
 
-### CI-Specific Configuration
+### Ci-specific configuration
 
 ```typescript
 // playwright.config.ts
@@ -235,7 +235,7 @@ export default defineConfig({
 });
 ```
 
-### Debug CI Environment
+### Debug CI environment
 
 ```typescript
 test("CI environment check", async ({ page }, testInfo) => {
@@ -251,7 +251,7 @@ test("CI environment check", async ({ page }, testInfo) => {
 });
 ```
 
-## Debugging Authentication
+## Debugging authentication
 
 ```typescript
 test("debug auth", async ({ page, context }) => {
@@ -278,9 +278,9 @@ test("debug auth", async ({ page, context }) => {
 });
 ```
 
-## Debugging Screenshots
+## Debugging screenshots
 
-### Compare Visual State
+### Compare visual state
 
 ```typescript
 test("visual debug", async ({ page }, testInfo) => {
@@ -308,7 +308,7 @@ test("visual debug", async ({ page }, testInfo) => {
 });
 ```
 
-### Screenshot Specific Element
+### Screenshot specific element
 
 ```typescript
 test("element screenshot", async ({ page }) => {
@@ -325,9 +325,9 @@ test("element screenshot", async ({ page }) => {
 });
 ```
 
-## Common Issues
+## Common issues
 
-### Element Not Found
+### Element not found
 
 ```typescript
 // Debug: Check if element exists
@@ -344,7 +344,7 @@ await page.screenshot({ path: "debug.png" });
 await page.getByRole("button").click();
 ```
 
-### Timeout Issues
+### Timeout issues
 
 ```typescript
 // Increase timeout for slow operations
@@ -365,7 +365,7 @@ test("debug timeout", async ({ page }) => {
 });
 ```
 
-### Selector Issues
+### Selector issues
 
 ```typescript
 // Debug: Highlight element
@@ -382,7 +382,7 @@ console.log("Visible:", await element.isVisible());
 console.log("Enabled:", await element.isEnabled());
 ```
 
-### Frame Issues
+### Frame issues
 
 ```typescript
 // Debug: List all frames
@@ -397,7 +397,7 @@ console.log(await frame.getByRole("button").count());
 
 ## Logging
 
-### Capture Browser Console
+### Capture browser console
 
 ```typescript
 test("with logging", async ({ page }) => {
@@ -409,7 +409,7 @@ test("with logging", async ({ page }) => {
 
 > **For comprehensive console error handling** (fail on errors, allowed patterns, fixtures), see [console-errors.md](console-errors.md).
 
-### Custom Test Attachments
+### Custom test attachments
 
 ```typescript
 test("with attachments", async ({ page }, testInfo) => {
@@ -431,9 +431,9 @@ test("with attachments", async ({ page }, testInfo) => {
 });
 ```
 
-## Troubleshooting Checklist
+## Troubleshooting checklist
 
-### By Symptom
+### By symptom
 
 | Symptom                                       | Common Causes                                                | Quick Fixes                                                         | Reference                                                                  |
 | --------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------- | -------------------------------------------------------------------------- |
@@ -445,7 +445,7 @@ test("with attachments", async ({ page }, testInfo) => {
 | **Selector works in browser but not in test** | Element not attached, wrong context, dynamic content         | Use auto-waiting, check iframe, verify element state                | [locators.md](locators.md)                                                 |
 | **Test fails on retry**                       | Non-deterministic data, external dependencies                | Use test data fixtures, mock external services                      | [fixtures-hooks.md](fixtures-hooks.md)                                     |
 
-### Step-by-Step Debugging Process
+### Step-by-Step debugging process
 
 1. **Reproduce the issue**
 
@@ -495,7 +495,7 @@ test("with attachments", async ({ page }, testInfo) => {
    - Run multiple times to confirm stability: `--repeat-each=10`
    - Check related tests aren't affected
 
-## Related References
+## Related references
 
 - **Flaky tests**: See [flaky-tests.md](flaky-tests.md) for comprehensive flaky test guide
 - **Locator issues**: See [locators.md](locators.md) for selector strategies

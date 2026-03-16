@@ -1,6 +1,6 @@
-# Page Object Model (POM)
+# Page object model (POM)
 
-## Table of Contents
+## Table of contents
 
 1. [Overview](#overview)
 2. [Basic Structure](#basic-structure)
@@ -17,9 +17,9 @@ Page Object Model encapsulates page structure and interactions, providing:
 - **Reusability**: Share page interactions across tests
 - **Readability**: Tests express intent, not implementation
 
-## Basic Structure
+## Basic structure
 
-### Page Class
+### Page class
 
 ```typescript
 // pages/login.page.ts
@@ -56,7 +56,7 @@ export class LoginPage {
 }
 ```
 
-### Usage in Tests
+### Usage in tests
 
 ```typescript
 // tests/login.spec.ts
@@ -80,7 +80,7 @@ test.describe("Login", () => {
 });
 ```
 
-## Component Objects
+## Component objects
 
 For reusable UI components:
 
@@ -143,9 +143,9 @@ export class ModalComponent {
 }
 ```
 
-## Composition Patterns
+## Composition patterns
 
-### Page with Components
+### Page with components
 
 ```typescript
 // pages/dashboard.page.ts
@@ -175,7 +175,7 @@ export class DashboardPage {
 }
 ```
 
-### Page Navigation
+### Page navigation
 
 ```typescript
 // pages/base.page.ts
@@ -210,7 +210,7 @@ const dashboardPage = await loginPage.login("user@example.com", "pass");
 await dashboardPage.expectWelcomeMessage();
 ```
 
-## Factory Functions
+## Factory functions
 
 Alternative to classes for simpler pages:
 
@@ -242,7 +242,7 @@ await loginPage.goto();
 await loginPage.login("user@example.com", "password");
 ```
 
-## Best Practices
+## Best practices
 
 ### Do
 
@@ -259,7 +259,7 @@ await loginPage.login("user@example.com", "password");
 - **Don't make page objects too large** - Split into components
 - **Don't share state** between page object instances
 
-### Directory Structure
+### Directory structure
 
 ```
 tests/
@@ -279,7 +279,7 @@ tests/
     └── dashboard.spec.ts
 ```
 
-### Using with Fixtures
+### Using with fixtures
 
 ```typescript
 // fixtures/pages.fixture.ts
@@ -308,7 +308,7 @@ test("can login", async ({ loginPage }) => {
 });
 ```
 
-## Related References
+## Related references
 
 - **Locator strategies**: See [locators.md](locators.md) for selecting elements
 - **Fixtures**: See [fixtures-hooks.md](fixtures-hooks.md) for advanced fixture patterns

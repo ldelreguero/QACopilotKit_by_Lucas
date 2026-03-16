@@ -1,6 +1,6 @@
-# Debugging and Managing Flaky Tests
+# Debugging and managing flaky tests
 
-## Table of Contents
+## Table of contents
 
 1. [Understanding Flakiness Types](#understanding-flakiness-types)
 2. [Detection and Reproduction](#detection-and-reproduction)
@@ -10,9 +10,9 @@
 6. [Quarantine and Management](#quarantine-and-management)
 7. [Prevention Strategies](#prevention-strategies)
 
-## Understanding Flakiness Types
+## Understanding flakiness types
 
-### Categories of Flakiness
+### Categories of flakiness
 
 Most flaky tests fall into distinct categories requiring different remediation:
 
@@ -23,7 +23,7 @@ Most flaky tests fall into distinct categories requiring different remediation:
 | **Data/parallelism-driven** | Fails with multiple workers     | Shared backend data, reused accounts, state collisions |
 | **Test-suite-driven**       | Fails when run with other tests | Leaked state, shared fixtures, order dependencies      |
 
-### Flakiness Decision Tree
+### Flakiness decision tree
 
 ```
 Test fails intermittently
@@ -41,9 +41,9 @@ Test fails intermittently
    └─ External dependency → Check network/API stability
 ```
 
-## Detection and Reproduction
+## Detection and reproduction
 
-### Confirming Flakiness
+### Confirming flakiness
 
 ```bash
 # Run test multiple times to confirm instability
@@ -56,7 +56,7 @@ npx playwright test --workers=1
 CI=true npx playwright test --repeat-each=10
 ```
 
-### Reproduction Strategies
+### Reproduction strategies
 
 ```typescript
 // playwright.config.ts - Enable artifacts for flaky test investigation
@@ -70,7 +70,7 @@ export default defineConfig({
 });
 ```
 
-### Identify Flaky Tests Programmatically
+### Identify flaky tests programmatically
 
 ```typescript
 // Track test results across runs
@@ -82,9 +82,9 @@ test.afterEach(async ({}, testInfo) => {
 });
 ```
 
-## Root Cause Analysis
+## Root cause analysis
 
-### Event Logging for Race Conditions
+### Event logging for race conditions
 
 Add comprehensive event logging to expose timing issues:
 
@@ -102,7 +102,7 @@ test.beforeEach(async ({ page }) => {
 
 > **For comprehensive console error handling** (fail on errors, allowed patterns, fixtures), see [console-errors.md](console-errors.md).
 
-### Network Timing Analysis
+### Network timing analysis
 
 ```typescript
 // Capture slow or failed requests
@@ -123,7 +123,7 @@ test.beforeEach(async ({ page }) => {
 });
 ```
 
-### Trace Analysis
+### Trace analysis
 
 ```bash
 # View trace from failed CI run
@@ -133,9 +133,9 @@ npx playwright show-trace path/to/trace.zip
 npx playwright test tests/flaky.spec.ts --trace on
 ```
 
-## Fixing Strategies by Type
+## Fixing strategies by type
 
-### UI-Driven Flakiness
+### Ui-driven flakiness
 
 **Problem: Element not ready when action executes**
 
@@ -174,7 +174,7 @@ await page.getByTestId("checkout-button").click();
 await page.getByLabel("Email address").fill("test@example.com");
 ```
 
-### Async/Timing Flakiness
+### Async/Timing flakiness
 
 **Problem: Race between test and application**
 
@@ -218,7 +218,7 @@ await Promise.all([
 ]);
 ```
 
-### Data/Parallelism-Driven Flakiness
+### Data/Parallelism-Driven flakiness
 
 **Problem: Tests share backend data**
 
@@ -274,7 +274,7 @@ export const test = base.extend<{}, { workerStorageState: string }>({
 });
 ```
 
-### Test-Suite-Driven Flakiness (State Leaks)
+### Test-Suite-Driven flakiness (state leaks)
 
 **Problem: Tests affect each other**
 
@@ -315,9 +315,9 @@ export const test = base.extend<{ tempFile: string }>({
 });
 ```
 
-## CI-Specific Flakiness
+## Ci-specific flakiness
 
-### Why Tests Fail Only in CI
+### Why tests fail only in CI
 
 | CI Condition       | Impact                                | Solution                                             |
 | ------------------ | ------------------------------------- | ---------------------------------------------------- |
@@ -327,7 +327,7 @@ export const test = base.extend<{ tempFile: string }>({
 | Shared runners     | Resource contention                   | Reduce parallelism or use dedicated runners          |
 | Network latency    | API calls slower                      | Mock external APIs, increase timeouts for real calls |
 
-### Simulating CI Locally
+### Simulating CI locally
 
 ```bash
 # Run headless with CI environment variable
@@ -344,7 +344,7 @@ docker run -it --rm \
   npx playwright test
 ```
 
-### Consistent Viewport and Scale
+### Consistent viewport and scale
 
 ```typescript
 // playwright.config.ts - Match CI rendering exactly
@@ -356,7 +356,7 @@ export default defineConfig({
 });
 ```
 
-### Network Stubbing for External APIs
+### Network stubbing for external apis
 
 ```typescript
 // Eliminate external API flakiness
@@ -379,9 +379,9 @@ test("checkout with payment", async ({ page }) => {
 });
 ```
 
-## Quarantine and Management
+## Quarantine and management
 
-### Quarantine Pattern
+### Quarantine pattern
 
 ```typescript
 // playwright.config.ts - Separate flaky tests
@@ -400,7 +400,7 @@ export default defineConfig({
 });
 ```
 
-### Annotation-Based Quarantine
+### Annotation-Based quarantine
 
 ```typescript
 // Mark flaky tests with annotations
@@ -420,7 +420,7 @@ test("known CI flaky", async ({ page }) => {
 });
 ```
 
-## Prevention Strategies
+## Prevention strategies
 
 ### Test Burn-In
 
@@ -432,7 +432,7 @@ npx playwright test tests/new-feature.spec.ts --repeat-each=50
 npx playwright test tests/new-feature.spec.ts --repeat-each=20 --workers=4
 ```
 
-### Isolation Checklist
+### Isolation checklist
 
 ```typescript
 // ✅ Each test should be self-contained
@@ -450,7 +450,7 @@ test.describe("User profile", () => {
 });
 ```
 
-### Defensive Assertions
+### Defensive assertions
 
 ```typescript
 // ❌ BAD: Single point of failure
@@ -462,7 +462,7 @@ await expect(page.locator(".loading")).not.toBeVisible();
 await expect(page.locator(".items")).toHaveCount(5);
 ```
 
-### Retry Budget
+### Retry budget
 
 ```typescript
 // playwright.config.ts - Limit retries to avoid masking issues
@@ -475,7 +475,7 @@ export default defineConfig({
 });
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern                              | Problem                             | Solution                                       |
 | ----------------------------------------- | ----------------------------------- | ---------------------------------------------- |
@@ -487,7 +487,7 @@ export default defineConfig({
 | Module-level mutable state                | Leaks between tests                 | Use fixtures with proper cleanup               |
 | Ignoring flaky tests                      | Problem compounds over time         | Quarantine and track for fixing                |
 
-## Related References
+## Related references
 
 - **Debugging**: See [debugging.md](debugging.md) for trace viewer and inspector
 - **Fixtures**: See [fixtures-hooks.md](fixtures-hooks.md) for worker-scoped isolation

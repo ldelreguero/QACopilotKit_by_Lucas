@@ -1,4 +1,4 @@
-# Playwright Operativo Avanzado
+# Playwright operativo avanzado
 
 Esta guía concentra el delta útil de la primera ola de qaskills Playwright para ejecución y debugging.
 

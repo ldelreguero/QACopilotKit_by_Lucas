@@ -1,6 +1,6 @@
-# Projects & Dependencies
+# Projects & dependencies
 
-## Table of Contents
+## Table of contents
 
 1. [Project Configuration](#project-configuration)
 2. [Project Dependencies](#project-dependencies)
@@ -9,9 +9,9 @@
 5. [Sharing Configuration](#sharing-configuration)
 6. [Advanced Patterns](#advanced-patterns)
 
-## Project Configuration
+## Project configuration
 
-### Basic Multi-Browser Setup
+### Basic Multi-Browser setup
 
 ```typescript
 // playwright.config.ts
@@ -35,7 +35,7 @@ export default defineConfig({
 });
 ```
 
-### Environment-Based Projects
+### Environment-Based projects
 
 ```typescript
 export default defineConfig({
@@ -62,7 +62,7 @@ export default defineConfig({
 });
 ```
 
-### Test Type Projects
+### Test type projects
 
 ```typescript
 export default defineConfig({
@@ -89,9 +89,9 @@ export default defineConfig({
 });
 ```
 
-## Project Dependencies
+## Project dependencies
 
-### Setup Dependency
+### Setup dependency
 
 ```typescript
 export default defineConfig({
@@ -123,7 +123,7 @@ export default defineConfig({
 });
 ```
 
-### Multiple Auth States
+### Multiple auth states
 
 ```typescript
 export default defineConfig({
@@ -164,7 +164,7 @@ export default defineConfig({
 });
 ```
 
-### Chained Dependencies
+### Chained dependencies
 
 ```typescript
 export default defineConfig({
@@ -199,15 +199,15 @@ export default defineConfig({
 });
 ```
 
-## Setup Projects
+## Setup projects
 
-### Authentication Setup
+### Authentication setup
 
 Setup projects are the recommended way to handle authentication. They run before your main test projects and can use Playwright fixtures.
 
 > **For complete authentication patterns** (storage state, multiple auth states, auth fixtures), see [fixtures-hooks.md](fixtures-hooks.md#authentication-patterns).
 
-### Data Seeding Setup
+### Data seeding setup
 
 ```typescript
 // seed.setup.ts
@@ -225,7 +225,7 @@ setup("seed test data", async ({ request }) => {
 });
 ```
 
-### Cleanup Setup
+### Cleanup setup
 
 ```typescript
 // cleanup.setup.ts
@@ -237,9 +237,9 @@ setup("cleanup previous run", async ({ request }) => {
 });
 ```
 
-## Filtering & Running Projects
+## Filtering & running projects
 
-### Run Specific Project
+### Run specific project
 
 ```bash
 # Run single project
@@ -249,7 +249,7 @@ npx playwright test --project=chromium
 npx playwright test --project=chromium --project=firefox
 ```
 
-### Run by Grep
+### Run by grep
 
 ```bash
 # Run tests matching pattern
@@ -262,7 +262,7 @@ npx playwright test --project=chromium --grep @critical
 npx playwright test --grep-invert @slow
 ```
 
-### Project-Specific Grep
+### Project-Specific grep
 
 ```typescript
 export default defineConfig({
@@ -281,9 +281,9 @@ export default defineConfig({
 });
 ```
 
-## Sharing Configuration
+## Sharing configuration
 
-### Base Configuration
+### Base configuration
 
 ```typescript
 // playwright.config.ts
@@ -317,7 +317,7 @@ export default defineConfig({
 });
 ```
 
-### Shared Project Settings
+### Shared project settings
 
 ```typescript
 const sharedBrowserConfig = {
@@ -351,9 +351,9 @@ export default defineConfig({
 });
 ```
 
-## Advanced Patterns
+## Advanced patterns
 
-### Conditional Projects
+### Conditional projects
 
 ```typescript
 const projects = [
@@ -382,7 +382,7 @@ if (process.env.TEST_MOBILE) {
 export default defineConfig({ projects });
 ```
 
-### Project Metadata
+### Project metadata
 
 ```typescript
 export default defineConfig({
@@ -406,7 +406,7 @@ test("example", async ({ page }, testInfo) => {
 });
 ```
 
-### Teardown Projects
+### Teardown projects
 
 ```typescript
 export default defineConfig({
@@ -437,7 +437,7 @@ teardown("cleanup", async ({ request }) => {
 });
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern               | Problem                | Solution                            |
 | -------------------------- | ---------------------- | ----------------------------------- |
@@ -446,7 +446,7 @@ teardown("cleanup", async ({ request }) => {
 | Duplicated configuration   | Hard to maintain       | Extract shared config               |
 | Not using setup projects   | Repeated auth in tests | Use setup project + storageState    |
 
-## Related References
+## Related references
 
 - **Global Setup**: See [global-setup.md](global-setup.md) for globalSetup vs setup projects
 - **Fixtures**: See [fixtures-hooks.md](fixtures-hooks.md) for authentication patterns

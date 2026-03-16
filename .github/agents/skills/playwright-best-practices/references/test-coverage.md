@@ -1,6 +1,6 @@
-# Test Coverage
+# Test coverage
 
-## Table of Contents
+## Table of contents
 
 1. [Coverage Setup](#coverage-setup)
 2. [Collecting Coverage](#collecting-coverage)
@@ -9,9 +9,9 @@
 5. [Advanced Patterns](#advanced-patterns)
 6. [CI Integration](#ci-integration)
 
-## Coverage Setup
+## Coverage setup
 
-### Install Dependencies
+### Install dependencies
 
 ```bash
 # For V8 coverage (built into Playwright)
@@ -21,7 +21,7 @@
 npm install -D nyc @istanbuljs/nyc-config-typescript
 ```
 
-### Basic Configuration
+### Basic configuration
 
 ```typescript
 // playwright.config.ts
@@ -37,7 +37,7 @@ export default defineConfig({
 });
 ```
 
-### V8 Coverage Fixture
+### V8 coverage fixture
 
 ```typescript
 // fixtures/coverage.ts
@@ -82,9 +82,9 @@ export const test = base.extend<{}, { collectCoverage: void }>({
 });
 ```
 
-## Collecting Coverage
+## Collecting coverage
 
-### Per-Test Coverage
+### Per-Test coverage
 
 ```typescript
 test("collect coverage for single test", async ({ page }) => {
@@ -108,7 +108,7 @@ test("collect coverage for single test", async ({ page }) => {
 });
 ```
 
-### Coverage for Specific Files
+### Coverage for specific files
 
 ```typescript
 test("track specific module coverage", async ({ page }) => {
@@ -136,7 +136,7 @@ test("track specific module coverage", async ({ page }) => {
 });
 ```
 
-### CSS Coverage
+### CSS coverage
 
 ```typescript
 test("collect CSS coverage", async ({ page }) => {
@@ -166,9 +166,9 @@ test("collect CSS coverage", async ({ page }) => {
 });
 ```
 
-## Coverage Reports
+## Coverage reports
 
-### Converting to Istanbul Format
+### Converting to istanbul format
 
 ```typescript
 // scripts/convert-coverage.ts
@@ -211,7 +211,7 @@ async function convertCoverage() {
 convertCoverage();
 ```
 
-### Generating HTML Report
+### Generating HTML report
 
 ```bash
 # Using nyc to generate report
@@ -229,7 +229,7 @@ npx nyc report --reporter=html --reporter=text --temp-dir=./coverage
 }
 ```
 
-### Custom Coverage Reporter
+### Custom coverage reporter
 
 ```typescript
 // reporters/coverage-reporter.ts
@@ -293,9 +293,9 @@ class CoverageReporter implements Reporter {
 export default CoverageReporter;
 ```
 
-## Coverage Thresholds
+## Coverage thresholds
 
-### Enforcing Minimum Coverage
+### Enforcing minimum coverage
 
 ```typescript
 // tests/coverage.spec.ts
@@ -332,7 +332,7 @@ test.afterAll(async () => {
 });
 ```
 
-### Per-Directory Thresholds
+### Per-Directory thresholds
 
 ```typescript
 // coverage-check.ts
@@ -378,9 +378,9 @@ function checkThresholds(coverage: any[]): string[] {
 }
 ```
 
-## Advanced Patterns
+## Advanced patterns
 
-### Merging Coverage Across Shards
+### Merging coverage across shards
 
 ```typescript
 // scripts/merge-coverage.ts
@@ -412,7 +412,7 @@ async function mergeCoverage() {
 mergeCoverage();
 ```
 
-### Incremental Coverage
+### Incremental coverage
 
 ```typescript
 // Check coverage only for changed files in CI
@@ -438,9 +438,9 @@ for (const file of changedFiles) {
 }
 ```
 
-## CI Integration
+## CI integration
 
-### GitHub Actions
+### GitHub actions
 
 ```yaml
 # .github/workflows/test.yml
@@ -479,7 +479,7 @@ jobs:
           fi
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern                 | Problem                                | Solution                    |
 | ---------------------------- | -------------------------------------- | --------------------------- |
@@ -489,7 +489,7 @@ jobs:
 | No source map support        | Wrong line numbers                     | Enable source maps in build |
 | Coverage only in CI          | Late feedback                          | Run locally too             |
 
-## Related References
+## Related references
 
 - **CI/CD**: See [ci-cd.md](ci-cd.md) for pipeline configuration
 - **Performance**: See [performance.md](performance.md) for optimizing coverage collection

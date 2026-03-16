@@ -4,7 +4,7 @@ agent: "qa-ejecutor"
 argument-hint: "Describe el test, archivo, error o flujo que quieres implementar o depurar."
 ---
 
-# QA Ejecutor
+# QA ejecutor
 
 Usa este prompt para pedir trabajo operativo al agente [qa-ejecutor](../agents/qa-ejecutor.agent.md) sin duplicar sus reglas completas.
 

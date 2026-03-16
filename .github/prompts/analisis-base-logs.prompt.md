@@ -4,7 +4,7 @@ agent: "Analista Universal de Logs"
 argument-hint: "Pega el log o indica el archivo a revisar junto con contexto opcional."
 ---
 
-# Análisis Base de Logs
+# Análisis base de logs
 
 Usa este prompt para pedir un análisis técnico completo sobre una sola fuente de logs con el agente [Analista Universal de Logs](../agents/analista-universal-logs.agent.md).
 

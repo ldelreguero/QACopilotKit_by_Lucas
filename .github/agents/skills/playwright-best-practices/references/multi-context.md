@@ -1,8 +1,8 @@
-# Multi-Tab, Window & Popup Testing
+# Multi-Tab, window & popup testing
 
 This file covers **single-user scenarios** with multiple browser tabs, windows, and popups. For **multi-user collaboration testing** (multiple users interacting simultaneously), see [multi-user.md](multi-user.md).
 
-## Table of Contents
+## Table of contents
 
 1. [Popup Handling](#popup-handling)
 2. [New Tab Navigation](#new-tab-navigation)
@@ -10,9 +10,9 @@ This file covers **single-user scenarios** with multiple browser tabs, windows, 
 4. [Multiple Windows](#multiple-windows)
 5. [Tab Coordination](#tab-coordination)
 
-## Popup Handling
+## Popup handling
 
-### Basic Popup
+### Basic popup
 
 ```typescript
 test("handle popup window", async ({ page }) => {
@@ -37,7 +37,7 @@ test("handle popup window", async ({ page }) => {
 });
 ```
 
-### Popup with Authentication
+### Popup with authentication
 
 ```typescript
 test("popup login flow", async ({ page }) => {
@@ -62,7 +62,7 @@ test("popup login flow", async ({ page }) => {
 });
 ```
 
-### Handle Blocked Popups
+### Handle blocked popups
 
 ```typescript
 test("handle popup blocker", async ({ page }) => {
@@ -86,9 +86,9 @@ test("handle popup blocker", async ({ page }) => {
 });
 ```
 
-## New Tab Navigation
+## New tab navigation
 
-### Link Opens in New Tab
+### Link opens in new tab
 
 ```typescript
 test("external link opens in new tab", async ({ page, context }) => {
@@ -111,7 +111,7 @@ test("external link opens in new tab", async ({ page, context }) => {
 });
 ```
 
-### Intercept New Tab
+### Intercept new tab
 
 ```typescript
 test("prevent new tab for testing", async ({ page }) => {
@@ -132,9 +132,9 @@ test("prevent new tab for testing", async ({ page }) => {
 });
 ```
 
-## OAuth Flows
+## Oauth flows
 
-### Google OAuth Popup
+### Google oauth popup
 
 ```typescript
 test("Google OAuth login", async ({ page }) => {
@@ -161,7 +161,7 @@ test("Google OAuth login", async ({ page }) => {
 });
 ```
 
-### Mock OAuth (Recommended)
+### Mock oauth (recommended)
 
 ```typescript
 test("mock OAuth flow", async ({ page, context }) => {
@@ -195,13 +195,13 @@ test("mock OAuth flow", async ({ page, context }) => {
 });
 ```
 
-### OAuth Fixture
+### Oauth fixture
 
 > **For comprehensive OAuth mocking patterns** (fixtures, multiple providers, SAML SSO), see [third-party.md](third-party.md#oauthsso-mocking). This section focuses on popup window handling mechanics for OAuth flows.
 
-## Multiple Windows
+## Multiple windows
 
-### Test Across Multiple Windows
+### Test across multiple windows
 
 ```typescript
 test("sync between windows", async ({ context }) => {
@@ -222,13 +222,13 @@ test("sync between windows", async ({ context }) => {
 });
 ```
 
-### Different Users in Different Windows
+### Different users in different windows
 
 > **For multi-user collaboration patterns** (admin/user interactions, real-time collaboration, role-based testing, concurrent actions), see [multi-user.md](multi-user.md). This file focuses on single-user scenarios with multiple tabs/windows/popups.
 
-## Tab Coordination
+## Tab coordination
 
-### Switch Between Tabs
+### Switch between tabs
 
 ```typescript
 test("manage multiple tabs", async ({ context }) => {
@@ -249,7 +249,7 @@ test("manage multiple tabs", async ({ context }) => {
 });
 ```
 
-### Close All Tabs Except One
+### Close all tabs except one
 
 ```typescript
 test("cleanup tabs after test", async ({ context }) => {
@@ -273,7 +273,7 @@ test("cleanup tabs after test", async ({ context }) => {
 });
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern            | Problem                        | Solution                                   |
 | ----------------------- | ------------------------------ | ------------------------------------------ |
@@ -282,7 +282,7 @@ test("cleanup tabs after test", async ({ context }) => {
 | Assuming popup opens    | May be blocked                 | Handle both open and blocked cases         |
 | Not closing extra pages | Resource leak                  | Close pages in cleanup                     |
 
-## Related References
+## Related references
 
 - **Authentication**: See [fixtures-hooks.md](fixtures-hooks.md) for auth patterns
 - **Network**: See [network-advanced.md](network-advanced.md) for mocking OAuth

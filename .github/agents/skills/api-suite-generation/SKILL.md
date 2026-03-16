@@ -8,7 +8,7 @@ metadata:
   version: "1.0"
 ---
 
-# API Suite Generation
+# API suite generation
 
 ## Cuando usar
 

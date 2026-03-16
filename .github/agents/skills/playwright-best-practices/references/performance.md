@@ -1,6 +1,6 @@
-# Performance & Parallelization
+# Performance & parallelization
 
-## Table of Contents
+## Table of contents
 
 1. [Parallel Execution](#parallel-execution)
 2. [Sharding](#sharding)
@@ -10,7 +10,7 @@
 6. [Resource Management](#resource-management)
 7. [Benchmarking](#benchmarking)
 
-## Parallel Execution
+## Parallel execution
 
 ### Configuration
 
@@ -29,7 +29,7 @@ export default defineConfig({
 });
 ```
 
-### Serial Execution When Needed
+### Serial execution when needed
 
 ```typescript
 // Entire file serial
@@ -59,7 +59,7 @@ test.describe.serial("Serial Tests", () => {
 });
 ```
 
-### Parallel Projects
+### Parallel projects
 
 ```typescript
 // playwright.config.ts
@@ -82,7 +82,7 @@ npx playwright test --project=chromium
 
 ## Sharding
 
-### Basic Sharding
+### Basic sharding
 
 ```bash
 # Split tests across 4 machines
@@ -99,7 +99,7 @@ npx playwright test --shard=3/4
 npx playwright test --shard=4/4
 ```
 
-### Sharding Strategy
+### Sharding strategy
 
 Tests are distributed evenly by file. For optimal sharding:
 
@@ -107,7 +107,7 @@ Tests are distributed evenly by file. For optimal sharding:
 - Use `fullyParallel: true` for even distribution
 - Balance slow tests across files
 
-### CI Sharding Pattern
+### CI sharding pattern
 
 ```yaml
 # GitHub Actions
@@ -122,15 +122,15 @@ jobs:
 
 > **For comprehensive CI sharding** (blob reports, merging sharded results, full workflows), see [ci-cd.md](ci-cd.md#sharding).
 
-## Test Optimization
+## Test optimization
 
-### Reuse Authentication
+### Reuse authentication
 
 Avoid logging in for every test. Use setup projects with storage state to authenticate once and reuse the session.
 
 > **For authentication patterns** (storage state, multiple auth states, setup projects), see [fixtures-hooks.md](fixtures-hooks.md#authentication-patterns).
 
-### Reuse Page State (serial only — trade-off with isolation)
+### Reuse page state (serial only — trade-off with isolation)
 
 Sharing a single page/context across tests with `beforeAll`/`afterAll` is **not recommended** for most suites: it breaks test isolation, causes state leak between tests, and makes failures harder to debug. Prefer a fresh `page` per test (Playwright default). Use shared page only when you explicitly need serial execution and accept no isolation.
 
@@ -163,7 +163,7 @@ test.describe("Dashboard", () => {
 });
 ```
 
-### Lazy Navigation
+### Lazy navigation
 
 ```typescript
 // Bad: Navigate in every test
@@ -193,7 +193,7 @@ test.describe("Products Page", () => {
 });
 ```
 
-### Skip Unnecessary Setup
+### Skip unnecessary setup
 
 ```typescript
 // Use test.skip for conditional execution
@@ -208,9 +208,9 @@ test.fixme("broken feature", async ({ page }) => {
 });
 ```
 
-## Network Optimization
+## Network optimization
 
-### Mock APIs
+### Mock apis
 
 ```typescript
 test.beforeEach(async ({ page }) => {
@@ -225,7 +225,7 @@ test.beforeEach(async ({ page }) => {
 });
 ```
 
-### Block Unnecessary Resources
+### Block unnecessary resources
 
 ```typescript
 test.beforeEach(async ({ page }) => {
@@ -244,7 +244,7 @@ test.beforeEach(async ({ page }) => {
 });
 ```
 
-### Block Resource Types
+### Block resource types
 
 ```typescript
 // Block images and fonts for faster tests
@@ -257,7 +257,7 @@ await page.route("**/*", (route) => {
 });
 ```
 
-### Cache API Responses
+### Cache API responses
 
 ```typescript
 const apiCache = new Map<string, object>();
@@ -278,7 +278,7 @@ test.beforeEach(async ({ page }) => {
 });
 ```
 
-## Isolation and Parallel Execution
+## Isolation and parallel execution
 
 ### Default: one context per test
 
@@ -300,9 +300,9 @@ If a test is flaky only with multiple workers:
 
 Workers are restarted after a test failure so subsequent tests in that worker get a clean environment; fixing isolation still prevents the initial flakiness.
 
-## Resource Management
+## Resource management
 
-### Browser Contexts
+### Browser contexts
 
 ```typescript
 // Recommended: One context per test (default) — full isolation
@@ -321,7 +321,7 @@ test("multiple tabs", async ({ browser }) => {
 });
 ```
 
-### Memory Management
+### Memory management
 
 ```typescript
 // playwright.config.ts
@@ -362,7 +362,7 @@ export default defineConfig({
 
 ## Benchmarking
 
-### Measure Test Duration
+### Measure test duration
 
 ```typescript
 test("performance test", async ({ page }, testInfo) => {
@@ -381,7 +381,7 @@ test("performance test", async ({ page }, testInfo) => {
 });
 ```
 
-### Performance Metrics
+### Performance metrics
 
 ```typescript
 test("collect metrics", async ({ page }) => {
@@ -408,7 +408,7 @@ test("collect metrics", async ({ page }) => {
 });
 ```
 
-### Lighthouse Integration
+### Lighthouse integration
 
 ```typescript
 import { playAudit } from "playwright-lighthouse";
@@ -433,7 +433,7 @@ test("lighthouse audit", async ({ page }) => {
 });
 ```
 
-## Performance Checklist
+## Performance checklist
 
 | Optimization                   | Impact     |
 | ------------------------------ | ---------- |
@@ -446,7 +446,7 @@ test("lighthouse audit", async ({ page }) => {
 | Cache API responses            | Medium     |
 | Skip unnecessary tests         | Low-Medium |
 
-## Related References
+## Related references
 
 - **CI/CD sharding**: See [ci-cd.md](ci-cd.md) for CI configuration
 - **Test organization**: See [test-organization.md](test-organization.md) for structuring tests

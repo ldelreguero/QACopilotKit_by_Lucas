@@ -1,6 +1,6 @@
-# Error & Edge Case Testing
+# Error & edge case testing
 
-## Table of Contents
+## Table of contents
 
 1. [Error Boundaries](#error-boundaries)
 2. [Network Failures](#network-failures)
@@ -8,9 +8,9 @@
 4. [Loading States](#loading-states)
 5. [Form Validation](#form-validation)
 
-## Error Boundaries
+## Error boundaries
 
-### Test Component Errors
+### Test component errors
 
 ```typescript
 test("error boundary catches component error", async ({ page }) => {
@@ -29,7 +29,7 @@ test("error boundary catches component error", async ({ page }) => {
 });
 ```
 
-### Test Error Recovery
+### Test error recovery
 
 ```typescript
 test("recover from error state", async ({ page }) => {
@@ -58,7 +58,7 @@ test("recover from error state", async ({ page }) => {
 });
 ```
 
-### Test JavaScript Errors
+### Test JavaScript errors
 
 ```typescript
 test("handles runtime error gracefully", async ({ page }) => {
@@ -78,9 +78,9 @@ test("handles runtime error gracefully", async ({ page }) => {
 });
 ```
 
-## Network Failures
+## Network failures
 
-### Test API Errors
+### Test API errors
 
 ```typescript
 test.describe("API error handling", () => {
@@ -104,7 +104,7 @@ test.describe("API error handling", () => {
 });
 ```
 
-### Test Timeout
+### Test timeout
 
 ```typescript
 test("handles request timeout", async ({ page }) => {
@@ -122,7 +122,7 @@ test("handles request timeout", async ({ page }) => {
 });
 ```
 
-### Test Connection Reset
+### Test connection reset
 
 ```typescript
 test("handles connection failure", async ({ page }) => {
@@ -137,7 +137,7 @@ test("handles connection failure", async ({ page }) => {
 });
 ```
 
-### Test Mid-Request Failure
+### Test Mid-Request failure
 
 ```typescript
 test("handles failure during request", async ({ page }) => {
@@ -160,11 +160,11 @@ test("handles failure during request", async ({ page }) => {
 });
 ```
 
-## Offline Testing
+## Offline testing
 
 This section covers **unexpected network failures** and error recovery. For **offline-first apps (PWAs)** with service workers, caching, and background sync, see [service-workers.md](service-workers.md#offline-testing).
 
-### Go Offline During Session
+### Go offline during session
 
 ```typescript
 test("handles going offline", async ({ page, context }) => {
@@ -189,7 +189,7 @@ test("handles going offline", async ({ page, context }) => {
 });
 ```
 
-### Test Network Recovery
+### Test network recovery
 
 ```typescript
 test("recovers gracefully when connection returns", async ({
@@ -213,9 +213,9 @@ test("recovers gracefully when connection returns", async ({
 });
 ```
 
-## Loading States
+## Loading states
 
-### Test Skeleton Loaders
+### Test skeleton loaders
 
 ```typescript
 test("shows skeleton during load", async ({ page }) => {
@@ -238,7 +238,7 @@ test("shows skeleton during load", async ({ page }) => {
 });
 ```
 
-### Test Loading Indicators
+### Test loading indicators
 
 ```typescript
 test("shows loading state for actions", async ({ page }) => {
@@ -263,7 +263,7 @@ test("shows loading state for actions", async ({ page }) => {
 });
 ```
 
-### Test Empty States
+### Test empty states
 
 ```typescript
 test("shows empty state when no data", async ({ page }) => {
@@ -278,9 +278,9 @@ test("shows empty state when no data", async ({ page }) => {
 });
 ```
 
-## Form Validation
+## Form validation
 
-### Test Client-Side Validation
+### Test Client-Side validation
 
 ```typescript
 test("validates required fields", async ({ page }) => {
@@ -298,7 +298,7 @@ test("validates required fields", async ({ page }) => {
 });
 ```
 
-### Test Format Validation
+### Test format validation
 
 ```typescript
 test("validates email format", async ({ page }) => {
@@ -317,7 +317,7 @@ test("validates email format", async ({ page }) => {
 });
 ```
 
-### Test Server-Side Validation
+### Test Server-Side validation
 
 ```typescript
 test("handles server validation errors", async ({ page }) => {
@@ -345,7 +345,7 @@ test("handles server validation errors", async ({ page }) => {
 });
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern             | Problem                        | Solution                               |
 | ------------------------ | ------------------------------ | -------------------------------------- |
@@ -354,7 +354,7 @@ test("handles server validation errors", async ({ page }) => {
 | Skipping loading states  | Janky UX not caught            | Assert loading UI appears              |
 | Ignoring validation      | Form bugs slip through         | Test both client and server validation |
 
-## Related References
+## Related references
 
 - **Network Mocking**: See [network-advanced.md](network-advanced.md) for mock patterns
 - **Assertions**: See [assertions-waiting.md](assertions-waiting.md) for error assertions

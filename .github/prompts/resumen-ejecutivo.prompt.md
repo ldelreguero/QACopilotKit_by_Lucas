@@ -4,7 +4,7 @@ agent: "Analista Universal de Logs"
 argument-hint: "Pega el log o el análisis base y aclara la audiencia objetivo si hace falta."
 ---
 
-# Resumen Ejecutivo
+# Resumen ejecutivo
 
 Usa este prompt para traducir un incidente técnico a un resumen entendible para líderes técnicos o stakeholders no técnicos.
 

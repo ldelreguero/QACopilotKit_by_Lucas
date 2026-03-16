@@ -1,4 +1,4 @@
-# Request Context y patrones
+# Request context y patrones
 
 ## Estructura base sugerida
 

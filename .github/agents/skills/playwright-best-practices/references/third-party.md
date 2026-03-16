@@ -1,6 +1,6 @@
-# Third-Party Service Mocking
+# Third-Party service mocking
 
-## Table of Contents
+## Table of contents
 
 1. [OAuth/SSO Mocking](#oauthsso-mocking)
 2. [Payment Gateway Mocking](#payment-gateway-mocking)
@@ -8,9 +8,9 @@
 4. [SMS Verification](#sms-verification)
 5. [Analytics & Tracking](#analytics--tracking)
 
-## OAuth/SSO Mocking
+## OAuth/SSO mocking
 
-### Mock Google OAuth
+### Mock google oauth
 
 ```typescript
 test("Google OAuth login", async ({ page }) => {
@@ -47,7 +47,7 @@ test("Google OAuth login", async ({ page }) => {
 });
 ```
 
-### OAuth Fixture
+### Oauth fixture
 
 ```typescript
 // fixtures/oauth.fixture.ts
@@ -135,9 +135,9 @@ test("SAML SSO login", async ({ page }) => {
 });
 ```
 
-## Payment Gateway Mocking
+## Payment gateway mocking
 
-### Mock Stripe
+### Mock stripe
 
 ```typescript
 test("Stripe checkout", async ({ page }) => {
@@ -220,7 +220,7 @@ test("PayPal checkout", async ({ page }) => {
 });
 ```
 
-### Payment Fixture
+### Payment fixture
 
 ```typescript
 // fixtures/payment.fixture.ts
@@ -268,9 +268,9 @@ test("handles declined card", async ({ page, mockStripe }) => {
 });
 ```
 
-## Email Verification
+## Email verification
 
-### Mock Email API
+### Mock email API
 
 ```typescript
 test("email verification flow", async ({ page, request }) => {
@@ -312,7 +312,7 @@ test("email verification flow", async ({ page, request }) => {
 });
 ```
 
-### Use Mailinator/Temp Mail
+### Use Mailinator/Temp mail
 
 ```typescript
 // fixtures/email.fixture.ts
@@ -358,7 +358,7 @@ export const test = base.extend<EmailFixtures>({
 });
 ```
 
-## SMS Verification
+## SMS verification
 
 ### Mock SMS API
 
@@ -398,9 +398,9 @@ test("SMS verification", async ({ page }) => {
 });
 ```
 
-## Analytics & Tracking
+## Analytics & tracking
 
-### Block Analytics in Tests
+### Block analytics in tests
 
 ```typescript
 test.beforeEach(async ({ page }) => {
@@ -412,7 +412,7 @@ test.beforeEach(async ({ page }) => {
 });
 ```
 
-### Mock Analytics for Verification
+### Mock analytics for verification
 
 ```typescript
 test("tracks purchase event", async ({ page }) => {
@@ -449,7 +449,7 @@ test("tracks purchase event", async ({ page }) => {
 });
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern              | Problem                        | Solution                |
 | ------------------------- | ------------------------------ | ----------------------- |
@@ -458,7 +458,7 @@ test("tracks purchase event", async ({ page }) => {
 | Waiting for real emails   | Very slow, unreliable          | Mock email API          |
 | Not mocking analytics     | Pollutes analytics data        | Block or mock analytics |
 
-## Related References
+## Related references
 
 - **Network Mocking**: See [network-advanced.md](network-advanced.md) for route patterns
 - **Authentication**: See [fixtures-hooks.md](fixtures-hooks.md) for auth patterns

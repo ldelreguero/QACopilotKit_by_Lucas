@@ -8,7 +8,7 @@ metadata:
   version: "1.0"
 ---
 
-# QA Ejecutor
+# QA ejecutor
 
 ## Cuándo usar
 
@@ -19,6 +19,11 @@ Usa esta skill cuando la tarea implique:
 - depurar fallos de Playwright
 - encontrar selectores estables
 - reparar tests rotos por cambios de UI, timing o datos
+
+No la uses como primera opción cuando:
+
+- ya existe un plan formal y el objetivo es generar el test desde ese plan
+- el trabajo principal es recuperar un test fallido mediante un ciclo run -> debug -> fix -> retest controlado
 
 ## Resultado esperado
 
@@ -32,7 +37,7 @@ La salida debe dejar:
 ## Instrucciones
 
 1. Identifica el tipo de tarea.
-   Distingue entre creación de test, ejecución, debugging, codegen o reparación de selector.
+   Distingue entre creación manual de test, ejecución, debugging, codegen o reparación de selector.
 2. Usa el patrón existente del repo.
    No inventes una estructura nueva si el proyecto ya tiene convenciones.
 3. Prioriza selectores estables.
@@ -45,6 +50,8 @@ La salida debe dejar:
    Reejecuta el archivo o el subconjunto mínimo necesario para confirmar el cambio.
 7. Resume el resultado.
    Explica qué se cambió y por qué ahora debería ser estable.
+8. Respeta la frontera con los workers internos.
+   Si el input ya es un plan formal para materializar, usa `playwright-test-generator`. Si el problema requiere healing iterativo intensivo, usa `playwright-test-healer`.
 
 ## Flujos operativos recomendados
 
@@ -126,3 +133,4 @@ Comandos típicos:
 - Si la página depende de terceros inestables, aísla o mockea cuando el proyecto lo permita.
 - Si un selector solo existe visualmente y no semánticamente, recomienda agregar `data-testid`.
 - Si el test falla de forma intermitente, no lo cierres como resuelto sin reejecución razonable.
+- Si el usuario entrega un plan exhaustivo y espera un archivo final generado siguiendo ese plan, considera que el workflow correcto ya no es esta skill sino el worker interno de generación.

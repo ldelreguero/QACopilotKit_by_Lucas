@@ -8,7 +8,7 @@ metadata:
   version: "1.0"
 ---
 
-# Playwright Accessibility
+# Playwright accessibility
 
 ## Cuando usar
 

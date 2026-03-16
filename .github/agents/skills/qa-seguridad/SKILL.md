@@ -8,7 +8,7 @@ metadata:
   version: "1.0"
 ---
 
-# QA Seguridad
+# QA seguridad
 
 ## Cuando usar
 

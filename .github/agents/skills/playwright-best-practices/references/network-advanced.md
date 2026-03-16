@@ -1,6 +1,6 @@
-# Advanced Network Interception
+# Advanced network interception
 
-## Table of Contents
+## Table of contents
 
 1. [Request Modification](#request-modification)
 2. [GraphQL Mocking](#graphql-mocking)
@@ -8,9 +8,9 @@
 4. [Conditional Mocking](#conditional-mocking)
 5. [Network Throttling](#network-throttling)
 
-## Request Modification
+## Request modification
 
-### Modify Request Headers
+### Modify request headers
 
 ```typescript
 test("add auth header to requests", async ({ page }) => {
@@ -27,7 +27,7 @@ test("add auth header to requests", async ({ page }) => {
 });
 ```
 
-### Modify Request Body
+### Modify request body
 
 ```typescript
 test("modify POST body", async ({ page }) => {
@@ -55,7 +55,7 @@ test("modify POST body", async ({ page }) => {
 });
 ```
 
-### Transform Response
+### Transform response
 
 ```typescript
 test("modify API response", async ({ page }) => {
@@ -81,9 +81,9 @@ test("modify API response", async ({ page }) => {
 });
 ```
 
-## GraphQL Mocking
+## GraphQL mocking
 
-### Mock by Operation Name
+### Mock by operation name
 
 ```typescript
 test("mock GraphQL query", async ({ page }) => {
@@ -125,7 +125,7 @@ test("mock GraphQL query", async ({ page }) => {
 });
 ```
 
-### GraphQL Mock Fixture
+### GraphQL mock fixture
 
 ```typescript
 // fixtures/graphql.fixture.ts
@@ -190,7 +190,7 @@ test("dashboard with mocked GraphQL", async ({ page, mockGraphQL }) => {
 });
 ```
 
-### Mock GraphQL Mutations
+### Mock GraphQL mutations
 
 ```typescript
 test("mock GraphQL mutation", async ({ page }) => {
@@ -227,9 +227,9 @@ test("mock GraphQL mutation", async ({ page }) => {
 });
 ```
 
-## HAR Recording & Playback
+## HAR recording & playback
 
-### Record HAR File
+### Record HAR file
 
 ```typescript
 // Record network traffic
@@ -247,7 +247,7 @@ test("record HAR", async ({ page, context }) => {
 });
 ```
 
-### Playback HAR File
+### Playback HAR file
 
 ```typescript
 // Use recorded HAR for offline testing
@@ -264,7 +264,7 @@ test("playback HAR", async ({ page, context }) => {
 });
 ```
 
-### HAR with Fallback
+### HAR with fallback
 
 ```typescript
 test("HAR with live fallback", async ({ page, context }) => {
@@ -278,9 +278,9 @@ test("HAR with live fallback", async ({ page, context }) => {
 });
 ```
 
-## Conditional Mocking
+## Conditional mocking
 
-### Mock Based on Request Body
+### Mock based on request body
 
 ```typescript
 test("conditional mock by body", async ({ page }) => {
@@ -317,7 +317,7 @@ test("conditional mock by body", async ({ page }) => {
 });
 ```
 
-### Mock Nth Request
+### Mock nth request
 
 ```typescript
 test("different response on retry", async ({ page }) => {
@@ -346,7 +346,7 @@ test("different response on retry", async ({ page }) => {
 });
 ```
 
-### Mock with Delay
+### Mock with delay
 
 ```typescript
 test("slow network simulation", async ({ page }) => {
@@ -369,9 +369,9 @@ test("slow network simulation", async ({ page }) => {
 });
 ```
 
-## Network Throttling
+## Network throttling
 
-### Slow 3G Simulation
+### Slow 3G simulation
 
 ```typescript
 test("slow network experience", async ({ page, context }) => {
@@ -392,7 +392,7 @@ test("slow network experience", async ({ page, context }) => {
 });
 ```
 
-### Offline Mode
+### Offline mode
 
 Use `context.setOffline(true/false)` to simulate network connectivity changes.
 
@@ -401,7 +401,7 @@ Use `context.setOffline(true/false)` to simulate network connectivity changes.
 > - **Network failure simulation** (error recovery, graceful degradation): See [error-testing.md](error-testing.md#offline-testing)
 > - **Offline-first/PWA testing** (service workers, caching, background sync): See [service-workers.md](service-workers.md#offline-testing)
 
-### Network Throttling Fixture
+### Network throttling fixture
 
 ```typescript
 // fixtures/network.fixture.ts
@@ -437,7 +437,7 @@ export const test = base.extend<NetworkFixtures>({
 });
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern             | Problem                        | Solution                         |
 | ------------------------ | ------------------------------ | -------------------------------- |
@@ -446,7 +446,7 @@ export const test = base.extend<NetworkFixtures>({
 | Ignoring request method  | Mock applies to wrong requests | Check `route.request().method()` |
 | Hardcoded mock responses | Brittle, hard to maintain      | Use factories for mock data      |
 
-## Related References
+## Related references
 
 - **Basic Mocking**: See [test-organization.md](test-organization.md) for simple mocking
 - **WebSockets**: See [websockets.md](websockets.md) for real-time mocking

@@ -1,117 +1,130 @@
-# Plan Nuevo: Bootstrap de GitHub Copilot Custom Agents
+# Guía canónica para crear agents, skills y prompts
+
+## Índice
+
+- [Propósito](#propósito)
+- [TL;DR](#tldr)
+- [Audiencia](#audiencia)
+- [Doctrina del repositorio](#doctrina-del-repositorio)
+- [Estructura canónica del repo](#estructura-canónica-del-repo)
+- [Archivos normativos del repo](#archivos-normativos-del-repo)
+- [Cuándo crear un agent, una skill o un prompt](#cuándo-crear-un-agent-una-skill-o-un-prompt)
+- [Plantillas de diseño para agents, skills y prompts](#plantillas-de-diseño-para-agents-skills-y-prompts)
+- [Patrón recomendado de arquitectura](#patrón-recomendado-de-arquitectura)
+- [Decisiones específicas del repo](#decisiones-específicas-del-repo)
+- [MCP en este repo](#mcp-en-este-repo)
+- [Workflow recomendado para crear algo nuevo](#workflow-recomendado-para-crear-algo-nuevo)
+- [Anti-Patrones que debes evitar](#anti-patrones-que-debes-evitar)
+- [Criterios de calidad](#criterios-de-calidad)
+- [Checklist de validación final](#checklist-de-validación-final)
+- [Entregables mínimos del sistema](#entregables-mínimos-del-sistema)
+- [Regla final](#regla-final)
+
+## Propósito
+
+Este documento es la guía de referencia para quien diseña, crea, revisa o mantiene la capa de customización de GitHub Copilot en este repositorio.
+
+Debe usarse como fuente principal para decidir:
+
+- cuándo crear un agent
+- cuándo crear una skill
+- cuándo crear un prompt
+- cómo estructurar cada archivo
+- cómo evitar duplicación entre agentes, skills e instrucciones
+- cómo mantener consistencia con el estado real del workspace
+
+En este repo, la separación recomendada es esta:
+
+- [README.md](README.md): guía para el usuario final, por ejemplo un QA que quiere usar los agentes
+- [PLAN-COPILOT-AGENTS.md](PLAN-COPILOT-AGENTS.md): guía para la persona que crea o mantiene agents, skills, prompts e integración MCP
 
 ## TL;DR
 
-Este plan define cómo preparar un workspace para crear y operar agentes personalizados de GitHub Copilot usando archivos `.agent.md` y skills reutilizables basadas en `SKILL.md`.
-El foco es: **estructura de directorios**, **capas de customización**, **configuración mínima**, **buenas prácticas oficiales**, **formato interoperable de skills**, y **checklist de validación** para que los agentes aparezcan, invoquen correctamente en VS Code y reutilicen conocimiento especializado sin romper compatibilidad.
+Si vas a extender este repositorio, sigue estas reglas primero:
 
----
+1. Usa `.github/agents/*.agent.md` para agentes.
+2. Usa `.github/agents/skills/<skill-name>/SKILL.md` para skills.
+3. Usa `.github/prompts/*.prompt.md` para prompts reutilizables.
+4. Mantén las instrucciones globales en `.github/copilot-instructions.md` y las específicas en `.github/instructions/*.instructions.md`.
+5. No dupliques checklists ni estándares entre agentes y skills.
+6. Si una regla es transversal del repo, no debe vivir dentro de un agent.
+7. Si una capacidad es reusable, debe vivir en una skill o en `references/`, no como bloque gigante embebido en varios agentes.
+8. Si un flujo es interno, usa `user-invocable: false`.
+9. Si declaras `agents:`, incluye la tool `agent`.
+10. Declara `model` solo si el identificador es soportado por el editor actual.
 
-## Objetivo
+## Audiencia
 
-- Estandarizar la creación de agentes en un repositorio local.
-- Estandarizar la creación de skills portables basadas en la especificación abierta de Agent Skills.
-- Incorporar buenas prácticas oficiales de GitHub Copilot y VS Code para agentes, tools, contexto, planning y subagents.
-- Dejar una base reutilizable para equipos (orquestador + subagentes).
-- Mantener configuración simple, extensible y versionable.
+Este documento está escrito para:
 
----
+- quien crea nuevos agents
+- quien crea nuevas skills
+- quien crea prompts reutilizables
+- quien revisa la arquitectura de customización del repo
+- quien integra MCP o workflows especializados
 
-## Fuentes base
+No está escrito para el usuario final que solo quiere usar agentes. Ese flujo vive en [README.md](README.md).
 
-### GitHub Copilot
+## Doctrina del repositorio
 
-- `https://docs.github.com/es/copilot/how-tos/use-copilot-agents/coding-agent/create-custom-agents`
-- `https://docs.github.com/es/copilot/concepts/agents/coding-agent/about-custom-agents`
-- `https://docs.github.com/es/copilot/how-tos/use-copilot-agents/coding-agent/create-custom-agents#configuring-an-agent-profile`
+Estas son las decisiones más importantes ya adoptadas en el workspace.
 
-### VS Code Copilot
+### 1. El repo se organiza por capas
 
-- `https://code.visualstudio.com/docs/copilot/customization/custom-agents`
-- `https://code.visualstudio.com/docs/copilot/overview`
-- `https://code.visualstudio.com/docs/copilot/concepts/tools`
-- `https://code.visualstudio.com/docs/copilot/agents/overview`
-- `https://code.visualstudio.com/docs/copilot/concepts/context`
-- `https://code.visualstudio.com/docs/copilot/concepts/customization`
-- `https://code.visualstudio.com/docs/copilot/agents/agents-tutorial`
-- `https://code.visualstudio.com/docs/copilot/agents/planning`
-- `https://code.visualstudio.com/docs/copilot/agents/agent-tools`
-- `https://code.visualstudio.com/docs/copilot/agents/subagents`
-- `https://code.visualstudio.com/docs/copilot/agents/local-agents`
-- `https://code.visualstudio.com/docs/copilot/agents/copilot-cli`
-- `https://code.visualstudio.com/docs/copilot/guides/context-engineering-guide`
-- `https://code.visualstudio.com/docs/copilot/guides/customize-copilot-guide`
+Cada pieza tiene un rol distinto:
 
-### Agent Skills
+- Instrucciones globales: contexto persistente del repositorio
+- Instrucciones por tipo de archivo: reglas especializadas por zona del repo
+- Agents: personas o roles especializados con tools y límites claros
+- Skills: conocimiento reusable, portable y enfocado
+- Prompts: tareas repetibles y concretas
+- MCP: acceso a tooling externo solo cuando agrega valor real
 
-- `https://agentskills.io/home`
-- `https://agentskills.io/specification`
-- `https://agentskills.io/client-implementation/adding-skills-support`
+### 2. Agents pequeños, skills pequeñas, prompts concretos
 
-Nota:
+La regla general es evitar archivos monolíticos.
 
-- Este plan usa GitHub Docs y VS Code Docs como base principal para `.agent.md`.
-- Para skills, usa la documentación oficial de Agent Skills como especificación de formato y diseño.
+- Un agent debe optimizar comportamiento y delegación.
+- Una skill debe encapsular conocimiento reusable.
+- Un prompt debe resolver una tarea repetible con foco estrecho.
 
----
+### 3. Playwright tiene una base canónica compartida
 
-## Decisiones base
+En este repo, `playwright-best-practices` es la fuente canónica para estándares transversales Playwright.
 
-| Decisión | Valor recomendado | Nota |
-| --- | --- | --- |
-| Ubicación principal | `.github/agents/*.agent.md` | Compartida por equipo en repo |
-| Compatibilidad Claude | `.claude/agents/*.md` | Opcional para flujos híbridos |
-| Ubicación de skills | `.github/agents/skills/<skill-name>/SKILL.md` | Convención adoptada por este repositorio |
-| Modelo | `Opcional` | Si se declara, elegir uno soportado por el editor usando autocompletado |
-| Convención de nombres | `dominio-rol.agent.md` | Ej. `qa-orquestador.agent.md` |
-| Convención de nombre de skill | `lowercase-hyphen` | Debe coincidir con el nombre del directorio |
-| Base documental para skills | `agentskills.io` | Respetar especificación, progressive disclosure y referencias relativas |
-| Instrucciones globales | `.github/copilot-instructions.md` | Punto de partida para contexto persistente del proyecto |
-| Instrucciones por dominio | `.github/instructions/*.instructions.md` | Reglas específicas por tipo de archivo o área |
-| Prompts reutilizables | `.github/prompts/*.prompt.md` | Para tareas repetibles invocables por slash command |
+Eso implica que agentes y skills QA deben referenciar esa base para:
 
-### Decisión específica para Playwright
+- locator strategy
+- waits y assertions
+- organización de tests
+- debugging
+- quality gate
 
-- `playwright-best-practices` es la fuente canónica para buenas prácticas Playwright transversales del repositorio.
-- Agentes y skills QA deben referenciar esa base y sus `references/` en lugar de duplicar quality gates, estándares obligatorios o convenciones de estructura.
+No se deben mantener checklists Playwright paralelos en varios archivos.
 
----
+### 4. Los workers internos no son entrada principal del usuario
 
-## Capas de customización
+Si un workflow es especializado y no debería aparecer como opción primaria en el selector, debe definirse con:
 
-Basado en la documentación de VS Code, conviene pensar la personalización en capas y no cargar toda la lógica en un solo agente.
+- `user-invocable: false`
 
-| Capa | Cuándo usarla | Archivo recomendado |
-| --- | --- | --- |
-| Instrucciones globales | Reglas que deben aplicar siempre | `.github/copilot-instructions.md` |
-| Instrucciones por archivo | Convenciones para módulos o extensiones específicas | `.github/instructions/*.instructions.md` |
-| Prompt file | Tareas repetibles invocadas por slash command | `.github/prompts/*.prompt.md` |
-| Custom agent | Persona especializada con tools y handoffs | `.github/agents/*.agent.md` |
-| Skill | Capacidades reutilizables con instrucciones, scripts y recursos | `.github/agents/skills/*/SKILL.md` |
-| MCP | Acceso a sistemas externos o tooling especializado | `.vscode/mcp.json` |
-| Hooks | Automatización determinística en puntos del ciclo del agente | Según configuración de hooks |
+Este patrón ya se usa para workers Playwright internos como:
 
-Regla práctica:
+- `playwright-test-planner`
+- `playwright-test-generator`
+- `playwright-test-healer`
 
-- No usar un agente para reglas globales del repo; eso va en instrucciones.
-- No usar una skill para una tarea puntual de un solo uso; eso va mejor en prompt file.
-- No usar MCP si el problema puede resolverse con tools built-in o contexto local.
+### 5. El catálogo visible y el catálogo interno son distintos
 
----
+El usuario final no tiene por qué entender toda la topología interna.
 
-## Estructura de directorios (MVP)
+La práctica recomendada es:
 
-```text
-.github/
-└── agents/
-    ├── maestro-orquestador.agent.md
-    ├── arquitecto.agent.md
-    ├── ejecutor.agent.md
-    └── analista.agent.md
-README.md
-```
+- exponer pocos agentes visibles y claros
+- delegar a workers internos cuando un flujo se especializa
+- documentar esa diferencia en el README de usuario y en esta guía de autoría
 
-### Estructura recomendada (escalable)
+## Estructura canónica del repo
 
 ```text
 .github/
@@ -121,132 +134,207 @@ README.md
 │   ├── prompts.instructions.md
 │   └── skills.instructions.md
 ├── prompts/
-│   ├── plan.prompt.md
-│   └── review.prompt.md
+│   └── *.prompt.md
 ├── agents/
-│   ├── agente.agent.md
+│   ├── *.agent.md
 │   └── skills/
-│       └── mi-skill/
+│       └── <skill-name>/
 │           ├── SKILL.md
 │           ├── references/
-│           │   └── guia.md
 │           ├── scripts/
-│           │   └── helper.js
 │           └── assets/
-│               └── template.json
-└── README.md
+└── workflows/
+
 .vscode/
 └── mcp.json
 ```
 
-### Convención recomendada para skills
+### Reglas de ubicación
 
-```text
-.github/
-└── agents/
-    └── skills/
-        └── skill-name/
-            ├── SKILL.md          # Requerido: metadata + instrucciones
-            ├── scripts/          # Opcional: código ejecutable
-            ├── references/       # Opcional: documentación detallada
-            ├── assets/           # Opcional: plantillas o recursos
-            └── ...
-```
+- Los agents viven en `.github/agents/*.agent.md`.
+- Las skills viven en `.github/agents/skills/<skill-name>/SKILL.md`.
+- Los prompts viven en `.github/prompts/*.prompt.md`.
+- La configuración MCP vive en `.vscode/mcp.json`.
+- No crear estructuras paralelas tipo `.github/skills/` o árboles alternos fuera de esta convención.
 
-Notas:
+## Archivos normativos del repo
 
-- En este repositorio, ubicar las skills en `.github/agents/skills/` para mantenerlas junto a la definición de agentes.
-- El directorio de la skill debe coincidir exactamente con `name` en el frontmatter.
-- Si una skill crece, mover detalle a `references/` o `scripts/` en vez de inflar `SKILL.md`.
+Antes de crear o modificar cualquier pieza, revisa estos archivos:
 
-## Plantilla estándar de agente (`.agent.md`)
+- [.github/copilot-instructions.md](.github/copilot-instructions.md)
+- [.github/instructions/agents.instructions.md](.github/instructions/agents.instructions.md)
+- [.github/instructions/prompts.instructions.md](.github/instructions/prompts.instructions.md)
+- [.github/instructions/skills.instructions.md](.github/instructions/skills.instructions.md)
+
+Resumen de sus reglas:
+
+### Reglas globales
+
+- Mantén las definiciones pequeñas y enfocadas por responsabilidad.
+- No mezcles reglas globales del proyecto dentro de un agent.
+- No conviertas una skill en un prompt gigante.
+- Conserva YAML frontmatter válido en `.agent.md`, `.prompt.md`, `.instructions.md` y `SKILL.md`.
+- En documentación operativa, escribe en español.
+
+### Reglas específicas para agents
+
+- `description` debe ser específica, no genérica.
+- Si defines `agents:`, incluye la tool `agent`.
+- Usa `target: vscode` cuando el agent esté pensado para el editor.
+- Mantén el cuerpo enfocado en comportamiento, límites, delegación y criterios de calidad.
+- No conviertas el body del agent en documentación extensa del proyecto.
+
+### Reglas específicas para skills
+
+- Cada skill debe tener carpeta propia.
+- `name` debe coincidir con el directorio y usar lowercase-hyphen.
+- `description` debe explicar qué hace la skill y cuándo se activa.
+- Mueve detalle extenso a `references/`, `scripts/` o `assets/`.
+- Usa rutas relativas a la raíz de la skill.
+
+### Reglas específicas para prompts
+
+- Cada prompt debe encapsular una tarea concreta y repetible.
+- Si depende de un rol especializado, referencia el agent adecuado en el frontmatter.
+- No dupliques reglas ya cubiertas por instrucciones o por el propio agent.
+
+## Cuándo crear un agent, una skill o un prompt
+
+Usa esta tabla como criterio rápido.
+
+| Si necesitas... | Crea... |
+| --- | --- |
+| un rol persistente con tools, límites y delegación | un `agent` |
+| conocimiento reusable que puede activarse desde varios flujos | una `skill` |
+| una tarea repetible y concreta | un `prompt` |
+| reglas que deben aplicar al repo o a un tipo de archivo | `instructions` |
+
+### Casos típicos
+
+Crea un agent cuando:
+
+- necesitas una persona especializada
+- necesitas tools específicas
+- necesitas handoffs o subagentes
+- necesitas separar claramente planificación, ejecución o análisis
+
+Crea una skill cuando:
+
+- el conocimiento puede ser reutilizado por varios agentes
+- quieres evitar duplicar procedimientos o criterios
+- el contenido crecerá mejor en `references/`
+
+Crea un prompt cuando:
+
+- el flujo es corto y repetible
+- el usuario final necesita invocarlo como tarea empaquetada
+- no hace falta una nueva persona especializada
+
+No crees un agent cuando:
+
+- solo quieres agregar reglas globales
+- el contenido es básicamente una checklist reusable
+- la tarea se resuelve mejor con un prompt acotado
+
+No crees una skill cuando:
+
+- el contenido es específico de un único agent y no será reutilizado
+- se trata de una tarea puntual de una sola ejecución
+
+No crees un prompt cuando:
+
+- la lógica requiere tools o restricciones propias de un rol completo
+- el flujo debería ser decidido por un orquestador, no por un comando fijo
+
+## Plantillas de diseño para agents, skills y prompts
+
+Usa estas plantillas como punto de partida rápido. Sustituyen tanto los templates de un paso como las plantillas de diseño: la idea es que cada bloque sirva para copiar, adaptar y validar en una sola lectura.
+
+### Plantilla unificada para agents
+
+Úsala cuando ya decidiste que necesitas un rol nuevo.
 
 ```markdown
 ---
-name: "Mi Agente"
-description: "Descripción breve del agente"
+name: "mi-nuevo-agente"
+description: "Rol especializado para X. Usar cuando el usuario necesite Y."
+model: "GPT-5.3-Codex"
 tools:
   - search
   - edit
-  - fetch
-agents:
-  - "*"
-argument-hint: "Describe lo que necesitas..."
+target: vscode
 user-invocable: true
 disable-model-invocation: false
-target: vscode
-handoffs:
-  - label: "Siguiente paso"
-    agent: implementation
-    prompt: "Implementa el plan anterior."
-    send: false
 ---
 
-# Instrucciones del agente
+# Mi Nuevo Agente
 
-Reglas operativas, alcance, entradas/salidas y criterios de aceptación.
+## Rol
+
+Eres un agente especializado en X.
+
+## Cuándo usar
+
+- cuando el usuario necesite Y
+- cuando el flujo requiera Z
+
+## Límites
+
+- no hagas A
+- delega B si corresponde
+
+## Criterios de calidad
+
+- valida C
+- evita D
 ```
 
-### Reglas de diseño para agentes
+Checklist mínimo antes de guardarlo:
 
-- `description` es obligatoria y debe explicar claramente qué hace el agente y cuándo usarlo.
-- Si omites `tools`, el agente puede acceder a todas las tools disponibles; esto debe evitarse salvo en agentes realmente generales.
-- Si declaras `agents`, debes incluir también la tool `agent`.
-- `target` es opcional, pero conviene usar `vscode` cuando el agente está diseñado para el IDE.
-- `model` es opcional; si se define, usar un identificador válido soportado por el editor.
-- El cuerpo Markdown debe contener instrucciones operativas, límites, criterios de calidad y cuándo delegar o no.
-- El prompt del agente no debe convertirse en un manual enciclopédico; debe optimizar comportamiento, no duplicar documentación general del proyecto.
-- El cuerpo del agente tiene límite práctico; GitHub documenta un máximo de 30.000 caracteres para el prompt del perfil.
+- el `name` es estable y claro
+- la `description` dice qué hace y cuándo usarlo
+- el set de tools es mínimo
+- si es worker interno, usa `user-invocable: false`
+- si va a delegar a otros, agrega la tool `agent`
 
-### Buenas prácticas para agentes
+Notas de diseño para agents:
 
-- Diseñar agentes por responsabilidad, no por tecnología genérica.
-- Aplicar principio de mínimo privilegio: planning y review con tools de lectura; implementación con edición y terminal solo cuando haga falta.
-- Separar planificación, implementación, revisión y análisis cuando el flujo sea complejo.
-- Usar `handoffs` para transiciones guiadas entre agentes.
-- Usar `user-invocable: false` en workers internos o subagentes que no deberían aparecer en el selector principal.
-- Usar `disable-model-invocation: true` cuando un agente solo deba ejecutarse explícitamente y no como subagente genérico.
-- Revisar periódicamente el set de tools para evitar agentes demasiado poderosos o demasiado ambiguos.
+- `model`: úsalo solo si el editor soporta ese identificador
+- `agents`: si lo declaras, debes incluir la tool `agent`
+- `handoffs`: útiles, pero deben apuntar a agentes que el editor realmente resuelva en ese momento
+- diseña por responsabilidad, no por tecnología genérica
+- si el agent crece demasiado, extrae conocimiento reusable a una skill
 
-### Ubicaciones válidas
+### Plantilla unificada para skills
 
-- Workspace: `.github/agents/nombre.agent.md`
-- Perfil de usuario: carpeta de perfil de VS Code
-- Compatibilidad Claude: `.claude/agents/nombre.md`
-
----
-
-## Plantilla estándar de skill (`SKILL.md`)
-
-Basar la creación de skills en la especificación de Agent Skills:
-
-- Overview: `https://agentskills.io/home`
-- Specification: `https://agentskills.io/specification`
-- Client implementation: `https://agentskills.io/client-implementation/adding-skills-support`
+Úsala cuando el conocimiento sea reusable.
 
 ```markdown
 ---
-name: mi-skill
-description: Describe qué hace la skill y cuándo debe usarse. Debe ser específica y ayudar al agente a decidir su activación.
+name: mi-nueva-skill
+description: Explica qué hace la skill y cuándo debe activarse.
 license: Proprietary
-compatibility: Opcional. Solo si requiere entorno, herramientas o permisos particulares.
+compatibility: Opcional si aplica.
 metadata:
-  author: Lucas del Reguero Martinez
+  author: Tu Nombre
   version: "1.0"
-allowed-tools: Opcional. Soporte depende del cliente.
 ---
 
-# Mi Skill
+# Mi Nueva Skill
 
 ## Cuándo usar
 
 Usa esta skill cuando...
 
+## Resultado esperado
+
+Qué debe dejar resuelto.
+
 ## Instrucciones
 
-1. Hacer X.
-2. Verificar Y.
-3. Si aplica, consultar [guía adicional](references/guia.md).
+1. Haz X.
+2. Verifica Y.
+3. Consulta `references/...` si hace falta más detalle.
 
 ## Casos borde
 
@@ -254,217 +342,248 @@ Usa esta skill cuando...
 - Caso 2
 ```
 
-### Reglas de formato para skills
+Checklist mínimo antes de guardarla:
 
-- `name` es obligatorio, en minúsculas con guiones, máximo 64 caracteres y debe coincidir con el directorio padre.
-- `description` es obligatoria, no vacía, máximo 1024 caracteres, y debe explicar qué hace la skill y cuándo usarla.
-- `compatibility` solo debe agregarse si hay requisitos reales de entorno.
-- `metadata` debe mantenerse pequeña y estable.
-- `allowed-tools` es experimental; usarlo solo si el cliente realmente lo soporta.
+- el directorio coincide exactamente con `name`
+- `description` explica activación, no solo tema general
+- `SKILL.md` no está inflado con detalle que debería vivir en `references/`
+- no duplica una skill existente
 
-### Recomendaciones de diseño
+Notas de diseño para skills:
 
-- Mantener `SKILL.md` enfocado y preferentemente por debajo de 500 líneas.
-- Aplicar progressive disclosure: catálogo breve al inicio, instrucciones completas al activar la skill, recursos bajo demanda.
-- Referenciar archivos con rutas relativas desde la raíz de la skill, por ejemplo `references/guia.md` o `scripts/helper.js`.
-- Evitar cadenas profundas de referencias; la skill debe ser navegable con pocos saltos.
-- Poner procedimientos, decisiones y criterios de uso en `SKILL.md`; mover contenido extenso a `references/`.
-- Si la skill necesita scripts, documentar dependencias y errores esperables de forma explícita.
+- `references/`: documentación adicional
+- `scripts/`: automatización o helpers ejecutables cuando realmente agreguen valor
+- `assets/`: plantillas o recursos reutilizables
+- una skill debe ser reusable
+- evita cadenas profundas de referencias
+- no mezcles múltiples skills en un mismo archivo
 
-### Cuándo usar skill vs agente
+No agregues `scripts/` o `assets/` por costumbre. Solo si resuelven una necesidad real.
 
-- Usar agente cuando necesitas una persona persistente con tools, modelo, handoffs o restricciones.
-- Usar skill cuando necesitas una capacidad reusable, portable y cargada bajo demanda.
-- Usar ambos juntos cuando un agente especializado debe apoyarse en una skill de dominio o workflow.
+### Plantilla unificada para prompts
 
+Úsala cuando la tarea sea concreta y repetible.
+
+```markdown
+---
+description: "Resuelve una tarea concreta y repetible"
+agent: "qa-ejecutor"
 ---
 
-## Contexto y documentación
+Contexto breve.
 
-La documentación oficial de VS Code enfatiza que la calidad del resultado depende del contexto realmente visible por el modelo.
+Objetivo:
 
-### Recomendaciones
-
-- Mantener `.github/copilot-instructions.md` como capa de contexto persistente del proyecto.
-- Añadir `.instructions.md` por área cuando distintas zonas del repo usen reglas distintas.
-- Empezar con contexto pequeño y ampliarlo solo cuando se detecten errores repetidos.
-- Mantener sesiones separadas para planificación, implementación, debugging y análisis, evitando mezclar contextos.
-- Referenciar archivos concretos, documentación y URLs relevantes en lugar de depender de supuestos implícitos.
-- Tratar documentos como `PRODUCT.md`, `ARCHITECTURE.md` y `CONTRIBUTING.md` como artefactos vivos que alimentan mejores decisiones del agente.
-
-### Anti-patrones
-
-- volcar demasiada información irrelevante al prompt
-- mezclar reglas contradictorias entre instrucciones, prompts y agentes
-- usar una única sesión larga para tareas no relacionadas
-- asumir que el agente recuerda sesiones anteriores
-
----
-
-## Tools y seguridad
-
-La documentación oficial recomienda controlar las tools con intención y no habilitarlas indiscriminadamente.
-
-### Principios
-
-- Seleccionar solo las tools necesarias para el rol del agente.
-- Preferir tools built-in para lectura, búsqueda y edición local antes de agregar MCP.
-- Agregar MCP solo para necesidades externas reales: APIs, browsers, bases de datos, cloud, etc.
-- Si un agente usa subagentes, incluir `agent` y restringir `agents:` a los nombres concretos que debe poder invocar.
-- Para orquestadores, usar handoffs y subagentes; para workers, reducir superficie de tools.
-
-### Seguridad operativa
-
-- Evitar auto-approval general salvo en entornos controlados.
-- Revisar cuidadosamente tools con efectos laterales: edición, terminal, fetch y tools externas.
-- Para tareas sensibles, usar agentes read-only o sessions con aprobación manual.
-- En Windows, preferir PowerShell antes que CMD para mejor integración del terminal agent.
-
----
-
-## Patrones recomendados
-
-### Plan -> Implement -> Review
-
-Basado en la documentación de planning y context engineering:
-
-1. Crear o refinar contexto global del proyecto.
-2. Usar Plan o un agente planificador para producir plan estructurado.
-3. Implementar en la misma sesión o delegar a Copilot CLI si el trabajo es autónomo y bien definido.
-4. Revisar contra el plan antes de cerrar.
-
-### Coordinator -> Workers
-
-Basado en la documentación de subagents:
-
-- Un coordinador decide fases y delega.
-- Los workers tienen foco estrecho y tools mínimas.
-- Cada subagente trabaja con contexto aislado y devuelve resumen, no todo el historial.
-
-### Local -> CLI -> Cloud
-
-Basado en la documentación de agent types:
-
-- Local agent: brainstorming, debugging, tareas con feedback inmediato y contexto del editor.
-- Copilot CLI: tareas bien definidas, autónomas y en background, idealmente desde un plan.
-- Cloud agent: colaboración, issues, PRs y trabajo remoto orientado a revisión por equipo.
-
----
-
-## Opción opcional: MCP (guía)
-
-MCP es **opcional** en este plan. Úsalo solo si tu agente necesita capacidades externas (por ejemplo, navegador con Playwright).
-
-### Cuándo conviene habilitar MCP
-
-- Cuando el agente debe interactuar con navegador o recursos externos.
-- Cuando necesitas tools tipo `playwright/*`.
-- Cuando quieres separar claramente lógica de agente y conectores de tooling.
-
-### Configuración opcional recomendada
-
-Si decides usar MCP, agrega esta estructura:
-
-```text
-.vscode/
-└── mcp.json
+- hacer X
+- validar Y
+- devolver Z
 ```
 
-Ejemplo base de `.vscode/mcp.json`:
+Checklist mínimo antes de guardarlo:
 
-```json
-{
-  "mcpServers": {
-    "playwright": {
-      "command": "npx",
-      "args": ["@playwright/mcp@latest"]
-    }
-  }
-}
-```
+- el prompt resuelve una sola tarea principal
+- apunta al agent correcto
+- no repite reglas globales ya cubiertas por instructions o por el agent
+- sigue siendo legible en una sola lectura
 
-### Ajuste opcional en `.agent.md`
+Notas de diseño para prompts:
 
-- Sin MCP: usa tools built-in (`search`, `edit`, `fetch`, etc.).
-- Con MCP: añade `playwright/*` (u otro `<server>/*`) en `tools:`.
+- deben ser cortos, reutilizables y concretos
+- no deben copiar el cuerpo completo del agent
+- deben servir como punto de entrada cómodo para tareas frecuentes
+- si el prompt necesita demasiado contexto, probablemente no debería ser un prompt
 
----
+### Regla práctica para usar las plantillas
 
-## Plan de implementación (paso a paso)
+1. Copia la plantilla más cercana.
+2. Ajusta nombre, descripción y alcance.
+3. Reduce tools si sobran.
+4. Mueve detalle reusable a una skill o a `references/`.
+5. Valida con el checklist de este documento.
 
-1. Crear contexto base del proyecto: `.github/copilot-instructions.md`.
-2. Añadir `.instructions.md` por dominio si el repo requiere reglas por framework o tipo de archivo.
-3. Crear estructura base de agentes en `.github/agents`.
-4. Crear estructura de skills en `.github/agents/skills/<skill-name>/SKILL.md` si el flujo requiere conocimiento reusable.
-5. Crear prompt files en `.github/prompts/` para tareas repetibles.
-6. (Opcional) Configurar MCP en `.vscode/mcp.json` si el caso de uso lo requiere.
-7. Crear agentes base o agente único según el workflow.
-8. Definir `tools` mínimos por rol, `agents:` permitidos y `handoffs` cuando aplique.
-9. Redactar cada `SKILL.md` siguiendo la specification de Agent Skills: frontmatter válido, nombre/directorio alineados y descripción clara de activación.
-10. Validar frontmatter YAML de cada `.agent.md` y `SKILL.md`.
-11. Verificar aparición en Copilot Chat (`@` selector) y slash commands relevantes.
-12. Probar activación real de skills, handoffs y subagentes cuando aplique.
-13. Ejecutar prueba end-to-end local y, si corresponde, handoff a Copilot CLI o cloud workflow.
+## Patrón recomendado de arquitectura
 
----
+Este repo favorece un patrón coordinator -> specialists -> internal workers.
+
+### Patrón visible al usuario
+
+- un orquestador como punto de entrada recomendado
+- especialistas visibles por dominio
+- README orientado al usuario final
+
+### Patrón interno
+
+- workers internos con `user-invocable: false`
+- skills compartidas para conocimiento reusable
+- prompts para atajos de tareas frecuentes
+
+### Ejemplo real del repo
+
+Catálogo visible:
+
+- `qa-maestro-orquestador`
+- `qa-arquitecto`
+- `qa-ejecutor`
+- `qa-analista`
+- `qa-seguridad`
+- `qa-performance`
+- `qa-exploratorio`
+- `Analista Universal de Logs`
+
+Workers internos:
+
+- `playwright-test-planner`
+- `playwright-test-generator`
+- `playwright-test-healer`
+
+Esto permite que el usuario vea pocos agentes claros, mientras los workflows especializados siguen existiendo sin ensuciar el selector principal.
+
+## Decisiones específicas del repo
+
+### 1. README dual implícito
+
+El repo tiene dos lecturas distintas:
+
+- [README.md](README.md): uso del sistema por el usuario final
+- [PLAN-COPILOT-AGENTS.md](PLAN-COPILOT-AGENTS.md): diseño y mantenimiento de la capa de customización
+
+### 2. Playwright como dominio fuerte
+
+Playwright tiene:
+
+- agents visibles orientados a QA
+- workers internos especializados
+- una skill canónica transversal: `playwright-best-practices`
+- MCP activo en `.vscode/mcp.json`
+
+### 3. Orquestación por responsabilidad
+
+La arquitectura QA actual ya separa:
+
+- setup y estrategia
+- ejecución y debugging generalista
+- análisis de resultados
+- performance
+- seguridad
+- exploración
+- logs
+
+No rompas esa separación sin una razón fuerte.
+
+### 4. Los workers internos deben seguir siendo internos
+
+Si agregas nuevos workflows especializados comparables a planner, generator o healer:
+
+- evalúa primero si realmente deben ser visibles
+- si son internos, usa `user-invocable: false`
+- documenta el criterio de delegación en el orquestador y en las skills relacionadas
+
+## MCP en este repo
+
+MCP es opcional por diseño general, pero ya está adoptado para Playwright en [.vscode/mcp.json](.vscode/mcp.json).
+
+### Cuándo agregar MCP nuevo
+
+Agrega un server MCP solo si:
+
+- expone una capacidad externa real que no existe con tools built-in
+- resuelve un flujo frecuente o de alto valor
+- su coste operativo y de mantenimiento está justificado
+
+No agregues MCP solo por novedad o por duplicar algo que ya resuelve una tool built-in.
+
+### Reglas de integración MCP
+
+- Mantén la configuración en `.vscode/mcp.json`.
+- Declara tools específicas en el agent correcto.
+- Evita dar acceso a tooling externo a agents que no lo necesitan.
+- Si el flujo es interno, considera un worker en vez de inflar un agent visible.
+
+## Workflow recomendado para crear algo nuevo
+
+### Si quieres crear un nuevo agent
+
+1. Define el problema exacto.
+2. Decide si de verdad necesita ser un agent y no una skill o un prompt.
+3. Define su audiencia: visible o interno.
+4. Define tools mínimas.
+5. Decide si necesita `agents:` o `handoffs:`.
+6. Escribe un body corto, enfocado en comportamiento y límites.
+7. Valida frontmatter y aparición en el editor.
+
+### Si quieres crear una nueva skill
+
+1. Confirma que el conocimiento será reusable.
+2. Crea carpeta propia bajo `.github/agents/skills/`.
+3. Alinea `name` con el directorio.
+4. Mantén `SKILL.md` corto y operativo.
+5. Mueve detalle a `references/`.
+6. Revisa que no esté duplicando otra skill existente.
+
+### Si quieres crear un nuevo prompt
+
+1. Verifica que la tarea sea repetible y concreta.
+2. Reutiliza el agent adecuado en el frontmatter.
+3. Mantén el prompt corto.
+4. No copies reglas que ya viven en instructions o en el agent.
+
+## Anti-Patrones que debes evitar
+
+- meter reglas globales del repo dentro de un agent
+- duplicar el mismo estándar en varios agents y skills
+- crear agents genéricos con demasiadas tools
+- usar un agent cuando bastaba un prompt
+- usar una skill para una tarea de un solo uso
+- referenciar modelos no soportados por el editor actual
+- dejar workers internos visibles al usuario sin una razón clara
+- convertir el README de usuario en documento de arquitectura interna
+- convertir el plan de arquitectura en documento para el usuario final
 
 ## Criterios de calidad
 
-- Todos los `.agent.md` tienen frontmatter válido y delimitadores `---`.
-- Todos los `SKILL.md` tienen frontmatter YAML válido y cuerpo Markdown útil.
-- `.github/copilot-instructions.md` existe cuando el proyecto requiere reglas transversales.
-- Las responsabilidades están separadas correctamente entre instrucciones, prompts, agentes y skills.
-- El orquestador referencia solo agentes existentes en `agents:` y `handoffs:`.
-- Si un agente define `agents:`, también define la tool `agent`.
-- Cada agente tiene `description`, `tools`, `model`, `target` y alcance claros.
-- Cada agente usa solo las tools necesarias para su rol.
-- Cada skill tiene `name` y `description` útiles para activación por el modelo, no descripciones genéricas.
-- El nombre del directorio de la skill coincide con `name`.
-- Las referencias a `references/`, `scripts/` y `assets/` usan rutas relativas correctas.
-- `SKILL.md` mantiene foco operativo y evita acumular documentación extensa innecesaria.
-- Los workflows complejos usan handoffs o subagentes en lugar de un único agente monolítico.
-- Las tareas de planning e implementation pueden separarse en sesiones distintas para evitar contaminación de contexto.
-- Si se habilita MCP, `.vscode/mcp.json` es JSON válido y los servers arrancan correctamente.
+Una entrega está bien si cumple esto:
 
----
+- todos los `.agent.md` tienen frontmatter válido
+- todos los `SKILL.md` tienen frontmatter válido y foco operativo
+- las instrucciones globales y por tipo de archivo siguen siendo la autoridad normativa
+- cada agent tiene un alcance claro y un set de tools defensible
+- las skills no duplican conocimiento ya cubierto por otras skills o por `playwright-best-practices`
+- los prompts son concretos y no monolíticos
+- los workers internos usan `user-invocable: false`
+- el README de usuario y este plan no compiten entre sí, sino que se complementan
 
-## Checklist de verificación final
+## Checklist de validación final
 
-- [ ] VS Code detecta los agentes del workspace.
-- [ ] Los agentes son invocables con `@`.
-- [ ] Los handoffs del orquestador funcionan (Si existiese orquestador).
-- [ ] Los tools configurados corresponden al rol.
-- [ ] El proyecto tiene instrucciones globales y/o por dominio cuando realmente las necesita.
-- [ ] No se usan agentes para sustituir instrucciones globales o prompts reutilizables.
-- [ ] Las skills viven en `.github/agents/skills/` y cada una contiene `SKILL.md`.
-- [ ] `name` y directorio de cada skill coinciden exactamente.
-- [ ] La `description` de cada skill permite inferir claramente cuándo activarla.
-- [ ] Las referencias relativas dentro de la skill resuelven correctamente.
-- [ ] El contenido principal de la skill está en `SKILL.md` y el detalle extendido en `references/` o `scripts/`.
-- [ ] Si hay subagentes, el coordinador limita `agents:` a los workers correctos.
-- [ ] Si hay sesiones de implementación autónoma, existe criterio claro para usar local agent, Copilot CLI o cloud agent.
-- [ ] (Opcional) Si hay MCP, la configuración en `.vscode/mcp.json` es válida.
-- [ ] (Opcional) Si hay MCP, los tools `<server>/*` están declarados en el agente correcto.
+- [ ] El nuevo archivo está en la ruta correcta.
+- [ ] El frontmatter es válido.
+- [ ] `description` explica con claridad qué hace y cuándo usarlo.
+- [ ] Si hay `agents:`, también está la tool `agent`.
+- [ ] Si el agent es interno, usa `user-invocable: false`.
+- [ ] Si se declara `model`, el identificador es soportado por el editor actual.
+- [ ] El body del agent está enfocado y no es un manual enciclopédico.
+- [ ] El `name` de la skill coincide con su directorio.
+- [ ] Las referencias internas usan rutas relativas correctas.
+- [ ] No se está duplicando contenido que debería vivir en instructions o en una skill existente.
+- [ ] Si se añadió MCP, la configuración está justificada y válida.
+- [ ] El cambio mejora el catálogo sin aumentar ambigüedad innecesaria.
 
----
+## Entregables mínimos del sistema
 
-## Entregables mínimos
-
-1. `.github/copilot-instructions.md` (si el repo requiere contexto persistente)
+1. [.github/copilot-instructions.md](.github/copilot-instructions.md)
 2. `.github/agents/*.agent.md`
-3. `.github/agents/skills/*/SKILL.md` (si el workspace incorpora skills)
-4. `.github/prompts/*.prompt.md` (si hay tareas repetibles)
-5. `README.md` con uso rápido de agentes
+3. `.github/agents/skills/*/SKILL.md`
+4. `.github/prompts/*.prompt.md`
+5. [README.md](README.md) orientado al usuario final
+6. [PLAN-COPILOT-AGENTS.md](PLAN-COPILOT-AGENTS.md) orientado a quien crea y mantiene la customización
 
----
+## Regla final
 
-## Notas prácticas
+Si dudas dónde poner algo, decide así:
 
-- Mantén agentes pequeños y especializados.
-- Mantén skills pequeñas, específicas y reutilizables.
-- Para nuevas skills, prioriza compatibilidad con Agent Skills antes que convenciones locales cerradas.
-- Si tienes disponible la librería de referencia, validar con `skills-ref validate ./mi-skill` antes de publicar o compartir una skill.
-- Si dudas entre poner contenido en agente o en skill: comportamiento del rol en el agente, conocimiento reusable en la skill.
-- Si dudas entre prompt file y agente: prompt para tarea repetible; agente para persona especializada con tools o handoffs.
-- Si dudas entre local agent y Copilot CLI: local para iteración; CLI para ejecución autónoma bien delimitada.
-- Si una tarea crece, dividir por rol y conectar por handoff.
+1. Regla transversal del repo: instructions.
+2. Rol especializado con tools y límites: agent.
+3. Conocimiento reusable: skill.
+4. Tarea repetible y concreta: prompt.
+5. Flujo especializado que no debe ser visible al usuario: worker interno.
+
+Si una pieza nueva no mejora claridad, mantenibilidad o separación de responsabilidades, no debería entrar al repo todavía.

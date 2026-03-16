@@ -1,6 +1,6 @@
-# iFrame Testing
+# iFrame testing
 
-## Table of Contents
+## Table of contents
 
 1. [Basic iFrame Access](#basic-iframe-access)
 2. [Cross-Origin iFrames](#cross-origin-iframes)
@@ -9,7 +9,7 @@
 5. [iFrame Navigation](#iframe-navigation)
 6. [Common Patterns](#common-patterns)
 
-## Basic iFrame Access
+## Basic iFrame access
 
 ### Using frameLocator
 
@@ -50,7 +50,7 @@ for (const f of frames) {
 }
 ```
 
-### Waiting for iFrame Content
+### Waiting for iFrame content
 
 ```typescript
 // Wait for iframe to load
@@ -68,7 +68,7 @@ await page.waitForFunction(() => {
 
 ## Cross-Origin iFrames
 
-### Accessing Cross-Origin Content
+### Accessing Cross-Origin content
 
 ```typescript
 // Cross-origin iframes work seamlessly with frameLocator
@@ -82,7 +82,7 @@ await thirdPartyFrame.getByRole("button", { name: "Submit" }).click();
 await expect(thirdPartyFrame.locator("body")).toBeVisible();
 ```
 
-### Payment Provider iFrames (Stripe, PayPal)
+### Payment provider iFrames (stripe, PayPal)
 
 ```typescript
 test("Stripe payment iframe", async ({ page }) => {
@@ -107,7 +107,7 @@ test("Stripe payment iframe", async ({ page }) => {
 });
 ```
 
-### Handling OAuth in iFrames
+### Handling oauth in iFrames
 
 ```typescript
 test("OAuth iframe flow", async ({ page }) => {
@@ -125,7 +125,7 @@ test("OAuth iframe flow", async ({ page }) => {
 
 ## Nested iFrames
 
-### Accessing Nested Frames
+### Accessing nested frames
 
 ```typescript
 // Parent iframe contains child iframe
@@ -142,7 +142,7 @@ const level3 = level2.frameLocator("#level3");
 await level3.getByText("Deep content").click();
 ```
 
-### Finding Elements Across Frame Hierarchy
+### Finding elements across frame hierarchy
 
 ```typescript
 // Helper to search all frames for an element
@@ -173,7 +173,7 @@ test("find element in any frame", async ({ page }) => {
 
 ## Dynamic iFrames
 
-### iFrames Created at Runtime
+### iFrames created at runtime
 
 ```typescript
 test("handle dynamically created iframe", async ({ page }) => {
@@ -191,7 +191,7 @@ test("handle dynamically created iframe", async ({ page }) => {
 });
 ```
 
-### iFrames with Changing src
+### iFrames with changing src
 
 ```typescript
 test("iframe src changes", async ({ page }) => {
@@ -230,9 +230,9 @@ test("lazy loaded iframe", async ({ page }) => {
 });
 ```
 
-## iFrame Navigation
+## iFrame navigation
 
-### Navigating Within iFrame
+### Navigating within iFrame
 
 ```typescript
 test("iframe internal navigation", async ({ page }) => {
@@ -253,7 +253,7 @@ test("iframe internal navigation", async ({ page }) => {
 });
 ```
 
-### Handling Frame Navigation Events
+### Handling frame navigation events
 
 ```typescript
 test("track iframe navigation", async ({ page }) => {
@@ -278,9 +278,9 @@ test("track iframe navigation", async ({ page }) => {
 });
 ```
 
-## Common Patterns
+## Common patterns
 
-### iFrame Fixture
+### iFrame fixture
 
 ```typescript
 // fixtures.ts
@@ -305,7 +305,7 @@ test("complete payment", async ({ paymentFrame }) => {
 });
 ```
 
-### Debugging iFrame Issues
+### Debugging iFrame issues
 
 ```typescript
 test("debug iframe content", async ({ page }) => {
@@ -331,7 +331,7 @@ test("debug iframe content", async ({ page }) => {
 });
 ```
 
-### Handling iFrame Load Failures
+### Handling iFrame load failures
 
 ```typescript
 test("handle iframe load failure", async ({ page }) => {
@@ -359,7 +359,7 @@ test("handle iframe load failure", async ({ page }) => {
 });
 ```
 
-### Mocking iFrame Content
+### Mocking iFrame content
 
 ```typescript
 test("mock iframe response", async ({ page }) => {
@@ -386,7 +386,7 @@ test("mock iframe response", async ({ page }) => {
 });
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns to avoid
 
 | Anti-Pattern                          | Problem                           | Solution                                           |
 | ------------------------------------- | --------------------------------- | -------------------------------------------------- |
@@ -396,7 +396,7 @@ test("mock iframe response", async ({ page }) => {
 | Assuming same-origin                  | Cross-origin has different timing | Always wait for iframe content explicitly          |
 | Ignoring nested iframes               | Element not found                 | Chain frameLocator calls for nested frames         |
 
-## Related References
+## Related references
 
 - **Locators**: See [locators.md](locators.md) for selector strategies
 - **Third-party services**: See [third-party.md](third-party.md) for payment iframe patterns
