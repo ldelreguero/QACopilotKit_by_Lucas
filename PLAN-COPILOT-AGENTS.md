@@ -9,6 +9,7 @@
 - [Estructura canónica del repo](#estructura-canónica-del-repo)
 - [Archivos normativos del repo](#archivos-normativos-del-repo)
 - [Fuentes base](#fuentes-base)
+- [Autoría y procedencia](#autoría-y-procedencia)
 - [Cuándo crear un agent, una skill o un prompt](#cuándo-crear-un-agent-una-skill-o-un-prompt)
 - [Plantillas de diseño para agents, skills y prompts](#plantillas-de-diseño-para-agents-skills-y-prompts)
 - [Patrón recomendado de arquitectura](#patrón-recomendado-de-arquitectura)
@@ -210,6 +211,22 @@ Resumen de sus reglas:
 
 Este plan usa GitHub Docs y VS Code Docs como base principal para `.agent.md`.
 Para skills, usa la documentación oficial de Agent Skills como especificación de formato y diseño.
+
+## Autoría y procedencia
+
+Este marco de customización fue armado y adaptado en este repositorio para organizar agentes, skills, prompts y workflows QA sobre GitHub Copilot y VS Code.
+
+### Datos del autor
+
+- Autor: `Lucas del Reguero Martinez`
+- LinkedIn: `https://www.linkedin.com/in/lucas-del-reguero-martinez/`
+
+### Procedencia de las piezas
+
+- La arquitectura del workspace, la doctrina del repo, la selección del catálogo visible, la separación entre especialistas y workers, y la integración entre prompts, skills e instrucciones fueron definidas en este repositorio por su autor.
+- La base canónica de buenas prácticas de Playwright proviene del repositorio `https://github.com/testdino-hq/playwright-skill` y su instalación recomendada es `npx skills add testdino-hq/playwright-skill`.
+- Los agentes `playwright-test-planner`, `playwright-test-generator` y `playwright-test-healer` deben considerarse como agentes instalados siguiendo la documentación oficial de Playwright Test Agents: `https://playwright.dev/docs/test-agents`.
+- En este repo, dichos agentes se integran como workers internos dentro de la arquitectura QA, pero su procedencia debe mantenerse explícita.
 
 ### GitHub Copilot
 

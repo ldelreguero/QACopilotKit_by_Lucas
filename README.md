@@ -32,7 +32,23 @@ Esto impacta a los agentes y skills QA que consumen estándares de:
 - page object model
 - accesibilidad, visual testing, API testing y otros temas especializados
 
-Ese es el punto de entrada recomendado para un QA porque:
+## Autoría y procedencia
+
+Este workspace y marco de trabajo fue armado y adaptado por su autor para organizar el uso de agentes, skills, prompts e integración QA dentro de VS Code con GitHub Copilot.
+
+### Datos del autor
+
+- Autor: `Lucas del Reguero Martinez`
+- LinkedIn: `https://www.linkedin.com/in/lucas-del-reguero-martinez/`
+
+### Procedencia de componentes reutilizados
+
+- La arquitectura general del workspace, la selección de agentes visibles, la orquestación QA, los prompts y la integración entre piezas fueron definidos y adaptados en este repositorio por su autor.
+- La base canónica de buenas prácticas de Playwright proviene del repositorio `https://github.com/testdino-hq/playwright-skill` y se instala con `npx skills add testdino-hq/playwright-skill`.
+- Los workers internos `playwright-test-planner`, `playwright-test-generator` y `playwright-test-healer` corresponden al flujo de agentes de Playwright documentado en `https://playwright.dev/docs/test-agents`.
+- Esos workers fueron incorporados en este workspace como parte del sistema, pero su procedencia debe atribuirse a la documentación oficial de Playwright Test Agents.
+
+El orquestador QA sigue siendo el punto de entrada recomendado porque:
 
 - clasifica la necesidad
 - decide si falta setup, ejecución o análisis
@@ -279,8 +295,10 @@ Prompts de logs disponibles:
 ## Qué hace especial a este workspace
 
 - Está orientado a QA real, no solo a creación de agentes.
+- El marco completo del workspace fue armado y adaptado en este repositorio para uso QA sobre VS Code y GitHub Copilot.
 - La capa Playwright usa `playwright-skill` como base canónica común para evitar duplicación de criterios.
 - Esa base proviene de `testdino-hq/playwright-skill` y puede reinstalarse con `npx skills add testdino-hq/playwright-skill`.
+- Los workers `playwright-test-planner`, `playwright-test-generator` y `playwright-test-healer` siguen la instalación y enfoque documentados por Playwright en `https://playwright.dev/docs/test-agents`.
 - Los workflows más complejos están separados en workers internos para que el usuario no tenga que elegir entre agentes demasiado parecidos.
 - El orquestador QA funciona como puerta de entrada recomendada.
 
