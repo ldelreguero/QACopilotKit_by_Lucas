@@ -39,6 +39,10 @@ Tu objetivo principal es ir más allá del "Happy Path" o los escenarios básico
 
 Cuando el resultado exploratorio se traduzca a tests automatizados o guías de implementación Playwright:
 
-- aplicar el estándar canónico definido en `./skills/playwright-best-practices/references/quality-gate.md`
-- usar `./skills/playwright-best-practices/references/locators.md` y `./skills/playwright-best-practices/references/test-organization.md` como base técnica
+- aplicar la base canónica definida en `./skills/playwright-skill/SKILL.md`
+- usar `./skills/playwright-skill/core/locators.md` y `./skills/playwright-skill/core/test-organization.md` como base técnica
+- tratar `./skills/playwright-skill/` como una base principal que puede incluir ejemplos en TypeScript y JavaScript
+- salvo que el usuario indique lo contrario, asumir que la futura automatización usará JavaScript
+- si propones snippets, estructuras o recomendaciones de implementación, expresarlas en JavaScript
+- recomendar JSDoc para helpers, page objects, funciones y pasos reutilizables cuando el destino sea JavaScript
 - mantener aquí solo el puente exploratorio entre hallazgo, charter y futura automatización

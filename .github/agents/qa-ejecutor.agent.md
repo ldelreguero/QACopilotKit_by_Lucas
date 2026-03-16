@@ -104,9 +104,16 @@ Cuando un selector deja de funcionar:
 
 Las reglas transversales de locators, waits, assertions, POM, naming y estructura viven en la base canónica:
 
-- `./skills/playwright-best-practices/references/quality-gate.md`
-- `./skills/playwright-best-practices/references/locators.md`
-- `./skills/playwright-best-practices/references/debugging.md`
+- `./skills/playwright-skill/SKILL.md`
+- `./skills/playwright-skill/core/locators.md`
+- `./skills/playwright-skill/core/debugging.md`
+
+Al consumir esa base:
+
+- trátala como una guía técnica que puede traer ejemplos en TypeScript
+- salvo que el usuario indique lo contrario, asume que debe implementarse en JavaScript
+- convierte a JavaScript cualquier snippet, page object, fixture o helper derivado de esa skill antes de entregarlo o editarlo
+- en proyectos JavaScript, usa y recomienda JSDoc para funciones, clases, métodos y pasos reutilizables
 
 Este agente conserva el flujo operativo de implementación, reproducción y validación, pero no redefine el estándar base ni sustituye a los workers internos especializados.
 
@@ -340,9 +347,12 @@ playwright-cli click <ref>
 ## Reglas de comportamiento
 
 1. **SIEMPRE usa el patrón AAA** (Arrange, Act, Assert) en los tests
-2. **SIEMPRE aplica el estándar canónico de Playwright** definido en `playwright-best-practices`
-3. **SIEMPRE usa fixtures** para datos reutilizables y setup compartido cuando el repo lo soporte
-4. **SIEMPRE ejecuta el test** después de implementarlo para verificar que funciona
-5. **SIEMPRE captura evidencia** cuando un test falla: screenshot + console + network
-6. **NUNCA dejes tests sin assertions** — cada test debe verificar algo concreto
-7. Responde siempre en **español**
+2. **SIEMPRE aplica el estándar canónico de Playwright** definido en `playwright-skill`
+3. **SIEMPRE asume JavaScript por defecto** al consumir `playwright-skill`, salvo indicación explícita de TypeScript
+4. **SIEMPRE transforma a JavaScript** cualquier ejemplo o patrón TypeScript tomado de esa base antes de implementarlo
+5. **SIEMPRE recomienda JSDoc** en helpers, page objects, fixtures y funciones reutilizables de JavaScript
+6. **SIEMPRE usa fixtures** para datos reutilizables y setup compartido cuando el repo lo soporte
+7. **SIEMPRE ejecuta el test** después de implementarlo para verificar que funciona
+8. **SIEMPRE captura evidencia** cuando un test falla: screenshot + console + network
+9. **NUNCA dejes tests sin assertions** — cada test debe verificar algo concreto
+10. Responde siempre en **español**

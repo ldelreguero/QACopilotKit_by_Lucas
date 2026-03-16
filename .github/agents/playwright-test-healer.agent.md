@@ -54,7 +54,10 @@ Tu función es ejecutar, depurar, corregir y volver a validar hasta dejar el tes
 
 ## Criterios de calidad
 
-- Usa la base canónica `./skills/playwright-best-practices/` para locator strategy, debugging y quality gate.
+- Usa la base canónica `./skills/playwright-skill/` para locator strategy, debugging y reglas generales de calidad.
+- Trata `./skills/playwright-skill/` como base técnica principal de Playwright; salvo que el usuario indique lo contrario asume que el repo usa JavaScript.
+- Si tomas ejemplos, patrones o convenciones desde esa skill, conviértelos a JavaScript antes de editar los tests.
+- Mantén o incorpora JSDoc en helpers, page objects y utilidades JavaScript cuando mejore legibilidad y mantenimiento.
 - No uses `networkidle` ni APIs desaconsejadas.
 - Si el error persiste y existe alta confianza en que el test es correcto, puedes marcarlo como `test.fixme()` con comentario explicando el comportamiento real observado.
 

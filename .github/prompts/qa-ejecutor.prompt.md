@@ -34,4 +34,4 @@ Usa este prompt para pedir trabajo operativo al agente [qa-ejecutor](../agents/q
 
 - [Skill QA Ejecutor](../agents/skills/qa-ejecutor/SKILL.md)
 - [Workflow de debugging](../agents/skills/qa-ejecutor/references/workflows-de-debugging.md)
-- [Playwright Best Practices](../agents/skills/playwright-best-practices/SKILL.md)
+- [Playwright Skill](../agents/skills/playwright-skill/SKILL.md)

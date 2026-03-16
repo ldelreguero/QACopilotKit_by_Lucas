@@ -236,11 +236,18 @@ function analyzeNetworkLogs(networkRequests) {
 
 ## Checklist de compliance Playwright (obligatorio)
 
-Al analizar suites de QA Web/API, usa como checklist canónico:
+Al analizar suites de QA Web/API, usa como base canónica:
 
-- `./skills/playwright-best-practices/references/quality-gate.md`
-- `./skills/playwright-best-practices/references/locators.md`
-- `./skills/playwright-best-practices/references/test-organization.md`
+- `./skills/playwright-skill/SKILL.md`
+- `./skills/playwright-skill/core/locators.md`
+- `./skills/playwright-skill/core/test-organization.md`
+
+Al consumir esa base:
+
+- trátala como una referencia técnica principal que puede incluir ejemplos en TypeScript y JavaScript
+- salvo que el usuario indique lo contrario, asume que el proyecto objetivo usa JavaScript
+- si muestras ejemplos, recomendaciones de implementación o fixes sugeridos, exprésalos en JavaScript
+- cuando propongas helpers, page objects o utilidades, recomienda JSDoc como estándar mínimo de documentación
 
 Si hay incumplimientos, repórtalos como deuda técnica con severidad y acción sugerida, sin redefinir aquí la norma base.
 

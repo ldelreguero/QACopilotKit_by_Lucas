@@ -8,6 +8,7 @@
 - [Doctrina del repositorio](#doctrina-del-repositorio)
 - [Estructura canónica del repo](#estructura-canónica-del-repo)
 - [Archivos normativos del repo](#archivos-normativos-del-repo)
+- [Fuentes base](#fuentes-base)
 - [Cuándo crear un agent, una skill o un prompt](#cuándo-crear-un-agent-una-skill-o-un-prompt)
 - [Plantillas de diseño para agents, skills y prompts](#plantillas-de-diseño-para-agents-skills-y-prompts)
 - [Patrón recomendado de arquitectura](#patrón-recomendado-de-arquitectura)
@@ -90,7 +91,7 @@ La regla general es evitar archivos monolíticos.
 
 ### 3. Playwright tiene una base canónica compartida
 
-En este repo, `playwright-best-practices` es la fuente canónica para estándares transversales Playwright.
+En este repo, `playwright-skill` es la fuente canónica para estándares transversales Playwright.
 
 Eso implica que agentes y skills QA deben referenciar esa base para:
 
@@ -101,6 +102,13 @@ Eso implica que agentes y skills QA deben referenciar esa base para:
 - quality gate
 
 No se deben mantener checklists Playwright paralelos en varios archivos.
+
+La fuente oficial adoptada para esa base es el repositorio `https://github.com/testdino-hq/playwright-skill`.
+La instalación canónica en el workspace se realiza con:
+
+```bash
+npx skills add testdino-hq/playwright-skill
+```
 
 ### 4. Los workers internos no son entrada principal del usuario
 
@@ -197,6 +205,45 @@ Resumen de sus reglas:
 - Cada prompt debe encapsular una tarea concreta y repetible.
 - Si depende de un rol especializado, referencia el agent adecuado en el frontmatter.
 - No dupliques reglas ya cubiertas por instrucciones o por el propio agent.
+
+## Fuentes base
+
+Este plan usa GitHub Docs y VS Code Docs como base principal para `.agent.md`.
+Para skills, usa la documentación oficial de Agent Skills como especificación de formato y diseño.
+
+### GitHub Copilot
+
+- [Create custom agents](https://docs.github.com/es/copilot/how-tos/use-copilot-agents/coding-agent/create-custom-agents)
+- [About custom agents](https://docs.github.com/es/copilot/concepts/agents/coding-agent/about-custom-agents)
+- [Configuring an agent profile](https://docs.github.com/es/copilot/how-tos/use-copilot-agents/coding-agent/create-custom-agents#configuring-an-agent-profile)
+
+### VS Code Copilot
+
+- [Customization: custom agents](https://code.visualstudio.com/docs/copilot/customization/custom-agents)
+- [Copilot overview](https://code.visualstudio.com/docs/copilot/overview)
+- [Concepts: tools](https://code.visualstudio.com/docs/copilot/concepts/tools)
+- [Agents overview](https://code.visualstudio.com/docs/copilot/agents/overview)
+- [Concepts: context](https://code.visualstudio.com/docs/copilot/concepts/context)
+- [Concepts: customization](https://code.visualstudio.com/docs/copilot/concepts/customization)
+- [Agents tutorial](https://code.visualstudio.com/docs/copilot/agents/agents-tutorial)
+- [Agents planning](https://code.visualstudio.com/docs/copilot/agents/planning)
+- [Agent tools](https://code.visualstudio.com/docs/copilot/agents/agent-tools)
+- [Subagents](https://code.visualstudio.com/docs/copilot/agents/subagents)
+- [Local agents](https://code.visualstudio.com/docs/copilot/agents/local-agents)
+- [Copilot CLI](https://code.visualstudio.com/docs/copilot/agents/copilot-cli)
+- [Context engineering guide](https://code.visualstudio.com/docs/copilot/guides/context-engineering-guide)
+- [Customize Copilot guide](https://code.visualstudio.com/docs/copilot/guides/customize-copilot-guide)
+
+### Agent Skills
+
+- [Agent Skills](https://agentskills.io/home)
+- [Specification](https://agentskills.io/specification)
+- [Adding skills support](https://agentskills.io/client-implementation/adding-skills-support)
+
+### Base canónica Playwright adoptada en este repo
+
+- Repositorio: [testdino-hq/playwright-skill](https://github.com/testdino-hq/playwright-skill)
+- Instalación: `npx skills add testdino-hq/playwright-skill`
 
 ## Cuándo crear un agent, una skill o un prompt
 
@@ -453,7 +500,7 @@ Playwright tiene:
 
 - agents visibles orientados a QA
 - workers internos especializados
-- una skill canónica transversal: `playwright-best-practices`
+- una skill canónica transversal: `playwright-skill`
 - MCP activo en `.vscode/mcp.json`
 
 ### 3. Orquestación por responsabilidad
@@ -547,7 +594,7 @@ Una entrega está bien si cumple esto:
 - todos los `SKILL.md` tienen frontmatter válido y foco operativo
 - las instrucciones globales y por tipo de archivo siguen siendo la autoridad normativa
 - cada agent tiene un alcance claro y un set de tools defensible
-- las skills no duplican conocimiento ya cubierto por otras skills o por `playwright-best-practices`
+- las skills no duplican conocimiento ya cubierto por otras skills o por `playwright-skill`
 - los prompts son concretos y no monolíticos
 - los workers internos usan `user-invocable: false`
 - el README de usuario y este plan no compiten entre sí, sino que se complementan

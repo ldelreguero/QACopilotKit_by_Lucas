@@ -54,10 +54,10 @@ La salida debe dejar:
 ## Recursos relacionados
 
 - [Baselines y diffs](references/baselines-y-diffs.md)
-- [Playwright quality gate](../playwright-best-practices/references/quality-gate.md)
-- [Visual organization base](../playwright-best-practices/references/test-organization.md)
+- [Playwright Skill](../playwright-skill/SKILL.md)
+- [Visual organization base](../playwright-skill/core/test-organization.md)
 - [qa-ejecutor](../qa-ejecutor/SKILL.md)
-- [playwright-best-practices](../playwright-best-practices/SKILL.md)
+- [playwright-skill](../playwright-skill/SKILL.md)
 
 ## Casos borde
 

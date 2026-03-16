@@ -63,8 +63,8 @@ Si el proyecto todavía es pequeño, empieza con una estructura mínima y escala
 ## Referencias relacionadas
 
 - [Blueprints de setup](blueprints-de-setup.md)
-- [Playwright Best Practices](../../playwright-best-practices/SKILL.md)
-- [Page Object Model](../../playwright-best-practices/references/page-object-model.md)
-- [Test Organization](../../playwright-best-practices/references/test-organization.md)
-- [Fixtures & Hooks](../../playwright-best-practices/references/fixtures-hooks.md)
-- [Annotations y test.step](../../playwright-best-practices/references/annotations.md)
+- [Playwright Skill](../../playwright-skill/SKILL.md)
+- [Page Object Model](../../playwright-skill/pom/page-object-model.md)
+- [Test Organization](../../playwright-skill/core/test-organization.md)
+- [Fixtures & Hooks](../../playwright-skill/core/fixtures-and-hooks.md)
+- [Organización de tests y suites](../../playwright-skill/core/test-organization.md)

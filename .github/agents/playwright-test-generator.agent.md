@@ -65,7 +65,10 @@ Tu rol es ejecutar los pasos definidos, capturar el log de generación y escribi
 
 ## Criterios de calidad
 
-- Apóyate en las mejores prácticas observadas en el log y en la base canónica `./skills/playwright-best-practices/`.
+- Apóyate en las mejores prácticas observadas en el log y en la base canónica `./skills/playwright-skill/`.
+- Trata `./skills/playwright-skill/` como base técnica principal de Playwright; salvo que el usuario indique lo contrario asume que el proyecto usa JavaScript.
+- Cuando la skill o sus referencias muestren patrones, tipos o snippets en TypeScript, transfórmalos a JavaScript antes de generar el test.
+- En JavaScript, agrega o preserva JSDoc en helpers, clases, page objects y funciones reutilizables cuando aporte claridad.
 - No redefinas aquí locator strategy, quality gate o debugging base.
 - Si el plan está incompleto o ambiguo, devuelve control al orquestador en vez de inventar pasos.
 

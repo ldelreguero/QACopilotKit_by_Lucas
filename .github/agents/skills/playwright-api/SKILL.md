@@ -53,11 +53,11 @@ La salida debe dejar:
 ## Recursos relacionados
 
 - [Request context y patrones](references/request-context-y-patrones.md)
-- [Playwright quality gate](../playwright-best-practices/references/quality-gate.md)
-- [API test organization](../playwright-best-practices/references/test-organization.md)
-- [Assertions and waiting](../playwright-best-practices/references/assertions-waiting.md)
+- [Playwright Skill](../playwright-skill/SKILL.md)
+- [API test organization](../playwright-skill/core/test-organization.md)
+- [Assertions and waiting](../playwright-skill/core/assertions-and-waiting.md)
 - [qa-ejecutor](../qa-ejecutor/SKILL.md)
-- [playwright-best-practices](../playwright-best-practices/SKILL.md)
+- [playwright-skill](../playwright-skill/SKILL.md)
 
 ## Casos borde
 

@@ -89,7 +89,7 @@ PASO 5 → Delegar al agente correcto con contexto completo
   - Si el editor no ofrece handoff directo a un worker interno, usa la matriz y la lista `agents:` como fuente de routing para invocarlo por delegación.
 
 PASO 6 → Aplicar Quality Gate Playwright
-  - Verificar que la entrega cumpla la guía canónica definida en playwright-best-practices
+  - Verificar que la entrega cumpla la guía canónica definida en playwright-skill
   - Si no cumple, devolver al agente correspondiente con correcciones específicas
 ```
 
@@ -97,9 +97,16 @@ PASO 6 → Aplicar Quality Gate Playwright
 
 Antes de considerar una tarea como finalizada, valida el gate canónico de Playwright definido en:
 
-- `./skills/playwright-best-practices/references/quality-gate.md`
-- `./skills/playwright-best-practices/references/locators.md`
-- `./skills/playwright-best-practices/references/test-organization.md`
+- `./skills/playwright-skill/SKILL.md`
+- `./skills/playwright-skill/core/locators.md`
+- `./skills/playwright-skill/core/test-organization.md`
+
+Al orquestar tareas que consumen esa base:
+
+- trátala como guía técnica que puede traer ejemplos en TypeScript
+- salvo que el usuario indique lo contrario, asume JavaScript como lenguaje objetivo
+- exige que los agentes delegados transformen a JavaScript cualquier patrón o snippet tomado desde `playwright-skill`
+- exige recomendación de JSDoc en utilidades, page objects, fixtures y funciones reutilizables de JavaScript
 
 Si la entrega no cumple esa base, reenruta con feedback accionable al agente responsable.
 

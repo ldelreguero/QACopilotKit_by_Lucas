@@ -58,9 +58,9 @@ Para reducir falsos positivos:
 ## Referencias relacionadas
 
 - [Workflow operativo y debugging](workflows-de-debugging.md)
-- [Playwright Best Practices](../../playwright-best-practices/SKILL.md)
-- [Console Errors](../../playwright-best-practices/references/console-errors.md)
-- [Advanced Network Interception](../../playwright-best-practices/references/network-advanced.md)
-- [Multi-User](../../playwright-best-practices/references/multi-user.md)
-- [Debugging](../../playwright-best-practices/references/debugging.md)
-- [Mobile Testing](../../playwright-best-practices/references/mobile-testing.md)
+- [Playwright Skill](../../playwright-skill/SKILL.md)
+- [Debugging y errores](../../playwright-skill/core/debugging.md)
+- [Network Mocking](../../playwright-skill/core/network-mocking.md)
+- [Multi-User](../../playwright-skill/core/multi-user-and-collaboration.md)
+- [Debugging](../../playwright-skill/core/debugging.md)
+- [Mobile Testing](../../playwright-skill/core/mobile-and-responsive.md)

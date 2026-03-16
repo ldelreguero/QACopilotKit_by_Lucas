@@ -54,10 +54,10 @@ La salida debe dejar:
 ## Recursos relacionados
 
 - [WCAG y Playwright](references/wcag-y-playwright.md)
-- [Playwright quality gate](../playwright-best-practices/references/quality-gate.md)
-- [Accessibility base](../playwright-best-practices/references/accessibility.md)
+- [Playwright Skill](../playwright-skill/SKILL.md)
+- [Accessibility base](../playwright-skill/core/accessibility.md)
 - [qa-ejecutor](../qa-ejecutor/SKILL.md)
-- [playwright-best-practices](../playwright-best-practices/SKILL.md)
+- [playwright-skill](../playwright-skill/SKILL.md)
 
 ## Casos borde
 

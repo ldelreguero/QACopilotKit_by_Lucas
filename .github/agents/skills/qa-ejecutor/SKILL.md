@@ -41,7 +41,7 @@ La salida debe dejar:
 2. Usa el patrón existente del repo.
    No inventes una estructura nueva si el proyecto ya tiene convenciones.
 3. Prioriza selectores estables.
-   Sigue la prioridad oficial definida en `../playwright-best-practices/references/locators.md` y aplica el gate canónico antes de cerrar el cambio.
+   Sigue la prioridad oficial definida en `../playwright-skill/core/locators.md` y aplica la base canónica antes de cerrar el cambio.
 4. Reproduce el problema antes de corregirlo.
    Si hay fallo, intenta confirmar el escenario con ejecución o inspección controlada.
 5. Corrige la causa raíz.
@@ -121,9 +121,9 @@ Comandos típicos:
 
 - [Workflow operativo y debugging](references/workflows-de-debugging.md)
 - [Playwright operativo avanzado](references/playwright-operativo-avanzado.md)
-- [Playwright quality gate](../playwright-best-practices/references/quality-gate.md)
-- [Locator strategy](../playwright-best-practices/references/locators.md)
-- [Debugging base](../playwright-best-practices/references/debugging.md)
+- [Playwright Skill](../playwright-skill/SKILL.md)
+- [Locator strategy](../playwright-skill/core/locators.md)
+- [Debugging base](../playwright-skill/core/debugging.md)
 - [playwright-accessibility](../playwright-accessibility/SKILL.md)
 - [playwright-api](../playwright-api/SKILL.md)
 - [playwright-visual-testing](../playwright-visual-testing/SKILL.md)

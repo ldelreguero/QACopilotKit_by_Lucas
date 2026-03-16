@@ -70,7 +70,10 @@ Tu función es explorar una aplicación en navegador, identificar flujos relevan
 
 ## Criterios de calidad
 
-- Las reglas transversales de calidad Playwright viven en `./skills/playwright-best-practices/` y no deben redefinirse aquí.
+- Las reglas transversales de calidad Playwright viven en `./skills/playwright-skill/` y no deben redefinirse aquí.
+- Trata `./skills/playwright-skill/` como base técnica principal de Playwright; salvo que el usuario indique lo contrario asume JavaScript como lenguaje objetivo.
+- Cuando el plan vaya a alimentar generación o implementación posterior, redacta los pasos pensando en salida JavaScript y no en TypeScript.
+- Si aludes a helpers, page objects o utilidades derivadas del plan, considera que deberán implementarse en JavaScript con JSDoc cuando aporten claridad.
 - Si el plan se usará luego para generar tests, escribe pasos lo bastante específicos para que `playwright-test-generator` pueda materializarlos sin reinterpretación excesiva.
 - Incluye pruebas negativas cuando la interfaz o el flujo las justifiquen.
 

@@ -50,8 +50,9 @@ Si hay tensión entre documentos, prioriza mantener la separación de audiencias
 
 ## Doctrina específica de Playwright
 
-- `playwright-best-practices` es la fuente canónica para estándares transversales Playwright.
-- Agents y skills QA deben referenciar esa base para locators, waits, assertions, test organization, debugging y quality gate.
+- `playwright-skill` es la fuente canónica para estándares transversales Playwright.
+- Esa base proviene de `https://github.com/testdino-hq/playwright-skill` y debe instalarse con `npx skills add testdino-hq/playwright-skill`.
+- Agents y skills QA deben referenciar esa base para locators, waits, assertions, test organization, debugging y reglas generales de calidad.
 - No mantener checklists Playwright paralelos dentro de varios agents.
 - Si un workflow Playwright es especializado y no debe ser visible al usuario, modelarlo como worker interno.
 

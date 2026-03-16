@@ -86,9 +86,16 @@ Las reglas transversales de locators, waits, assertions, POM, naming y estructur
 
 Para cualquier decisión técnica de calidad Playwright, usa como fuente canónica:
 
-- `./skills/playwright-best-practices/references/quality-gate.md`
-- `./skills/playwright-best-practices/references/test-organization.md`
-- `./skills/playwright-best-practices/references/locators.md`
+- `./skills/playwright-skill/SKILL.md`
+- `./skills/playwright-skill/core/test-organization.md`
+- `./skills/playwright-skill/core/locators.md`
+
+Al consumir esa base:
+
+- trátala como una guía técnica que puede venir expresada en TypeScript
+- salvo que el usuario indique lo contrario, asume JavaScript como lenguaje objetivo del proyecto
+- adapta configuraciones, ejemplos y estructuras recomendadas desde TypeScript hacia JavaScript
+- recomienda JSDoc para helpers, fixtures, page objects, wrappers y utilidades compartidas en proyectos JavaScript
 
 Este agente conserva solo decisiones de arquitectura, setup y tradeoffs del repo.
 

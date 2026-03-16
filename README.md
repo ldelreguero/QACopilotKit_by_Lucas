@@ -12,6 +12,26 @@ La idea general es simple:
 
 Si no sabes qué agente usar, empieza por `@qa-maestro-orquestador`.
 
+## Base canónica de Playwright
+
+Las buenas prácticas transversales de Playwright en este workspace ya no salen de la skill anterior.
+La fuente canónica actual es el repositorio `https://github.com/testdino-hq/playwright-skill`, incorporado en el repo como la skill `playwright-skill` bajo `.github/agents/skills/`.
+
+Si necesitas reinstalarla o actualizarla en tu workspace, usa:
+
+```bash
+npx skills add testdino-hq/playwright-skill
+```
+
+Esto impacta a los agentes y skills QA que consumen estándares de:
+
+- locators
+- assertions y waiting
+- test organization
+- debugging
+- page object model
+- accesibilidad, visual testing, API testing y otros temas especializados
+
 Ese es el punto de entrada recomendado para un QA porque:
 
 - clasifica la necesidad
@@ -259,7 +279,8 @@ Prompts de logs disponibles:
 ## Qué hace especial a este workspace
 
 - Está orientado a QA real, no solo a creación de agentes.
-- La capa Playwright tiene una base canónica común para evitar duplicación de criterios.
+- La capa Playwright usa `playwright-skill` como base canónica común para evitar duplicación de criterios.
+- Esa base proviene de `testdino-hq/playwright-skill` y puede reinstalarse con `npx skills add testdino-hq/playwright-skill`.
 - Los workflows más complejos están separados en workers internos para que el usuario no tenga que elegir entre agentes demasiado parecidos.
 - El orquestador QA funciona como puerta de entrada recomendada.
 

@@ -49,7 +49,7 @@ La salida debe dejar claro:
 7. Deja el proyecto listo para el siguiente paso.
    La salida debe permitir que un agente ejecutor cree tests sin redefinir la arquitectura.
 8. Usa la base canónica para las reglas transversales.
-   No reescribas estándares Playwright de locators, waits, POM o assertions si ya viven en `playwright-best-practices`.
+   No reescribas estándares Playwright de locators, waits, POM o assertions si ya viven en `playwright-skill`.
 9. Mantén la frontera con el planner interno.
    Si hace falta explorar una aplicación real para redactar escenarios detallados paso a paso, deriva al worker `playwright-test-planner` en vez de absorber ese flujo aquí.
 
@@ -118,8 +118,8 @@ Si no existe esa necesidad, deja la configuración sin MCP para mantener menor c
 - [Arquitectura Playwright escalable](references/arquitectura-playwright-escalable.md)
 - [Configuración y parametrización](references/configuracion-y-parametrizacion.md)
 - [Tooling API condicional](references/tooling-api-condicional.md)
-- [Playwright quality gate](../playwright-best-practices/references/quality-gate.md)
-- [Test organization](../playwright-best-practices/references/test-organization.md)
+- [Playwright Skill](../playwright-skill/SKILL.md)
+- [Test organization](../playwright-skill/core/test-organization.md)
 - [api-suite-generation](../api-suite-generation/SKILL.md)
 - [contract-first-api](../contract-first-api/SKILL.md)
 - [openapi-testing](../openapi-testing/SKILL.md)
