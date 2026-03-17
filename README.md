@@ -45,6 +45,7 @@ Este workspace y marco de trabajo fue armado y adaptado por su autor para organi
 
 - La arquitectura general del workspace, la selección de agentes visibles, la orquestación QA, los prompts y la integración entre piezas fueron definidos y adaptados en este repositorio por su autor.
 - Varias de las skills de este workspace fueron basadas o inspiradas en skills publicadas en `https://qaskills.sh/`, y luego adaptadas al contexto, estructura y criterios de este repositorio.
+- Las skills del agente de prompt orientadas a evaluaciones con Promptfoo fueron extraídas y adaptadas desde `https://www.promptfoo.dev/docs/integrations/agent-skill/` y desde el repositorio oficial `https://github.com/promptfoo/promptfoo/tree/main/.claude/skills/promptfoo-evals`.
 - La base canónica de buenas prácticas de Playwright proviene del repositorio `https://github.com/testdino-hq/playwright-skill` y se instala con `npx skills add testdino-hq/playwright-skill`.
 - Los workers internos `playwright-test-planner`, `playwright-test-generator` y `playwright-test-healer` corresponden al flujo de agentes de Playwright documentado en `https://playwright.dev/docs/test-agents`.
 - Esos workers fueron incorporados en este workspace como parte del sistema, pero su procedencia debe atribuirse a la documentación oficial de Playwright Test Agents.
