@@ -22,6 +22,7 @@ Usa este prompt para pedir un análisis técnico completo sobre una sola fuente 
 3. Separa siempre hechos, inferencias e incertidumbres.
 4. Si la evidencia alcanza, genera un archivo `.md` con el análisis completo y la sección Archivos Analizados.
 5. Si falta contexto crítico, indícalo explícitamente junto con los datos mínimos faltantes.
+6. Si confirmas una signature, causa raíz o runbook reusable, cierra con la sección exacta `Sugerencia de memoria durable (opcional)` usando la [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md).
 
 ## Salida esperada
 
@@ -31,8 +32,10 @@ Usa este prompt para pedir un análisis técnico completo sobre una sola fuente 
 - impacto y criticidad
 - acciones recomendadas
 - archivo de salida `.md` si se generó
+- sección exacta `Sugerencia de memoria durable (opcional)` si aplica
 
 ## Referencias
 
 - [Skill Analista Universal de Logs](../agents/skills/analista-universal-logs/SKILL.md)
 - [Patrones y plantilla](../agents/skills/analista-universal-logs/references/patrones-y-plantilla.md)
+- [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md)

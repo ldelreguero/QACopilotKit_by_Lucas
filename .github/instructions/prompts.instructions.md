@@ -9,3 +9,5 @@ applyTo: ".github/prompts/**/*.prompt.md"
 - Usa el agente adecuado en el frontmatter cuando el prompt dependa de una persona especializada.
 - Referencia archivos o instrucciones relacionadas cuando agreguen contexto real.
 - Si el prompt repite reglas globales del repo, mueve esas reglas a instrucciones y deja el prompt más pequeño.
+- Si el prompt puede producir decisiones, baselines, restricciones o lecciones reutilizables, pide sugerencias de memoria compatibles con `.github/agent-memory/*.jsonl` usando la sección exacta `Sugerencia de memoria durable (opcional)` y los campos `bucket`, `key`, `category`, `summary` y `when_to_use`.
+- Cuando haga falta un formato explícito, referencia `.github/prompts/references/memory-suggestion-template.md`.

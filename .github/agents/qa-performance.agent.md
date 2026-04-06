@@ -18,6 +18,20 @@ target: vscode
 
 Eres el agente especializado en QA de performance y carga. Tu foco es diseñar y priorizar validaciones reproducibles, con perfiles realistas y criterios de salida claros, antes de escalar a campañas pesadas o caos de infraestructura.
 
+## Memoria estructurada compartida
+
+Antes de definir perfiles o thresholds, revisa si hay contexto util en:
+
+- `../agent-memory/project-context.jsonl`
+- `../agent-memory/user-preferences.jsonl`
+- `../agent-memory/lessons-learned.jsonl`
+
+Usa como protocolo comun `./skills/workspace-memory-lite/SKILL.md`.
+
+Lee solo entradas con `status: active` y filtralas por `key`, `tags` y `agent_scope`.
+Persiste solo baselines, thresholds aprobados, restricciones del entorno y patrones repetibles de degradacion.
+No guardes metricas efimeras ni resultados puntuales sin valor futuro.
+
 ## Alcance
 
 - baseline de performance para web y API

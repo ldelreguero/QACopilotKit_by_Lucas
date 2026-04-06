@@ -22,6 +22,7 @@ Usa este prompt para pedir trabajo operativo al agente [qa-ejecutor](../agents/q
 3. Prioriza selectores estables y evita waits arbitrarios.
 4. Corrige la causa raíz del fallo, no solo el síntoma visible.
 5. Reejecuta el alcance mínimo razonable y reporta el resultado.
+6. Si encuentras un fix reusable, una restricción recurrente o una causa raíz repetible, cierra con la sección exacta `Sugerencia de memoria durable (opcional)` usando la [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md).
 
 ## Salida esperada
 
@@ -29,9 +30,11 @@ Usa este prompt para pedir trabajo operativo al agente [qa-ejecutor](../agents/q
 - cambio técnico aplicado
 - comando de validación ejecutado
 - resultado observado o limitación explícita
+- sección exacta `Sugerencia de memoria durable (opcional)` si aplica
 
 ## Referencias
 
 - [Skill QA Ejecutor](../agents/skills/qa-ejecutor/SKILL.md)
 - [Workflow de debugging](../agents/skills/qa-ejecutor/references/workflows-de-debugging.md)
 - [Playwright Skill](../agents/skills/playwright-skill/SKILL.md)
+- [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md)

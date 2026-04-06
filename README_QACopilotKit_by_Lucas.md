@@ -12,6 +12,38 @@ La idea general es simple:
 
 Si no sabes qué agente usar, empieza por `@qa-maestro-orquestador`.
 
+## Memoria persistente estructurada
+
+Este kit ahora incluye una memoria persistente estructurada para que los agentes visibles e internos puedan recordar contexto estable entre chats y sesiones sin depender de texto libre ambiguo.
+
+La memoria vive en:
+
+- `.github/agent-memory/project-context.jsonl`
+- `.github/agent-memory/user-preferences.jsonl`
+- `.github/agent-memory/lessons-learned.jsonl`
+
+Los archivos Markdown existentes en esa carpeta quedan como vista de compatibilidad y resumen humano. La fuente canónica para lectura y escritura de agentes pasa a ser JSONL.
+
+Por qué JSONL y no YAML o Markdown libre:
+
+- mantiene una entrada por línea, lo que simplifica append, diff y revisión en git
+- evita reescribir listas grandes o romper indentación como en YAML
+- permite campos estables para filtrado por tipo, tags, agente y estado
+- sigue siendo legible por humanos y por agentes sin introducir base de datos
+
+Buckets recomendados:
+
+- `project-context.jsonl` para decisiones, restricciones, baselines y convenciones del workspace
+- `user-preferences.jsonl` para preferencias duraderas del usuario o del equipo
+- `lessons-learned.jsonl` para fallos recurrentes, fixes reutilizables y runbooks breves
+
+Regla base:
+
+- guardar solo informacion durable, reusable y con valor para sesiones futuras
+- no guardar secretos, tokens, credenciales ni datos sensibles
+- usar entradas JSON validas con campos estables como `id`, `key`, `category`, `summary`, `when_to_use`, `tags`, `agent_scope`, `recorded_at` y `status`
+- marcar memoria obsoleta como `superseded` en vez de dejar reglas contradictorias activas
+
 ## Base canónica de Playwright
 
 Las buenas prácticas transversales de Playwright en este workspace ya no salen de la skill anterior.

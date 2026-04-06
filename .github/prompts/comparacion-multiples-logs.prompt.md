@@ -21,6 +21,7 @@ Usa este prompt cuando necesites correlacionar varias fuentes con el agente [Ana
 3. Distingue servicio origen, propagación y efectos secundarios.
 4. Si la evidencia alcanza, genera un archivo `.md` con análisis correlacionado y listado de fuentes usadas.
 5. Marca como hipótesis cualquier relación temporal no demostrada.
+6. Si confirmas patrones repetibles de correlación, origen o remediación, cierra con la sección exacta `Sugerencia de memoria durable (opcional)` usando la [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md).
 
 ## Salida esperada
 
@@ -30,8 +31,10 @@ Usa este prompt cuando necesites correlacionar varias fuentes con el agente [Ana
 - cadena de propagación
 - criticidad e impacto
 - archivo `.md` de salida si se generó
+- sección exacta `Sugerencia de memoria durable (opcional)` si aplica
 
 ## Referencias
 
 - [Skill Analista Universal de Logs](../agents/skills/analista-universal-logs/SKILL.md)
 - [Patrones y plantilla](../agents/skills/analista-universal-logs/references/patrones-y-plantilla.md)
+- [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md)

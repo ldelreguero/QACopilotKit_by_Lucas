@@ -22,6 +22,7 @@ Usa este prompt para pedir a [qa-arquitecto](../agents/qa-arquitecto.agent.md) u
 3. Justifica dependencias y configuración; no agregues paquetes por inercia.
 4. Si el repo ya tiene convenciones, extiéndelas en vez de reemplazarlas.
 5. Cierra con checklist de validación inicial.
+6. Si defines una convención, baseline o restricción durable, cierra con la sección exacta `Sugerencia de memoria durable (opcional)` usando la [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md).
 
 ## Salida esperada
 
@@ -30,8 +31,10 @@ Usa este prompt para pedir a [qa-arquitecto](../agents/qa-arquitecto.agent.md) u
 - decisiones técnicas y tradeoffs
 - validación mínima a ejecutar
 - riesgos o decisiones pendientes
+- sección exacta `Sugerencia de memoria durable (opcional)` si aplica
 
 ## Referencias
 
 - [Skill QA Arquitecto](../agents/skills/qa-arquitecto/SKILL.md)
 - [Blueprints de setup](../agents/skills/qa-arquitecto/references/blueprints-de-setup.md)
+- [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md)

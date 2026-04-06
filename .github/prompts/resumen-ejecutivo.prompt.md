@@ -21,6 +21,7 @@ Usa este prompt para traducir un incidente técnico a un resumen entendible para
 3. Evita stack traces, dumps o jerga innecesaria.
 4. Mantén la salida breve y accionable.
 5. Si corresponde, genera un `.md` con el resumen y Archivos Analizados.
+6. Si el incidente deja una decisión durable o un riesgo recurrente, cierra con la sección exacta `Sugerencia de memoria durable (opcional)` usando la [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md).
 
 ## Salida esperada
 
@@ -29,8 +30,10 @@ Usa este prompt para traducir un incidente técnico a un resumen entendible para
 - causa identificada en lenguaje simple
 - acciones tomadas o próximas acciones
 - nivel de confianza
+- sección exacta `Sugerencia de memoria durable (opcional)` si aplica
 
 ## Referencias
 
 - [Agente Analista Universal de Logs](../agents/analista-universal-logs.agent.md)
 - [Skill Analista Universal de Logs](../agents/skills/analista-universal-logs/SKILL.md)
+- [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md)

@@ -23,6 +23,7 @@ Usa este prompt para pedir a [promptfoo-evals](../agents/promptfoo-evals.agent.m
 3. Incluir asserts deterministicas por defecto y rubrics solo para calidad semantica necesaria.
 4. Si hay model-graded, fijar grader provider para estabilidad de scoring.
 5. Entregar salida apta para CI usando `-o output.json --no-cache`.
+6. Si la comparación confirma un baseline o criterio estable de selección, cierra con la sección exacta `Sugerencia de memoria durable (opcional)` usando la [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md).
 
 ## Salida esperada
 
@@ -30,8 +31,10 @@ Usa este prompt para pedir a [promptfoo-evals](../agents/promptfoo-evals.agent.m
 - matriz de metricas sugeridas (calidad, costo, latencia)
 - comandos de ejecucion y lectura de resultados
 - recomendacion basada en resultados observables
+- sección exacta `Sugerencia de memoria durable (opcional)` si aplica
 
 ## Referencias
 
 - [Skill promptfoo-evals](../agents/skills/prompt-foo/SKILL.md)
 - [Cheatsheet promptfoo](../agents/skills/prompt-foo/references/cheatsheet.md)
+- [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md)

@@ -23,6 +23,7 @@ Usa este prompt para pedir a [qa-arquitecto](../agents/qa-arquitecto.agent.md) l
 3. Configurar `.vscode/mcp.json` para usar Playwright MCP en inspeccion y debugging.
 4. Crear estructura base (`tests`, `pages`, `fixtures`, `utils`, `data`) alineada al repo.
 5. Dejar al menos un flujo smoke ejecutable y documentar como expandir cobertura.
+6. Si defines convenciones, restricciones o baselines duraderos del proyecto, cierra con la sección exacta `Sugerencia de memoria durable (opcional)` usando la [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md).
 
 ## Salida esperada
 
@@ -31,9 +32,11 @@ Usa este prompt para pedir a [qa-arquitecto](../agents/qa-arquitecto.agent.md) l
 - comandos de ejecucion local y en CI
 - primer test UI de referencia funcionando
 - checklist de salud del proyecto
+- sección exacta `Sugerencia de memoria durable (opcional)` si aplica
 
 ## Referencias
 
 - [Skill QA Arquitecto](../agents/skills/qa-arquitecto/SKILL.md)
 - [Playwright Skill](../agents/skills/playwright-skill/SKILL.md)
 - [Playwright Test Planner](../agents/playwright-test-planner.agent.md)
+- [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md)

@@ -23,6 +23,7 @@ Usa este prompt para pedir a [qa-arquitecto](../agents/qa-arquitecto.agent.md) e
 3. Definir convenciones de carpetas, naming y reutilizacion de request context/helpers.
 4. Proponer e implementar un primer smoke suite de endpoints criticos.
 5. Dejar scripts de ejecucion y validacion inicial listos para CI.
+6. Si defines convenciones, restricciones o baselines duraderos del proyecto, cierra con la sección exacta `Sugerencia de memoria durable (opcional)` usando la [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md).
 
 ## Salida esperada
 
@@ -31,9 +32,11 @@ Usa este prompt para pedir a [qa-arquitecto](../agents/qa-arquitecto.agent.md) e
 - primer set de tests API funcionales
 - checklist de validacion inicial
 - riesgos y siguientes decisiones tecnicas
+- sección exacta `Sugerencia de memoria durable (opcional)` si aplica
 
 ## Referencias
 
 - [Skill QA Arquitecto](../agents/skills/qa-arquitecto/SKILL.md)
 - [Skill Playwright API](../agents/skills/playwright-api/SKILL.md)
 - [Skill Playwright](../agents/skills/playwright-skill/SKILL.md)
+- [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md)

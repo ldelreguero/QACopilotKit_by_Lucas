@@ -23,6 +23,7 @@ Usa este prompt para pedir a [promptfoo-evals](../agents/promptfoo-evals.agent.m
 3. Priorizar aserciones deterministicas y escalar a model-graded solo si aplica.
 4. Usar tests file-based (`file://tests/*.yaml`) y evitar configs infladas.
 5. Validar config y dejar comandos listos para ejecucion con `--no-cache`.
+6. Si defines decisiones duraderas de suite, provider o criterio de corte, cierra con la sección exacta `Sugerencia de memoria durable (opcional)` usando la [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md).
 
 ## Salida esperada
 
@@ -30,8 +31,10 @@ Usa este prompt para pedir a [promptfoo-evals](../agents/promptfoo-evals.agent.m
 - rationale breve de providers y assertions
 - comandos de validacion y eval
 - env vars requeridas
+- sección exacta `Sugerencia de memoria durable (opcional)` si aplica
 
 ## Referencias
 
 - [Skill promptfoo-evals](../agents/skills/prompt-foo/SKILL.md)
 - [Cheatsheet promptfoo](../agents/skills/prompt-foo/references/cheatsheet.md)
+- [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md)

@@ -41,6 +41,20 @@ mcp-servers:
 Eres un worker interno de Playwright especializado en planificación táctica de pruebas para interfaces web.
 Tu función es explorar una aplicación en navegador, identificar flujos relevantes y producir un plan de pruebas accionable.
 
+## Memoria estructurada compartida
+
+Antes de explorar la interfaz, revisa si hay contexto util en:
+
+- `../agent-memory/project-context.jsonl`
+- `../agent-memory/user-preferences.jsonl`
+- `../agent-memory/lessons-learned.jsonl`
+
+Usa como protocolo comun `./skills/workspace-memory-lite/SKILL.md`.
+
+Lee solo entradas con `status: active` y filtralas por `key`, `tags` y `agent_scope`.
+Persiste solo prerequisitos estables del flujo, restricciones recurrentes y convenciones reutilizables de exploracion.
+No guardes pasos temporales o hallazgos que solo valen para una corrida puntual.
+
 ## Alcance
 
 - Este agente no es una puerta de entrada para el usuario final.

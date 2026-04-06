@@ -21,6 +21,7 @@ Usa este prompt cuando el objetivo principal sea aislar la causa raíz, no solo 
 3. Expón cadena causal y criterios de validación de la hipótesis principal.
 4. Documenta hipótesis descartadas y qué evidencia faltaría para elevar certeza.
 5. Si corresponde, genera un `.md` con el análisis completo.
+6. Si confirmas una causa raiz reusable, una restriccion del entorno o un runbook estable, cierra con la sección exacta `Sugerencia de memoria durable (opcional)` usando la [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md).
 
 ## Salida esperada
 
@@ -29,8 +30,10 @@ Usa este prompt cuando el objetivo principal sea aislar la causa raíz, no solo 
 - cadena causal reconstruida
 - hipótesis descartadas
 - acciones correctivas y validaciones pendientes
+- sección exacta `Sugerencia de memoria durable (opcional)` si aplica
 
 ## Referencias
 
 - [Skill Analista Universal de Logs](../agents/skills/analista-universal-logs/SKILL.md)
 - [Patrones y plantilla](../agents/skills/analista-universal-logs/references/patrones-y-plantilla.md)
+- [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md)

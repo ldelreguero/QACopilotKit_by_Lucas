@@ -22,6 +22,7 @@ Usa este prompt para pedir a [promptfoo-evals](../agents/promptfoo-evals.agent.m
 3. Incluir checks de costo/latencia para evitar degradaciones silenciosas.
 4. Preparar comandos para ejecucion local y CI sin cache.
 5. Documentar variables de entorno e indicadores que deben vigilarse.
+6. Si confirmas regresiones historicas, contratos duraderos o thresholds estables, cierra con la sección exacta `Sugerencia de memoria durable (opcional)` usando la [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md).
 
 ## Salida esperada
 
@@ -29,8 +30,10 @@ Usa este prompt para pedir a [promptfoo-evals](../agents/promptfoo-evals.agent.m
 - cobertura de casos criticos
 - comandos y recomendaciones de integracion CI
 - riesgos pendientes y siguientes iteraciones
+- sección exacta `Sugerencia de memoria durable (opcional)` si aplica
 
 ## Referencias
 
 - [Skill promptfoo-evals](../agents/skills/prompt-foo/SKILL.md)
 - [Cheatsheet promptfoo](../agents/skills/prompt-foo/references/cheatsheet.md)
+- [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md)

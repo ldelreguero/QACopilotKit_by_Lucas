@@ -22,6 +22,7 @@ Usa este prompt para pedir un análisis puntual al agente [qa-analista](../agent
 3. Prioriza compatibilidad, semántica e impacto funcional sobre diferencias cosméticas.
 4. Si falta baseline, decláralo y usa uno provisional solo si es imprescindible.
 5. Cierra con veredicto y siguiente acción sugerida.
+6. Si confirmas un baseline, contrato o hallazgo repetible, cierra con la sección exacta `Sugerencia de memoria durable (opcional)` usando la [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md).
 
 ## Salida esperada
 
@@ -30,8 +31,10 @@ Usa este prompt para pedir un análisis puntual al agente [qa-analista](../agent
 - paths o campos afectados
 - veredicto final: sin cambios relevantes, cambio esperado, riesgo o regresión confirmada
 - siguiente acción sugerida
+- sección exacta `Sugerencia de memoria durable (opcional)` si aplica
 
 ## Referencias
 
 - [Skill QA Analista](../agents/skills/qa-analista/SKILL.md)
 - [Plantillas de análisis](../agents/skills/qa-analista/references/plantillas-de-analisis.md)
+- [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md)

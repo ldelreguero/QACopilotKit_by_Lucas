@@ -22,6 +22,7 @@ Usa este prompt para pedir a [qa-exploratorio](../agents/qa-exploratorio.agent.m
 3. Incluir escenarios de borde, negativos y combinaciones inusuales.
 4. Definir evidencia esperada para pass/fail por charter.
 5. Proponer una secuencia de ejecucion exploratoria por sesiones.
+6. Si detectas invariantes, riesgos o ambiguedades duraderas, cierra con la sección exacta `Sugerencia de memoria durable (opcional)` usando la [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md).
 
 ## Salida esperada
 
@@ -30,8 +31,10 @@ Usa este prompt para pedir a [qa-exploratorio](../agents/qa-exploratorio.agent.m
 - datos o condiciones de prueba sugeridas
 - criterios de observacion y evidencia
 - backlog de follow-up para automatizacion futura
+- sección exacta `Sugerencia de memoria durable (opcional)` si aplica
 
 ## Referencias
 
 - [Skill Pairwise Test Design](../agents/skills/pairwise-test-design/SKILL.md)
 - [Playwright Accessibility](../agents/skills/playwright-accessibility/SKILL.md)
+- [Plantilla de sugerencia de memoria](./references/memory-suggestion-template.md)
